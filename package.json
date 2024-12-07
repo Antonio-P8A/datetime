@@ -1,0 +1,30 @@
+{
+  "name": "@ajcode/datetime",
+  "version": "1.0.0",
+  "description": "Librería para el manejo de fechas y horas",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo 'Módulo cargado correctamente' && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Antonio-P8A/kairosjs.git"
+  },
+  "keywords": [
+    "moment",
+    "date",
+    "time",
+    "parse",
+    "format",
+    "validate",
+    "i18n",
+    "l10n",
+    "ender"
+  ],
+  "author": "Antonio Peña",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Antonio-P8A/kairosjs/issues"
+  },
+  "homepage": "https://github.com/Antonio-P8A/kairosjs#readme"
+}
