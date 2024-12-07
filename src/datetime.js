@@ -8,16 +8,74 @@
  */
 
 class DateTime {
-  constructor() {
-    console.log("DateTime plugin initialized");
+  #date = null;
+
+  constructor(dateString = null, format = "yyyy/mm/dd hh:mi:ss") {
+    if (dateString && format) {
+      this.#date = this.#parseDate(dateString, format);
+    } else {
+      this.#date = new Date(); // Fecha actual por defecto
+    }
+
+    // Crear una especia de alias para repetir métodos
+    this.currentDate = this.now.bind(this);
+    this.today = this.now.bind(this);
   }
 
   /**
    * Obtiene la fecha y hora actual
    * @returns {string} Fecha y hora actual en formato ISO
    */
-  getCurrentDateTime() {
-    return new Date().toISOString();
+  now() {
+    return this.#date.toISOString();
+  }
+
+  // Método privado para analizar la fecha según el formato
+  #parseDate(dateString, format) {
+    const formatParts = format.split(/[^a-zA-Z]/); // Separar componentes del formato
+    const dateParts = dateString.split(/[^0-9]/); // Separar componentes de la fecha
+
+    // Validar que el número de partes coincida
+    if (formatParts.length !== dateParts.length) {
+      throw new Error(
+        `La fecha '${dateString}' no coincide con el formato '${format}'.`
+      );
+    }
+
+    // Mapa para asociar componentes del formato a índices específicos
+    const dateMap = {};
+    formatParts.forEach((part, index) => {
+      const value = parseInt(dateParts[index], 10);
+      if (isNaN(value)) {
+        throw new Error(
+          `La parte '${dateParts[index]}' no es válida para el formato '${part}'.`
+        );
+      }
+      dateMap[part] = value;
+    });
+
+    // Extraer componentes individuales según el formato
+    const now = new Date();
+    const year = dateMap["yyyy"] || now.getFullYear();
+    const month = (dateMap["mm"] || 1) - 1; // Mes es 0-indexado
+    const day = dateMap["dd"] || 1;
+    const hour = dateMap["hh"] !== undefined ? dateMap["hh"] : now.getHours(); // Hora actual si no se especifica
+    const minute =
+      dateMap["mi"] !== undefined ? dateMap["mi"] : now.getMinutes(); // Minuto actual si no se especifica
+    const second =
+      dateMap["ss"] !== undefined ? dateMap["ss"] : now.getSeconds(); // Segundo actual si no se especifica
+
+    // Validación adicional: Fecha válida
+    const constructedDate = new Date(year, month, day, hour, minute, second);
+    if (
+      constructedDate.getFullYear() !== year ||
+      constructedDate.getMonth() !== month ||
+      constructedDate.getDate() !== day
+    ) {
+      throw new Error(`La fecha '${dateString}' no es válida.`);
+    }
+
+    return constructedDate;
   }
 
   /**
@@ -56,9 +114,12 @@ class DateTime {
   }
 }
 
+const datetime = (dateString, format) => new DateTime(dateString, format);
+
 // Exportar para CommonJS (require)
 if (typeof module === "object" && module.exports) {
-  module.exports = DateTime;
+  module.exports = datetime;
+  i;
 }
 
 // ES Module Export (para import) // no usar para tener compatibilidad con require
