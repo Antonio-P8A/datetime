@@ -1,2 +1,3 @@
-# Excluir la carpeta .github y todo su contenido
+# Excluir directorios y todo su contenido
 .github/
+test/
