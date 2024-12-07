@@ -1,6 +1,6 @@
 {
   "name": "@ajcode/datetime",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Librería para el manejo de fechas y horas",
   "main": "src/index.js",
   "scripts": {
