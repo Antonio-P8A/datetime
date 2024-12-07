@@ -1,6 +1,6 @@
 {
   "name": "@ajcode/datetime",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Librería para el manejo de fechas y horas",
   "main": "src/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Antonio-P8A/kairosjs.git"
+    "url": "git+https://github.com/Antonio-P8A/datetime.git"
   },
   "keywords": [
     "moment",
@@ -24,7 +24,7 @@
   "author": "Antonio Peña",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Antonio-P8A/kairosjs/issues"
+    "url": "https://github.com/Antonio-P8A/datetime.git/issues"
   },
-  "homepage": "https://github.com/Antonio-P8A/kairosjs#readme"
+  "homepage": "https://github.com/Antonio-P8A/datetime.git#readme"
 }

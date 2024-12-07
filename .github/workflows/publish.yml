@@ -32,6 +32,9 @@ jobs:
           git config user.name "Antonio Peña"
           git config user.email "ap.ochoa89@gmail.com"
 
+      # - name: Bump version
+        # run: npm version patch -m "Automated version bump to %s"
+
       - name: Publish to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
