@@ -35,11 +35,38 @@ class DateTime {
 	}
 
 	/**
-	 * Obtiene la fecha y hora actual
-	 * @returns {string} Fecha y hora actual en formato ISO
+	 * Mostrar la fecha como string
+	 * 
+	 * @param {boolean} hour12 True muestra AM/PM, False 24H. Por defecto es 24H
+	 * @returns {string} Retorna formato local
 	 */
-	string() {
-		return this.#date.toISOString();
+	string(hour12 = false) {
+		// Estos son todos los tipos de formatos que ofrece Date
+		// let format = this.#date.toString(); // Tue May 12 2020 18:50:21 GMT-0500 (Central Daylight Time)
+		// format = this.#date.toDateString(); // Tue May 12 2020
+		// format = this.#date.toTimeString(); // 18:50:21 GMT-0500 (Central Daylight Time)
+		// format = this.#date.toISOString(); // 2020-05-12T23:50:21.817Z - existe diferencia de horas igual que toJSON
+		// format = this.#date.toJSON(); // 2020-05-12T23:50:21.817Z - existe diferencia de horas igual que toISOString
+		// format = this.#date.toUTCString(); // Tue, 12 May 2020 23:50:21 GMT - existe diferencia de horas
+		// format = this.#date.toLocaleString(); // 5/12/2020, 6:50:21 PM
+		// format = this.#date.toLocaleDateString(); // 5/12/2020
+		// format = this.#date.toLocaleTimeString(); // 6:50:21 PM
+
+		// let format = this.#date.toLocaleString().split(", ").join(" ").split(".", 1).join();
+
+		let formatter = new Intl.DateTimeFormat("en-US", {
+			year: "numeric",
+			month: "2-digit",
+			day: "2-digit",
+			hour: "2-digit",
+			minute: "2-digit",
+			second: "2-digit",
+			hour12: hour12, // Cambia a true para formato de 12 horas
+		});
+
+		let format = formatter.format(this.#date).replace(",", "");
+
+		return format;
 	}
 
 	/**
@@ -60,13 +87,16 @@ class DateTime {
 
 		// Mapa para asociar componentes del formato a índices específicos
 		const dateMap = {};
+
 		formatParts.forEach((part, index) => {
 			const value = parseInt(dateParts[index], 10);
+
 			if (isNaN(value)) {
 				throw new Error(
 					`La parte '${dateParts[index]}' no es válida para el formato '${part}'.`
 				);
 			}
+
 			dateMap[part] = value;
 		});
 
@@ -78,7 +108,7 @@ class DateTime {
 		const hour =
 			dateMap["hh"] !== undefined ? dateMap["hh"] : now.getHours(); // Hora actual si no se especifica
 		const minute =
-			dateMap["mi"] !== undefined ? dateMap["mi"] : now.getMinutes(); // Minuto actual si no se especifica
+			dateMap["ii"] !== undefined ? dateMap["ii"] : now.getMinutes(); // Minuto actual si no se especifica
 		const second =
 			dateMap["ss"] !== undefined ? dateMap["ss"] : now.getSeconds(); // Segundo actual si no se especifica
 
@@ -91,13 +121,14 @@ class DateTime {
 			minute,
 			second
 		);
-		if (
-			constructedDate.getFullYear() !== year ||
-			constructedDate.getMonth() !== month ||
-			constructedDate.getDate() !== day
-		) {
-			throw new Error(`La fecha '${dateString}' no es válida.`);
-		}
+
+		// if (
+		// 	constructedDate.getFullYear() !== year ||
+		// 	constructedDate.getMonth() !== month ||
+		// 	constructedDate.getDate() !== day
+		// ) {
+		// 	throw new Error(`La fecha '${dateString}' no es válida.`);
+		// }
 
 		return constructedDate;
 	}
