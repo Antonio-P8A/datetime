@@ -1,8 +1,20 @@
-const DT = new DateTime();
+// const DT = new DateTime();
 // console.log("instancia");
-// console.log(DT.now());
+// console.log(DT);
+// console.log(DT.string());
+// const DT1 = new DateTime("1989/06/02");
+// console.log(DT1.string());
+// const DT2 = new DateTime("1989/26/02", "yyyy/dd/mm");
+// console.log(DT2.string());
+// const DT3 = new DateTime("02/06/1989", "dd/mm/yyyy");
+// console.log(DT3.string());
+// const DT4 = new DateTime("06/30/1989", "mm/dd/yyyy");
+// console.log(DT4.string());
 
 console.log("función");
-console.log(datetime("1989/06/02").now());
-// console.log(datetime("1989/06/02").now());
-// console.log(datetime("02/06/1989").now());
+console.log(datetime());
+console.log(datetime().string());
+console.log(datetime("1989/06/02").string());
+console.log(datetime("1989/26/02", "yyyy/dd/mm").string());
+console.log(datetime("02/06/1989", "dd/mm/yyyy").string());
+console.log(datetime("06/30/1989", "mm/dd/yyyy").string());

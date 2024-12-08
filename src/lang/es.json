@@ -1,0 +1,6 @@
+{
+    "es": {
+        "invalid_format": "La fecha '{date}' no coincide con el formato '{format}'.",
+        "invalid_date": "La fecha '{date}' no es válida."
+    }
+}
