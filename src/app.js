@@ -174,13 +174,14 @@ class DateTime {
 const datetime = (dateString, format) => new DateTime(dateString, format);
 
 // Exportar para CommonJS (require)
-// if (typeof module === "object" && module.exports) {
-// 	console.log("module");
-// 	module.exports = { DateTime, datetime };
-// }
+if (typeof module === "object" && module.exports) {
+	module.exports = { DateTime, datetime };
+}
 
 window.DateTime = DateTime;
 window.datetime = datetime;
+
+export { DateTime, datetime };
 
 // ES Module Export (para import) // no usar para tener compatibilidad con require
 // export default DateTime;

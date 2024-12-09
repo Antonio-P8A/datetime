@@ -1,5 +1,4 @@
-import "../src/app.js";
-// import { DateTime, datetime } from "../src/app.js";
+import { DateTime, datetime } from "../src/app.js";
 
 // const DateTime = require("../src/app")
 // const datetime = require("../src/app")

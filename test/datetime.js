@@ -192,10 +192,14 @@ ansiHTML.reset()
 /*!********************!*\
   !*** ./src/app.js ***!
   \********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   DateTime: () => (/* binding */ DateTime),
+/* harmony export */   datetime: () => (/* binding */ datetime)
+/* harmony export */ });
 /* harmony import */ var core_js_modules_es_error_cause_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.error.cause.js */ "./node_modules/core-js/modules/es.error.cause.js");
 /* harmony import */ var core_js_modules_es_error_cause_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_error_cause_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.regexp.exec.js */ "./node_modules/core-js/modules/es.regexp.exec.js");
@@ -208,6 +212,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_esnext_iterator_for_each_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_esnext_iterator_for_each_js__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/web.dom-collections.iterator.js */ "./node_modules/core-js/modules/web.dom-collections.iterator.js");
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_5__);
+/* module decorator */ module = __webpack_require__.hmd(module);
 var _navigator$language;
 
 
@@ -382,13 +387,15 @@ _defineProperty(DateTime, "lang", language);
 const datetime = (dateString, format) => new DateTime(dateString, format);
 
 // Exportar para CommonJS (require)
-// if (typeof module === "object" && module.exports) {
-// 	console.log("module");
-// 	module.exports = { DateTime, datetime };
-// }
-
+if ( true && module.exports) {
+  module.exports = {
+    DateTime,
+    datetime
+  };
+}
 window.DateTime = DateTime;
 window.datetime = datetime;
+
 
 // ES Module Export (para import) // no usar para tener compatibilidad con require
 // export default DateTime;
@@ -7314,13 +7321,16 @@ module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \'{date}\'
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			id: moduleId,
+/******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
@@ -7353,7 +7363,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \'{date}\'
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("fd010475a70aa5f16f28")
+/******/ 		__webpack_require__.h = () => ("8cf2a25fdf6ead72aff5")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
@@ -7366,6 +7376,21 @@ module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \'{date}\'
 /******/ 				if (typeof window === 'object') return window;
 /******/ 			}
 /******/ 		})();
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/harmony module decorator */
+/******/ 	(() => {
+/******/ 		__webpack_require__.hmd = (module) => {
+/******/ 			module = Object.create(module);
+/******/ 			if (!module.children) module.children = [];
+/******/ 			Object.defineProperty(module, 'exports', {
+/******/ 				enumerable: true,
+/******/ 				set: () => {
+/******/ 					throw new Error('ES Modules may not assign module.exports or exports.*, Use ESM export syntax, instead: ' + module.id);
+/******/ 				}
+/******/ 			});
+/******/ 			return module;
+/******/ 		};
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
@@ -7741,13 +7766,12 @@ var socketURL = (0,_utils_createSocketURL_js__WEBPACK_IMPORTED_MODULE_8__["defau
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _src_app_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../src/app.js */ "./src/app.js");
 
-// import { DateTime, datetime } from "../src/app.js";
 
 // const DateTime = require("../src/app")
 // const datetime = require("../src/app")
 console.log("Desarrollo");
 console.log("instancia");
-const DT = new DateTime();
+const DT = new _src_app_js__WEBPACK_IMPORTED_MODULE_0__.DateTime();
 // console.log(DT);
 console.log(DT.toString());
 // const DT1 = new DateTime("1989/06/02");
@@ -7761,7 +7785,7 @@ console.log(DT.toString());
 
 console.log("función");
 // console.log(datetime());
-console.log(datetime().now());
+console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().now());
 // console.log(datetime().today());
 // console.log(datetime().currentDate());
 // console.log(datetime().toString());
