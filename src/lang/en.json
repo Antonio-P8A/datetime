@@ -1,6 +1,4 @@
 {
-    "en": {
-        "invalid_format": "The date '{date}' does not match the format '{format}'.",
-        "invalid_date": "The date '{date}' is not valid."
-    }
+    "invalid_format": "The date '{date}' does not match the format '{format}'.",
+    "invalid_date": "The date '{date}' is not valid."
 }

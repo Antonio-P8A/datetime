@@ -1,3 +1,6 @@
 # Excluir directorios y todo su contenido
 .github/
+src/
 test/
+package-lock.json
+webpack.config.js

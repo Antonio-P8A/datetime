@@ -4,7 +4,9 @@
   "description": "Librería para el manejo de fechas y horas en JavaScript",
   "main": "src/datetime.js",
   "scripts": {
-    "test": "echo 'Módulo cargado correctamente' && exit 1"
+    "test": "echo 'Módulo cargado correctamente' && exit 1",
+    "build": "npx webpack --config webpack.config.js",
+    "start": "npx webpack serve --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -26,5 +28,15 @@
   "bugs": {
     "url": "https://github.com/Antonio-P8A/datetime.git/issues"
   },
-  "homepage": "https://github.com/Antonio-P8A/datetime.git#readme"
+  "homepage": "https://github.com/Antonio-P8A/datetime.git#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.26.4",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "babel-loader": "^9.2.1",
+    "core-js": "^3.39.0",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.1.0"
+  }
 }
