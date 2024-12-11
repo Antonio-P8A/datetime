@@ -1,8 +1,8 @@
 {
   "name": "@ajcode/datetime",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "description": "Librería para el manejo de fechas y horas en JavaScript",
-  "main": "src/datetime.js",
+  "main": "dist/datetime.js",
   "scripts": {
     "test": "echo 'Módulo cargado correctamente' && exit 1",
     "build": "npx webpack --config webpack.config.js",

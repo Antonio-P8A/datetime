@@ -1,5 +1,5 @@
 /**
- * @version: 1.0.8
+ * @version: 1.0.10
  * @author: Antonio Peña https://www.ajdev.es/
  * @copyright: Copyright (c) 2024 Antonio Peña. Todos los derechos reservados.
  * @license: Licensed under the MIT license.
