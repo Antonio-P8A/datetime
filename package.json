@@ -5,6 +5,7 @@
   "main": "dist/datetime.js",
   "scripts": {
     "test": "echo 'Módulo cargado correctamente' && exit 1",
+    "pro": "npx webpack --mode production",
     "build": "npx webpack --config webpack.config.js",
     "start": "npx webpack serve --config webpack.config.js"
   },

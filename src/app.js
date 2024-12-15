@@ -8,11 +8,12 @@
  */
 
 const language = navigator.language ?? "es-ES";
-const lang = require("./lang/" + language.split("-", 1));
+const translate = require("./lang/" + language.split("-", 1));
 
 class DateTime {
 	#date = null;
 	static lang = language;
+	static translate = translate;
 
 	/**
 	 * Construye la instancia con una fecha a partir de un formato dado
@@ -80,7 +81,10 @@ class DateTime {
 		// Validar que el número de partes coincida
 		if (formatParts.length !== dateParts.length) {
 			throw new Error(
-				`La fecha '${dateString}' no coincide con el formato '${format}'.`
+				this.#translate("invalid_format", {
+					":date": dateString,
+					":format": format,
+				})
 			);
 		}
 
@@ -91,8 +95,11 @@ class DateTime {
 			const value = parseInt(dateParts[index], 10);
 
 			if (isNaN(value)) {
+				// Es muy difícil que entre aquí la forma de split con expresiones regulares sirve como primer filtro
 				throw new Error(
-					`La parte '${dateParts[index]}' no es válida para el formato '${part}'.`
+					this.#translate("invalid_date", {
+						":date": dateString,
+					})
 				);
 			}
 
@@ -120,14 +127,18 @@ class DateTime {
 			minute,
 			second
 		);
-
-		// if (
-		// 	constructedDate.getFullYear() !== year ||
-		// 	constructedDate.getMonth() !== month ||
-		// 	constructedDate.getDate() !== day
-		// ) {
-		// 	throw new Error(`La fecha '${dateString}' no es válida.`);
-		// }
+		
+		if (
+			constructedDate.getFullYear() !== year ||
+			constructedDate.getMonth() !== month ||
+			constructedDate.getDate() !== day
+		) {
+			throw new Error(
+				this.#translate("invalid_date", {
+					":date": dateString,
+				})
+			);
+		}
 
 		return constructedDate;
 	}
@@ -168,6 +179,17 @@ class DateTime {
 		const d2 = new Date(date2);
 		const diff = Math.abs(d2 - d1);
 		return Math.ceil(diff / (1000 * 60 * 60 * 24));
+	}
+
+	#translate(key, variables = {}) {
+		const messages = DateTime.translate || {};
+		let message = messages[key] || key;
+
+		Object.entries(variables).forEach(([placeholder, value]) => {
+			message = message.replace(`${placeholder}`, value);
+		});
+
+		return message;
 	}
 }
 

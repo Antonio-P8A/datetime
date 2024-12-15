@@ -1,10 +1,10 @@
 import "../dist/datetime.js";
 
 console.log("módulo");
-console.log("instancia");
-const DT = new DateTime();
+// console.log("instancia");
+// const DT = new DateTime();
 // console.log(DT);
-console.log(DT.toString());
+// console.log(DT.toString());
 // const DT1 = new DateTime("1989/06/02");
 // console.log(DT1.toString());
 // const DT2 = new DateTime("1989/26/02", "yyyy/dd/mm");
@@ -16,7 +16,7 @@ console.log(DT.toString());
 
 console.log("función");
 // console.log(datetime());
-console.log(datetime().now());
+// console.log(datetime().now());
 // console.log(datetime().today());
 // console.log(datetime().currentDate());
 // console.log(datetime().toString());

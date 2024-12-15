@@ -213,7 +213,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/web.dom-collections.iterator.js */ "./node_modules/core-js/modules/web.dom-collections.iterator.js");
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_5__);
 /* module decorator */ module = __webpack_require__.hmd(module);
-var _navigator$language;
+var _navigator$language, _DateTime;
 
 
 
@@ -230,7 +230,7 @@ function _classPrivateFieldGet(s, a) { return s.get(_assertClassBrand(s, a)); }
 function _classPrivateFieldSet(s, a, r) { return s.set(_assertClassBrand(s, a), r), r; }
 function _assertClassBrand(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
 /**
- * @version: 1.0.2
+ * @version: 1.0.10
  * @author: Antonio Peña https://www.ajdev.es/
  * @copyright: Copyright (c) 2024 Antonio Peña. Todos los derechos reservados.
  * @license: Licensed under the MIT license.
@@ -239,7 +239,7 @@ function _assertClassBrand(e, t, n) { if ("function" == typeof e ? e === t : e.h
  */
 
 const language = (_navigator$language = navigator.language) !== null && _navigator$language !== void 0 ? _navigator$language : "es-ES";
-const lang = __webpack_require__("./src/lang sync recursive ^\\.\\/.*$")("./" + language.split("-", 1));
+const translate = __webpack_require__("./src/lang sync recursive ^\\.\\/.*$")("./" + language.split("-", 1));
 var _date = /*#__PURE__*/new WeakMap();
 var _DateTime_brand = /*#__PURE__*/new WeakSet();
 class DateTime {
@@ -342,13 +342,17 @@ class DateTime {
     return Math.ceil(diff / (1000 * 60 * 60 * 24));
   }
 }
+_DateTime = DateTime;
 function _parseDate(dateString, format) {
   const formatParts = format.split(/[^a-zA-Z]/); // Separar componentes del formato
   const dateParts = dateString.split(/[^0-9]/); // Separar componentes de la fecha
 
   // Validar que el número de partes coincida
   if (formatParts.length !== dateParts.length) {
-    throw new Error("La fecha '".concat(dateString, "' no coincide con el formato '").concat(format, "'."));
+    throw new Error(_assertClassBrand(_DateTime_brand, this, _translate).call(this, "invalid_format", {
+      ":date": dateString,
+      ":format": format
+    }));
   }
 
   // Mapa para asociar componentes del formato a índices específicos
@@ -356,7 +360,10 @@ function _parseDate(dateString, format) {
   formatParts.forEach((part, index) => {
     const value = parseInt(dateParts[index], 10);
     if (isNaN(value)) {
-      throw new Error("La parte '".concat(dateParts[index], "' no es v\xE1lida para el formato '").concat(part, "'."));
+      // Es muy difícil que entre aquí la forma de split con expresiones regulares sirve como primer filtro
+      throw new Error(_assertClassBrand(_DateTime_brand, this, _translate).call(this, "invalid_date", {
+        ":date": dateString
+      }));
     }
     dateMap[part] = value;
   });
@@ -372,18 +379,25 @@ function _parseDate(dateString, format) {
 
   // Validación adicional: Fecha válida
   const constructedDate = new Date(year, month, day, hour, minute, second);
-
-  // if (
-  // 	constructedDate.getFullYear() !== year ||
-  // 	constructedDate.getMonth() !== month ||
-  // 	constructedDate.getDate() !== day
-  // ) {
-  // 	throw new Error(`La fecha '${dateString}' no es válida.`);
-  // }
-
+  if (constructedDate.getFullYear() !== year || constructedDate.getMonth() !== month || constructedDate.getDate() !== day) {
+    throw new Error(_assertClassBrand(_DateTime_brand, this, _translate).call(this, "invalid_date", {
+      ":date": dateString
+    }));
+  }
   return constructedDate;
 }
+function _translate(key) {
+  let variables = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  const messages = _DateTime.translate || {};
+  let message = messages[key] || key;
+  Object.entries(variables).forEach(_ref => {
+    let [placeholder, value] = _ref;
+    message = message.replace("".concat(placeholder), value);
+  });
+  return message;
+}
 _defineProperty(DateTime, "lang", language);
+_defineProperty(DateTime, "translate", translate);
 const datetime = (dateString, format) => new DateTime(dateString, format);
 
 // Exportar para CommonJS (require)
@@ -7303,7 +7317,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"The date \'{date}\'
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \'{date}\' no coincide con el formato \'{format}\'.","invalid_date":"La fecha \'{date}\' no es válida."}');
+module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \\":date\\" no coincide con el formato \\":format\\".","invalid_date":"La fecha \\":date\\" no es válida."}');
 
 /***/ })
 
@@ -7363,7 +7377,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \'{date}\'
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("8cf2a25fdf6ead72aff5")
+/******/ 		__webpack_require__.h = () => ("1791af8ca88017615afb")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
@@ -7770,10 +7784,10 @@ __webpack_require__.r(__webpack_exports__);
 // const DateTime = require("../src/app")
 // const datetime = require("../src/app")
 console.log("Desarrollo");
-console.log("instancia");
-const DT = new _src_app_js__WEBPACK_IMPORTED_MODULE_0__.DateTime();
+// console.log("instancia");
+// const DT = new DateTime();
 // console.log(DT);
-console.log(DT.toString());
+// console.log(DT.toString());
 // const DT1 = new DateTime("1989/06/02");
 // console.log(DT1.toString());
 // const DT2 = new DateTime("1989/26/02", "yyyy/dd/mm");
@@ -7785,7 +7799,7 @@ console.log(DT.toString());
 
 console.log("función");
 // console.log(datetime());
-console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().now());
+// console.log(datetime().now());
 // console.log(datetime().today());
 // console.log(datetime().currentDate());
 // console.log(datetime().toString());
@@ -7793,8 +7807,9 @@ console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().now());
 // console.log(datetime("1987/29/05", "yyyy/dd/mm").toString());
 // console.log(datetime("15/05/2009", "dd/mm/yyyy").toString());
 // console.log(datetime("03/18/2018", "mm/dd/yyyy").toString());
-// console.log(datetime("07/2024/24 15:10:30", "mm/yyyy/dd hh:ii:ss").toString());
+console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)("07/2024/24 15:10:05", "mm/yyyy/dd hh:ii:ss").toString());
 // console.log(datetime("01/21/2023 16:20", "mm/dd/yyyy hh:ii").toString());
+// console.log(datetime("12/24/2024 20", "mm/dd/yyyy hh").toString(true));
 // console.log(datetime("12/24/2024 20", "mm/dd/yyyy hh").toString(true));
 })();
 
