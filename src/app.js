@@ -8,12 +8,12 @@
  */
 
 const language = navigator.language ?? "es-ES";
-const translate = require("./lang/" + language.split("-", 1));
+// const translate = require("./lang/" + language.split("-", 1));
 
 class DateTime {
 	#date = null;
 	static lang = language;
-	static translate = translate;
+	static translate = require("./lang/" + language.split("-", 1));
 
 	/**
 	 * Construye la instancia con una fecha a partir de un formato dado
@@ -154,31 +154,6 @@ class DateTime {
 			dateStyle: "long",
 			timeStyle: "short",
 		});
-	}
-
-	/**
-	 * Suma días a una fecha
-	 * @param {string|Date} date Fecha en formato ISO o un objeto Date
-	 * @param {number} days Número de días a sumar
-	 * @returns {string} Fecha resultante en formato ISO
-	 */
-	addDays(date, days) {
-		const d = new Date(date);
-		d.setDate(d.getDate() + days);
-		return d.toISOString();
-	}
-
-	/**
-	 * Calcula la diferencia entre dos fechas en días
-	 * @param {string|Date} date1 Fecha inicial
-	 * @param {string|Date} date2 Fecha final
-	 * @returns {number} Diferencia en días
-	 */
-	getDifferenceInDays(date1, date2) {
-		const d1 = new Date(date1);
-		const d2 = new Date(date2);
-		const diff = Math.abs(d2 - d1);
-		return Math.ceil(diff / (1000 * 60 * 60 * 24));
 	}
 
 	#translate(key, variables = {}) {

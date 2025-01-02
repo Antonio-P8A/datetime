@@ -230,7 +230,7 @@ function _classPrivateFieldGet(s, a) { return s.get(_assertClassBrand(s, a)); }
 function _classPrivateFieldSet(s, a, r) { return s.set(_assertClassBrand(s, a), r), r; }
 function _assertClassBrand(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
 /**
- * @version: 1.0.10
+ * @version: 1.0.11
  * @author: Antonio Peña https://www.ajdev.es/
  * @copyright: Copyright (c) 2024 Antonio Peña. Todos los derechos reservados.
  * @license: Licensed under the MIT license.
@@ -239,7 +239,7 @@ function _assertClassBrand(e, t, n) { if ("function" == typeof e ? e === t : e.h
  */
 
 const language = (_navigator$language = navigator.language) !== null && _navigator$language !== void 0 ? _navigator$language : "es-ES";
-const translate = __webpack_require__("./src/lang sync recursive ^\\.\\/.*$")("./" + language.split("-", 1));
+// const translate = require("./lang/" + language.split("-", 1));
 var _date = /*#__PURE__*/new WeakMap();
 var _DateTime_brand = /*#__PURE__*/new WeakSet();
 class DateTime {
@@ -316,31 +316,6 @@ class DateTime {
       timeStyle: "short"
     });
   }
-
-  /**
-   * Suma días a una fecha
-   * @param {string|Date} date Fecha en formato ISO o un objeto Date
-   * @param {number} days Número de días a sumar
-   * @returns {string} Fecha resultante en formato ISO
-   */
-  addDays(date, days) {
-    const d = new Date(date);
-    d.setDate(d.getDate() + days);
-    return d.toISOString();
-  }
-
-  /**
-   * Calcula la diferencia entre dos fechas en días
-   * @param {string|Date} date1 Fecha inicial
-   * @param {string|Date} date2 Fecha final
-   * @returns {number} Diferencia en días
-   */
-  getDifferenceInDays(date1, date2) {
-    const d1 = new Date(date1);
-    const d2 = new Date(date2);
-    const diff = Math.abs(d2 - d1);
-    return Math.ceil(diff / (1000 * 60 * 60 * 24));
-  }
 }
 _DateTime = DateTime;
 function _parseDate(dateString, format) {
@@ -397,7 +372,7 @@ function _translate(key) {
   return message;
 }
 _defineProperty(DateTime, "lang", language);
-_defineProperty(DateTime, "translate", translate);
+_defineProperty(DateTime, "translate", __webpack_require__("./src/lang sync recursive ^\\.\\/.*$")("./" + language.split("-", 1)));
 const datetime = (dateString, format) => new DateTime(dateString, format);
 
 // Exportar para CommonJS (require)
@@ -7377,7 +7352,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \\":date\\
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("1791af8ca88017615afb")
+/******/ 		__webpack_require__.h = () => ("d1c6c26c2a9c58bc7d11")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
@@ -7807,10 +7782,10 @@ console.log("función");
 // console.log(datetime("1987/29/05", "yyyy/dd/mm").toString());
 // console.log(datetime("15/05/2009", "dd/mm/yyyy").toString());
 // console.log(datetime("03/18/2018", "mm/dd/yyyy").toString());
-console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)("07/2024/24 15:10:05", "mm/yyyy/dd hh:ii:ss").toString());
+// console.log(datetime("07/2024/24 15:10:05", "mm/yyyy/dd hh:ii:ss").toString());
 // console.log(datetime("01/21/2023 16:20", "mm/dd/yyyy hh:ii").toString());
 // console.log(datetime("12/24/2024 20", "mm/dd/yyyy hh").toString(true));
-// console.log(datetime("12/24/2024 20", "mm/dd/yyyy hh").toString(true));
+console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)("12/24/2024", "dd/mm/yyyy").toString(true));
 })();
 
 /******/ })()
