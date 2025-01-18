@@ -7,26 +7,13 @@
  * https://opensource.org/licenses/MIT
  */
 
-const language = navigator.language ?? "es-ES";
+// const language = navigator.language ?? "es-ES";
 // const translate = require("./lang/" + language.split("-", 1));
-
-// let file = `./lang/${language.split("-", 1)}.json`;
-// const loadTranslations = async (filePath = file) => {
-// 	try {
-// 		const response = await fetch(filePath);
-// 		const data = await response.json();
-// 		return data;
-// 	} catch (error) {
-// 		console.error("Error loading translations:", error);
-// 	}
-// };
-
-// const translations = await loadTranslations();
 
 class DateTime {
 	#date = null;
-	static lang = language;
-	static translate = require("./lang/" + language.split("-", 1));
+	static lang = "es";
+	static translate = require("./lang/" + DateTime.lang);
 	// static translate = translations;
 
 	/**
@@ -43,11 +30,18 @@ class DateTime {
 		}
 
 		// Crear alias para repetir métodos
-		this.currentDate = this.toString.bind(this);
-		this.today = this.toString.bind(this);
-		this.now = this.toString.bind(this);
+		this.currentDate = this.dateFormat.bind(this);
+		this.today = this.dateFormat.bind(this);
+		this.now = this.dateFormat.bind(this);
 	}
 
+	/**
+	 * Traduce un mensaje a un idioma específico
+	 * 
+	 * @param {string} key Clave del mensaje
+	 * @param {object} variables Objeto con las variables a reemplazar
+	 * @returns 
+	 */
 	#translate(key, variables = {}) {
 		const messages = DateTime.translate || {};
 		let message = messages[key] || key;
@@ -65,7 +59,7 @@ class DateTime {
 	 * @param {boolean} hour12 True muestra AM/PM, False 24H. Por defecto es 24H
 	 * @returns {string} Retorna formato local
 	 */
-	toString(hour12 = false) {
+	dateFormat(hour12 = false) {
 		// Estos son todos los tipos de formatos que ofrece Date
 		// let format = this.#date.toString(); // Tue May 12 2020 18:50:21 GMT-0500 (Central Daylight Time)
 		// format = this.#date.toDateString(); // Tue May 12 2020
@@ -170,11 +164,12 @@ class DateTime {
 
 	/**
 	 * Convierte una fecha a un formato legible
+	 * 
 	 * @param {string|Date} date Fecha en formato ISO o un objeto Date
 	 * @returns {string} Fecha en formato legible
 	 */
-	formatDate(date) {
-		const d = new Date(date);
+	toString(date) {
+		const d = new Date(date ?? this.#date);
 		return d.toLocaleString(DateTime.lang, {
 			dateStyle: "long",
 			timeStyle: "short",

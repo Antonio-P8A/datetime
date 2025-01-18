@@ -213,7 +213,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/web.dom-collections.iterator.js */ "./node_modules/core-js/modules/web.dom-collections.iterator.js");
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_5__);
 /* module decorator */ module = __webpack_require__.hmd(module);
-var _navigator$language, _DateTime;
+var _DateTime;
 
 
 
@@ -229,6 +229,8 @@ function _checkPrivateRedeclaration(e, t) { if (t.has(e)) throw new TypeError("C
 function _classPrivateFieldGet(s, a) { return s.get(_assertClassBrand(s, a)); }
 function _classPrivateFieldSet(s, a, r) { return s.set(_assertClassBrand(s, a), r), r; }
 function _assertClassBrand(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
+var _date = /*#__PURE__*/new WeakMap();
+var _DateTime_brand = /*#__PURE__*/new WeakSet();
 /**
  * @version: 1.0.11
  * @author: Antonio Peña https://www.ajdev.es/
@@ -238,23 +240,9 @@ function _assertClassBrand(e, t, n) { if ("function" == typeof e ? e === t : e.h
  * https://opensource.org/licenses/MIT
  */
 
-const language = (_navigator$language = navigator.language) !== null && _navigator$language !== void 0 ? _navigator$language : "es-ES";
+// const language = navigator.language ?? "es-ES";
 // const translate = require("./lang/" + language.split("-", 1));
 
-// let file = `./lang/${language.split("-", 1)}.json`;
-// const loadTranslations = async (filePath = file) => {
-// 	try {
-// 		const response = await fetch(filePath);
-// 		const data = await response.json();
-// 		return data;
-// 	} catch (error) {
-// 		console.error("Error loading translations:", error);
-// 	}
-// };
-
-// const translations = await loadTranslations();
-var _date = /*#__PURE__*/new WeakMap();
-var _DateTime_brand = /*#__PURE__*/new WeakSet();
 class DateTime {
   // static translate = translations;
 
@@ -267,6 +255,13 @@ class DateTime {
   constructor() {
     let _dateString = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
     let _format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "yyyy/mm/dd";
+    /**
+     * Traduce un mensaje a un idioma específico
+     * 
+     * @param {string} key Clave del mensaje
+     * @param {object} variables Objeto con las variables a reemplazar
+     * @returns 
+     */
     _classPrivateMethodInitSpec(this, _DateTime_brand);
     _classPrivateFieldInitSpec(this, _date, null);
     if (_dateString && _format) {
@@ -276,9 +271,9 @@ class DateTime {
     }
 
     // Crear alias para repetir métodos
-    this.currentDate = this.toString.bind(this);
-    this.today = this.toString.bind(this);
-    this.now = this.toString.bind(this);
+    this.currentDate = this.dateFormat.bind(this);
+    this.today = this.dateFormat.bind(this);
+    this.now = this.dateFormat.bind(this);
   }
   /**
    * Mostrar la fecha como string
@@ -286,7 +281,7 @@ class DateTime {
    * @param {boolean} hour12 True muestra AM/PM, False 24H. Por defecto es 24H
    * @returns {string} Retorna formato local
    */
-  toString() {
+  dateFormat() {
     let hour12 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
     // Estos son todos los tipos de formatos que ofrece Date
     // let format = this.#date.toString(); // Tue May 12 2020 18:50:21 GMT-0500 (Central Daylight Time)
@@ -322,11 +317,12 @@ class DateTime {
 
   /**
    * Convierte una fecha a un formato legible
+   * 
    * @param {string|Date} date Fecha en formato ISO o un objeto Date
    * @returns {string} Fecha en formato legible
    */
-  formatDate(date) {
-    const d = new Date(date);
+  toString(date) {
+    const d = new Date(date !== null && date !== void 0 ? date : _classPrivateFieldGet(_date, this));
     return d.toLocaleString(DateTime.lang, {
       dateStyle: "long",
       timeStyle: "short"
@@ -387,8 +383,8 @@ function _parseDate(dateString, format) {
   }
   return constructedDate;
 }
-_defineProperty(DateTime, "lang", language);
-_defineProperty(DateTime, "translate", __webpack_require__("./src/lang sync recursive ^\\.\\/.*$")("./" + language.split("-", 1)));
+_defineProperty(DateTime, "lang", "es");
+_defineProperty(DateTime, "translate", __webpack_require__("./src/lang sync recursive ^\\.\\/.*$")("./" + _DateTime.lang));
 const datetime = (dateString, format) => new DateTime(dateString, format);
 
 // Exportar para CommonJS (require)
@@ -7297,7 +7293,7 @@ handlePrototype(DOMTokenListPrototype, 'DOMTokenList');
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"The date \'{date}\' does not match the format \'{format}\'.","invalid_date":"The date \'{date}\' is not valid."}');
+module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"The date \\":date\\" does not match the format \\":format\\".","invalid_date":"The date \\":date\\" is not valid."}');
 
 /***/ }),
 
@@ -7368,7 +7364,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \\":date\\
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("8aff468e67674d73d73f")
+/******/ 		__webpack_require__.h = () => ("7e003538f939b647885d")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
@@ -7771,14 +7767,11 @@ var socketURL = (0,_utils_createSocketURL_js__WEBPACK_IMPORTED_MODULE_8__["defau
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _src_app_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../src/app.js */ "./src/app.js");
 
-
-// const DateTime = require("../src/app")
-// const datetime = require("../src/app")
 console.log("Desarrollo");
 console.log("**********");
-// console.log("instancia");
+console.log("instancia");
+// DateTime.translate = require("./lang/en");
 // const DT = new DateTime();
-// console.log(DT);
 // console.log(DT.toString());
 // const DT1 = new DateTime("1989/06/02");
 // console.log(DT1.toString());
@@ -7791,9 +7784,9 @@ console.log("**********");
 
 console.log("función");
 // console.log(datetime());
-// console.log(datetime().now());
-// console.log(datetime().today());
-// console.log(datetime().currentDate());
+console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().now());
+console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().today());
+console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().currentDate());
 // console.log(datetime().toString());
 // console.log(datetime("1989/06/22").toString());
 // console.log(datetime("1987/29/05", "yyyy/dd/mm").toString());
@@ -7802,8 +7795,10 @@ console.log("función");
 // console.log(datetime("07/2024/24 15:10:05", "mm/yyyy/dd hh:ii:ss").toString());
 // console.log(datetime("01/21/2023 16:20", "mm/dd/yyyy hh:ii").toString());
 // console.log(datetime("12/24/2024 20", "mm/dd/yyyy hh").toString(true));
-(0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().lang = "en";
-console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)("12/24/2024", "dd/mm/yyyy").toString(true));
+// console.log(datetime("12/24/2024", "dd/mm/yyyy").toString(true));
+let dt = (0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)("12/24/2024", "mm/dd/yyyy");
+console.log(dt.dateFormat());
+console.log(dt.toString());
 })();
 
 /******/ })()
