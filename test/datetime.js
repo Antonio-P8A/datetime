@@ -265,7 +265,7 @@ class DateTime {
       _classPrivateFieldSet(_date, this, new Date()); // Fecha actual por defecto
     }
 
-    // Crear una especia de alias para repetir métodos
+    // Crear alias para repetir métodos
     this.currentDate = this.toString.bind(this);
     this.today = this.toString.bind(this);
     this.now = this.toString.bind(this);
@@ -7352,7 +7352,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \\":date\\
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("d1c6c26c2a9c58bc7d11")
+/******/ 		__webpack_require__.h = () => ("a0b1dcbc0019323cd332")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
@@ -7759,10 +7759,11 @@ __webpack_require__.r(__webpack_exports__);
 // const DateTime = require("../src/app")
 // const datetime = require("../src/app")
 console.log("Desarrollo");
-// console.log("instancia");
-// const DT = new DateTime();
+console.log("**********");
+console.log("instancia");
+const DT = new _src_app_js__WEBPACK_IMPORTED_MODULE_0__.DateTime();
 // console.log(DT);
-// console.log(DT.toString());
+console.log(DT.toString());
 // const DT1 = new DateTime("1989/06/02");
 // console.log(DT1.toString());
 // const DT2 = new DateTime("1989/26/02", "yyyy/dd/mm");
@@ -7777,7 +7778,7 @@ console.log("función");
 // console.log(datetime().now());
 // console.log(datetime().today());
 // console.log(datetime().currentDate());
-// console.log(datetime().toString());
+console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().toString());
 // console.log(datetime("1989/06/22").toString());
 // console.log(datetime("1987/29/05", "yyyy/dd/mm").toString());
 // console.log(datetime("15/05/2009", "dd/mm/yyyy").toString());
@@ -7785,7 +7786,7 @@ console.log("función");
 // console.log(datetime("07/2024/24 15:10:05", "mm/yyyy/dd hh:ii:ss").toString());
 // console.log(datetime("01/21/2023 16:20", "mm/dd/yyyy hh:ii").toString());
 // console.log(datetime("12/24/2024 20", "mm/dd/yyyy hh").toString(true));
-console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)("12/24/2024", "dd/mm/yyyy").toString(true));
+// console.log(datetime("12/24/2024", "dd/mm/yyyy").toString(true));
 })();
 
 /******/ })()

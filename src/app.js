@@ -28,7 +28,7 @@ class DateTime {
 			this.#date = new Date(); // Fecha actual por defecto
 		}
 
-		// Crear una especia de alias para repetir métodos
+		// Crear alias para repetir métodos
 		this.currentDate = this.toString.bind(this);
 		this.today = this.toString.bind(this);
 		this.now = this.toString.bind(this);
@@ -127,7 +127,7 @@ class DateTime {
 			minute,
 			second
 		);
-		
+
 		if (
 			constructedDate.getFullYear() !== year ||
 			constructedDate.getMonth() !== month ||
