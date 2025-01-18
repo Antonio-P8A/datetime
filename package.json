@@ -4,6 +4,7 @@
   "description": "Librería para el manejo de fechas y horas en JavaScript",
   "main": "dist/datetime.js",
   "scripts": {
+    "datetime:publish-lang": "node ./dist/publish-lang.js",
     "test": "echo 'Módulo cargado correctamente' && exit 1",
     "pro": "npx webpack --mode production",
     "build": "npx webpack --config webpack.config.js",

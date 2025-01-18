@@ -10,10 +10,24 @@
 const language = navigator.language ?? "es-ES";
 // const translate = require("./lang/" + language.split("-", 1));
 
+// let file = `./lang/${language.split("-", 1)}.json`;
+// const loadTranslations = async (filePath = file) => {
+// 	try {
+// 		const response = await fetch(filePath);
+// 		const data = await response.json();
+// 		return data;
+// 	} catch (error) {
+// 		console.error("Error loading translations:", error);
+// 	}
+// };
+
+// const translations = await loadTranslations();
+
 class DateTime {
 	#date = null;
 	static lang = language;
 	static translate = require("./lang/" + language.split("-", 1));
+	// static translate = translations;
 
 	/**
 	 * Construye la instancia con una fecha a partir de un formato dado
@@ -32,6 +46,17 @@ class DateTime {
 		this.currentDate = this.toString.bind(this);
 		this.today = this.toString.bind(this);
 		this.now = this.toString.bind(this);
+	}
+
+	#translate(key, variables = {}) {
+		const messages = DateTime.translate || {};
+		let message = messages[key] || key;
+
+		Object.entries(variables).forEach(([placeholder, value]) => {
+			message = message.replace(`${placeholder}`, value);
+		});
+
+		return message;
 	}
 
 	/**
@@ -150,21 +175,10 @@ class DateTime {
 	 */
 	formatDate(date) {
 		const d = new Date(date);
-		return d.toLocaleString("es-ES", {
+		return d.toLocaleString(DateTime.lang, {
 			dateStyle: "long",
 			timeStyle: "short",
 		});
-	}
-
-	#translate(key, variables = {}) {
-		const messages = DateTime.translate || {};
-		let message = messages[key] || key;
-
-		Object.entries(variables).forEach(([placeholder, value]) => {
-			message = message.replace(`${placeholder}`, value);
-		});
-
-		return message;
 	}
 }
 
