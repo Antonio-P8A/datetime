@@ -1,6 +1,6 @@
 {
   "name": "@ajcode/datetime",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Librería para el manejo de fechas y horas en JavaScript",
   "main": "dist/datetime.js",
   "scripts": {
