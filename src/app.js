@@ -12,8 +12,9 @@
 
 class DateTime {
 	#date = null;
-	static lang = "es";
-	static translate = require("./lang/" + DateTime.lang);
+	#format = null;
+	static lang = navigator.language ?? "es-ES";
+	static translate = require("./lang/" + DateTime.lang.split("-", 1));
 	// static translate = translations;
 
 	/**
@@ -23,6 +24,8 @@ class DateTime {
 	 * @param {string} format Formato en que se ingresa la fecha
 	 */
 	constructor(dateString = null, format = "yyyy/mm/dd") {
+		this.#format = format;
+
 		if (dateString && format) {
 			this.#date = this.#parseDate(dateString, format);
 		} else {
@@ -36,56 +39,72 @@ class DateTime {
 	}
 
 	/**
+	 * Establece el idioma de la fecha, static para la instancia
+	 *
+	 * @param {string} lang Idioma a establecer
+	 */
+	static setLang(lang) {
+		try {
+			DateTime.lang = lang;
+			DateTime.translate = require("./lang/" + lang.split("-", 1));
+		} catch (error) {
+			DateTime.lang = "es-ES";
+			console.error("Idioma no soportado");
+		}
+	}
+
+	/**
+	 * Establece el idioma de la fecha, método para la instancia y función
+	 *
+	 * @param {string} lang Idioma a establecer
+	 */
+	setLang(lang) {
+		try {
+			DateTime.lang = lang;
+			DateTime.translate = require("./lang/" + lang.split("-", 1));
+		} catch (error) {
+			DateTime.lang = "es-ES";
+			console.error(`Idioma ${lang} no soportado`);
+		}
+
+		return this;
+	}
+
+	/**
+	 * Traducciones personalizadas, static para la instancia
+	 *
+	 * @param {string} lang Idioma a establecer
+	 */
+	static setTranslate(translate) {
+		DateTime.translate = translate;
+	}
+
+	/**
+	 * Traducciones personalizadas, método para la instancia y función
+	 *
+	 * @param {string} lang Idioma a establecer
+	 */
+	setTranslate(translate) {
+		DateTime.translate = translate;
+	}
+
+	/**
 	 * Traduce un mensaje a un idioma específico
-	 * 
+	 *
 	 * @param {string} key Clave del mensaje
 	 * @param {object} variables Objeto con las variables a reemplazar
-	 * @returns 
+	 * @returns
 	 */
 	#translate(key, variables = {}) {
 		const messages = DateTime.translate || {};
 		let message = messages[key] || key;
+		console.log(DateTime.lang);
 
 		Object.entries(variables).forEach(([placeholder, value]) => {
 			message = message.replace(`${placeholder}`, value);
 		});
 
 		return message;
-	}
-
-	/**
-	 * Mostrar la fecha como string
-	 *
-	 * @param {boolean} hour12 True muestra AM/PM, False 24H. Por defecto es 24H
-	 * @returns {string} Retorna formato local
-	 */
-	dateFormat(hour12 = false) {
-		// Estos son todos los tipos de formatos que ofrece Date
-		// let format = this.#date.toString(); // Tue May 12 2020 18:50:21 GMT-0500 (Central Daylight Time)
-		// format = this.#date.toDateString(); // Tue May 12 2020
-		// format = this.#date.toTimeString(); // 18:50:21 GMT-0500 (Central Daylight Time)
-		// format = this.#date.toISOString(); // 2020-05-12T23:50:21.817Z - existe diferencia de horas igual que toJSON
-		// format = this.#date.toJSON(); // 2020-05-12T23:50:21.817Z - existe diferencia de horas igual que toISOString
-		// format = this.#date.toUTCString(); // Tue, 12 May 2020 23:50:21 GMT - existe diferencia de horas
-		// format = this.#date.toLocaleString(); // 5/12/2020, 6:50:21 PM
-		// format = this.#date.toLocaleDateString(); // 5/12/2020
-		// format = this.#date.toLocaleTimeString(); // 6:50:21 PM
-
-		// let format = this.#date.toLocaleString().split(", ").join(" ").split(".", 1).join();
-
-		let formatter = new Intl.DateTimeFormat(DateTime.lang, {
-			year: "numeric",
-			month: "2-digit",
-			day: "2-digit",
-			hour: "2-digit",
-			minute: "2-digit",
-			second: "2-digit",
-			hour12: hour12, // Cambia a true para formato de 12 horas
-		});
-
-		let format = formatter.format(this.#date).replace(",", "");
-
-		return format;
 	}
 
 	/**
@@ -163,8 +182,43 @@ class DateTime {
 	}
 
 	/**
+	 * Mostrar la fecha como string
+	 *
+	 * @param {boolean} hour12 True muestra AM/PM, False 24H. Por defecto es 24H
+	 * @returns {string} Retorna formato local
+	 */
+	dateFormat(hour12 = false) {
+		// Estos son todos los tipos de formatos que ofrece Date
+		// let format = this.#date.toString(); // Tue May 12 2020 18:50:21 GMT-0500 (Central Daylight Time)
+		// format = this.#date.toDateString(); // Tue May 12 2020
+		// format = this.#date.toTimeString(); // 18:50:21 GMT-0500 (Central Daylight Time)
+		// format = this.#date.toISOString(); // 2020-05-12T23:50:21.817Z - existe diferencia de horas igual que toJSON
+		// format = this.#date.toJSON(); // 2020-05-12T23:50:21.817Z - existe diferencia de horas igual que toISOString
+		// format = this.#date.toUTCString(); // Tue, 12 May 2020 23:50:21 GMT - existe diferencia de horas
+		// format = this.#date.toLocaleString(); // 5/12/2020, 6:50:21 PM
+		// format = this.#date.toLocaleDateString(); // 5/12/2020
+		// format = this.#date.toLocaleTimeString(); // 6:50:21 PM
+
+		// let format = this.#date.toLocaleString().split(", ").join(" ").split(".", 1).join();
+
+		let formatter = new Intl.DateTimeFormat(DateTime.lang, {
+			year: "numeric",
+			month: "2-digit",
+			day: "2-digit",
+			hour: "2-digit",
+			minute: "2-digit",
+			second: "2-digit",
+			hour12: hour12, // Cambia a true para formato de 12 horas
+		});
+
+		let str = formatter.format(this.#date).replace(",", "");
+
+		return str;
+	}
+
+	/**
 	 * Convierte una fecha a un formato legible
-	 * 
+	 *
 	 * @param {string|Date} date Fecha en formato ISO o un objeto Date
 	 * @returns {string} Fecha en formato legible
 	 */
@@ -174,6 +228,35 @@ class DateTime {
 			dateStyle: "long",
 			timeStyle: "short",
 		});
+	}
+
+	/**
+	 * Retorna la fecha en un formato específico
+	 *
+	 * @param {string} format formato de fecha
+	 */
+	format(format) {
+		const options = {
+			d: this.#date.getDate(),
+			dd: String(this.#date.getDate()).padStart(2, "0"),
+			m: this.#date.getMonth() + 1,
+			mm: String(this.#date.getMonth() + 1).padStart(2, "0"),
+			yyyy: this.#date.getFullYear(),
+			Y: String(this.#date.getFullYear()).slice(-2),
+			H: this.#date.getHours(),
+			HH: String(this.#date.getHours()).padStart(2, "0"),
+			M: this.#date.getMinutes(),
+			MM: String(this.#date.getMinutes()).padStart(2, "0"),
+			S: this.#date.getSeconds(),
+			SS: String(this.#date.getSeconds()).padStart(2, "0"),
+		};
+
+		console.log(options);
+
+		return format.replace(
+			/d{1,2}|m{1,2}|y{2,4}|H{1,2}|M{1,2}|S{1,2}/g,
+			(match) => options[match]
+		);
 	}
 }
 

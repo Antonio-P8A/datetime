@@ -213,7 +213,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/web.dom-collections.iterator.js */ "./node_modules/core-js/modules/web.dom-collections.iterator.js");
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_5__);
 /* module decorator */ module = __webpack_require__.hmd(module);
-var _DateTime;
+var _DateTime, _navigator$language;
 
 
 
@@ -230,6 +230,7 @@ function _classPrivateFieldGet(s, a) { return s.get(_assertClassBrand(s, a)); }
 function _classPrivateFieldSet(s, a, r) { return s.set(_assertClassBrand(s, a), r), r; }
 function _assertClassBrand(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
 var _date = /*#__PURE__*/new WeakMap();
+var _format = /*#__PURE__*/new WeakMap();
 var _DateTime_brand = /*#__PURE__*/new WeakSet();
 /**
  * @version: 1.0.11
@@ -254,18 +255,20 @@ class DateTime {
    */
   constructor() {
     let _dateString = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-    let _format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "yyyy/mm/dd";
+    let _format2 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "yyyy/mm/dd";
     /**
      * Traduce un mensaje a un idioma específico
-     * 
+     *
      * @param {string} key Clave del mensaje
      * @param {object} variables Objeto con las variables a reemplazar
-     * @returns 
+     * @returns
      */
     _classPrivateMethodInitSpec(this, _DateTime_brand);
     _classPrivateFieldInitSpec(this, _date, null);
-    if (_dateString && _format) {
-      _classPrivateFieldSet(_date, this, _assertClassBrand(_DateTime_brand, this, _parseDate).call(this, _dateString, _format));
+    _classPrivateFieldInitSpec(this, _format, null);
+    _classPrivateFieldSet(_format, this, _format2);
+    if (_dateString && _format2) {
+      _classPrivateFieldSet(_date, this, _assertClassBrand(_DateTime_brand, this, _parseDate).call(this, _dateString, _format2));
     } else {
       _classPrivateFieldSet(_date, this, new Date()); // Fecha actual por defecto
     }
@@ -274,6 +277,55 @@ class DateTime {
     this.currentDate = this.dateFormat.bind(this);
     this.today = this.dateFormat.bind(this);
     this.now = this.dateFormat.bind(this);
+  }
+
+  /**
+   * Establece el idioma de la fecha, static para la instancia
+   *
+   * @param {string} lang Idioma a establecer
+   */
+  static setLang(lang) {
+    try {
+      DateTime.lang = lang;
+      DateTime.translate = __webpack_require__("./src/lang sync recursive ^\\.\\/.*$")("./" + lang.split("-", 1));
+    } catch (error) {
+      DateTime.lang = "es-ES";
+      console.error("Idioma no soportado");
+    }
+  }
+
+  /**
+   * Establece el idioma de la fecha, método para la instancia y función
+   *
+   * @param {string} lang Idioma a establecer
+   */
+  setLang(lang) {
+    try {
+      DateTime.lang = lang;
+      DateTime.translate = __webpack_require__("./src/lang sync recursive ^\\.\\/.*$")("./" + lang.split("-", 1));
+    } catch (error) {
+      DateTime.lang = "es-ES";
+      console.error("Idioma ".concat(lang, " no soportado"));
+    }
+    return this;
+  }
+
+  /**
+   * Traducciones personalizadas, static para la instancia
+   *
+   * @param {string} lang Idioma a establecer
+   */
+  static setTranslate(translate) {
+    DateTime.translate = translate;
+  }
+
+  /**
+   * Traducciones personalizadas, método para la instancia y función
+   *
+   * @param {string} lang Idioma a establecer
+   */
+  setTranslate(translate) {
+    DateTime.translate = translate;
   }
   /**
    * Mostrar la fecha como string
@@ -305,19 +357,13 @@ class DateTime {
       second: "2-digit",
       hour12: hour12 // Cambia a true para formato de 12 horas
     });
-    let format = formatter.format(_classPrivateFieldGet(_date, this)).replace(",", "");
-    return format;
+    let str = formatter.format(_classPrivateFieldGet(_date, this)).replace(",", "");
+    return str;
   }
 
   /**
-   * Método privado para crear una fecha según el formato
-   *
-   * @returns {Date} Fecha y hora
-   */
-
-  /**
    * Convierte una fecha a un formato legible
-   * 
+   *
    * @param {string|Date} date Fecha en formato ISO o un objeto Date
    * @returns {string} Fecha en formato legible
    */
@@ -328,18 +374,48 @@ class DateTime {
       timeStyle: "short"
     });
   }
+
+  /**
+   * Retorna la fecha en un formato específico
+   *
+   * @param {string} format formato de fecha
+   */
+  format(format) {
+    const options = {
+      d: _classPrivateFieldGet(_date, this).getDate(),
+      dd: String(_classPrivateFieldGet(_date, this).getDate()).padStart(2, "0"),
+      m: _classPrivateFieldGet(_date, this).getMonth() + 1,
+      mm: String(_classPrivateFieldGet(_date, this).getMonth() + 1).padStart(2, "0"),
+      yyyy: _classPrivateFieldGet(_date, this).getFullYear(),
+      Y: String(_classPrivateFieldGet(_date, this).getFullYear()).slice(-2),
+      H: _classPrivateFieldGet(_date, this).getHours(),
+      HH: String(_classPrivateFieldGet(_date, this).getHours()).padStart(2, "0"),
+      M: _classPrivateFieldGet(_date, this).getMinutes(),
+      MM: String(_classPrivateFieldGet(_date, this).getMinutes()).padStart(2, "0"),
+      S: _classPrivateFieldGet(_date, this).getSeconds(),
+      SS: String(_classPrivateFieldGet(_date, this).getSeconds()).padStart(2, "0")
+    };
+    console.log(options);
+    return format.replace(/d{1,2}|m{1,2}|y{2,4}|H{1,2}|M{1,2}|S{1,2}/g, match => options[match]);
+  }
 }
 _DateTime = DateTime;
 function _translate(key) {
   let variables = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   const messages = _DateTime.translate || {};
   let message = messages[key] || key;
+  console.log(_DateTime.lang);
   Object.entries(variables).forEach(_ref => {
     let [placeholder, value] = _ref;
     message = message.replace("".concat(placeholder), value);
   });
   return message;
 }
+/**
+ * Método privado para crear una fecha según el formato
+ *
+ * @returns {Date} Fecha y hora
+ */
 function _parseDate(dateString, format) {
   const formatParts = format.split(/[^a-zA-Z]/); // Separar componentes del formato
   const dateParts = dateString.split(/[^0-9]/); // Separar componentes de la fecha
@@ -383,8 +459,8 @@ function _parseDate(dateString, format) {
   }
   return constructedDate;
 }
-_defineProperty(DateTime, "lang", "es");
-_defineProperty(DateTime, "translate", __webpack_require__("./src/lang sync recursive ^\\.\\/.*$")("./" + _DateTime.lang));
+_defineProperty(DateTime, "lang", (_navigator$language = navigator.language) !== null && _navigator$language !== void 0 ? _navigator$language : "es-ES");
+_defineProperty(DateTime, "translate", __webpack_require__("./src/lang sync recursive ^\\.\\/.*$")("./" + _DateTime.lang.split("-", 1)));
 const datetime = (dateString, format) => new DateTime(dateString, format);
 
 // Exportar para CommonJS (require)
@@ -7364,7 +7440,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \\":date\\
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("7e003538f939b647885d")
+/******/ 		__webpack_require__.h = () => ("4e47d85f63b7c6bf2ff9")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
@@ -7784,9 +7860,9 @@ console.log("instancia");
 
 console.log("función");
 // console.log(datetime());
-console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().now());
-console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().today());
-console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().currentDate());
+// console.log(datetime().now());
+// console.log(datetime().today());
+// console.log(datetime().currentDate());
 // console.log(datetime().toString());
 // console.log(datetime("1989/06/22").toString());
 // console.log(datetime("1987/29/05", "yyyy/dd/mm").toString());
@@ -7796,9 +7872,14 @@ console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().currentDate(
 // console.log(datetime("01/21/2023 16:20", "mm/dd/yyyy hh:ii").toString());
 // console.log(datetime("12/24/2024 20", "mm/dd/yyyy hh").toString(true));
 // console.log(datetime("12/24/2024", "dd/mm/yyyy").toString(true));
+// DateTime.setLang("fs-EN");
+// DateTime.translate = require("./lang/fr");
+// datetime().setLang("en-ES");
+// datetime().setTranslate(require("./lang/fr"));
 let dt = (0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)("12/24/2024", "mm/dd/yyyy");
-console.log(dt.dateFormat());
-console.log(dt.toString());
+// console.log(dt.format("d-m-yyyy"));
+// console.log(dt.setLang("en-ES").toString());
+console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().format("d-m-Y"));
 })();
 
 /******/ })()
