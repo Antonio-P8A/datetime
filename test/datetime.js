@@ -383,7 +383,8 @@ class DateTime {
    *
    * @param {string} format formato de fecha
    */
-  format(format) {
+  format() {
+    let format = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _classPrivateFieldGet(_format, this);
     const options = {
       d: _classPrivateFieldGet(_date, this).getDate(),
       dd: String(_classPrivateFieldGet(_date, this).getDate()).padStart(2, "0"),
@@ -391,6 +392,7 @@ class DateTime {
       mm: String(_classPrivateFieldGet(_date, this).getMonth() + 1).padStart(2, "0"),
       mmm: _assertClassBrand(_DateTime_brand, this, _translate).call(this, "m" + _classPrivateFieldGet(_date, this).getMonth()).slice(0, 3),
       mmmm: _assertClassBrand(_DateTime_brand, this, _translate).call(this, "m" + _classPrivateFieldGet(_date, this).getMonth()),
+      yyy: _classPrivateFieldGet(_date, this).getFullYear(),
       yyyy: _classPrivateFieldGet(_date, this).getFullYear(),
       yy: String(_classPrivateFieldGet(_date, this).getFullYear()).slice(-2),
       h: _classPrivateFieldGet(_date, this).getHours() % 12 || 12,
@@ -7462,7 +7464,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \\":date\\
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("28f7e0caae5ec7ecf30a")
+/******/ 		__webpack_require__.h = () => ("a8822f7ec2eb47f8fd7c")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
@@ -7869,18 +7871,17 @@ console.log("Desarrollo");
 console.log("**********");
 console.log("instancia");
 // DateTime.translate = require("./lang/en");
-// const DT = new DateTime();
-// console.log(DT.toString());
-// const DT1 = new DateTime("1989/06/02");
-// console.log(DT1.toString());
-// const DT2 = new DateTime("1989/26/02", "yyyy/dd/mm");
-// console.log(DT2.toString());
+const DT = new _src_app_js__WEBPACK_IMPORTED_MODULE_0__.DateTime();
+console.log(DT.format());
+const DT1 = new _src_app_js__WEBPACK_IMPORTED_MODULE_0__.DateTime("1989/06/02");
+console.log(DT1.format("dd/mm/yyyy hh:ii:ss aa"));
+const DT2 = new _src_app_js__WEBPACK_IMPORTED_MODULE_0__.DateTime("1989/26/02", "yyyy/dd/mm");
+console.log(DT2.format("dd-mm-yyyy HH:ii:ss"));
 // DateTime.defaultLang("en-ES");
-// const DT3 = new DateTime("02/06/1989", "dd/mm/yyyy");
-// console.log(DT3.setLang("en-ES").toString());
-// const DT4 = new DateTime("06/30/1989", "mm/dd/yyyy");
-// console.log(DT4.toString());
-
+const DT3 = new _src_app_js__WEBPACK_IMPORTED_MODULE_0__.DateTime("02/06/1989", "dd/mm/yyyy");
+console.log(DT3.setLang("en-ES").toString());
+const DT4 = new _src_app_js__WEBPACK_IMPORTED_MODULE_0__.DateTime("06/30/1989", "mm/dd/yyyy");
+console.log(DT4.toString());
 console.log("-*-*-*-*-*-*-*-*-*-*-*-*-");
 console.log("función");
 // console.log(datetime());
@@ -7902,12 +7903,17 @@ console.log("función");
 let dt = (0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)("12/24/2024", "mm/dd/yyyy");
 // console.log(dt.format("d-m-yyyy"));
 console.log(dt.setLang("en-ES").toString());
-// console.log(datetime().format("dddd, dd mmmm yyyy"));
-// console.log(datetime().format("ddd, dd-mmm-yy, h:i:s"));
-// console.log(datetime().format("h:ii:ss"));
-// console.log(datetime().format("d-m-yy"));
-// console.log(datetime().format("yyyy/mm/dd, h:i:s"));
-// console.log(datetime().format("dd/mm/yyyy h:i:s"));
+console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().format("dddd, dd mmmm yyyy"));
+console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().format("ddd, dd-mmm-yy, h:i:s"));
+console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().format("h:ii:ss"));
+console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().format("hh:ii:ss"));
+console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().format("HH:ii:ss"));
+console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().format("ddd-mmm-yyyy"));
+console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().format("dd-mmmm-yyyy"));
+console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().format("dd-mmmm-yyy"));
+console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().format("dd/m/yyy"));
+console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().format("yyyy/mm/dd, h:i:s"));
+console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().format("dd/mm/yyyy h:i:s"));
 console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().setLang("en-ES").format("\\To\\d\\a\\y \\i\\s mmmm dd of yyyy \\at HH:ii:ss"));
 console.log("Español");
 console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().format("\\Hoy e\\s dddd dd \\de mmmm \\del yyyy \\a l\\a\\s h:i:ss a"));

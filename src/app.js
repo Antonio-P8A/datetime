@@ -238,7 +238,7 @@ class DateTime {
 	 *
 	 * @param {string} format formato de fecha
 	 */
-	format(format) {
+	format(format = this.#format) {
 		const options = {
 			d: this.#date.getDate(),
 			dd: String(this.#date.getDate()).padStart(2, "0"),
@@ -246,6 +246,7 @@ class DateTime {
 			mm: String(this.#date.getMonth() + 1).padStart(2, "0"),
 			mmm: this.#translate("m" + this.#date.getMonth()).slice(0, 3),
 			mmmm: this.#translate("m" + this.#date.getMonth()),
+			yyy: this.#date.getFullYear(),
 			yyyy: this.#date.getFullYear(),
 			yy: String(this.#date.getFullYear()).slice(-2),
 			h: this.#date.getHours() % 12 || 12, // Hora en formato 12 horas sin ceros
