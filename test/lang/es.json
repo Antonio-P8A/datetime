@@ -1,4 +1,23 @@
 {
     "invalid_format": "La fecha \":date\" no coincide con el formato \":format\".",
-    "invalid_date": "La fecha \":date\" no es válida."
+    "invalid_date": "La fecha \":date\" no es válida.",
+    "m0": "Enero",
+    "m1": "Febrero",
+    "m2": "Marzo",
+    "m3": "Abril",
+    "m4": "Mayo",
+    "m5": "Junio",
+    "m6": "Julio",
+    "m7": "Agosto",
+    "m8": "Septiembre",
+    "m9": "Octubre",
+    "m10": "Noviembre",
+    "m11": "Diciembre",
+    "d0": "Domingo",
+    "d1": "Lunes",
+    "d2": "Martes",
+    "d3": "Miércoles",
+    "d4": "Jueves",
+    "d5": "Viernes",
+    "d6": "Sábado"
 }

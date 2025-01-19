@@ -13,6 +13,7 @@
 class DateTime {
 	#date = null;
 	#format = null;
+	localLang = null;
 	static lang = navigator.language ?? "es-ES";
 	static translate = require("./lang/" + DateTime.lang.split("-", 1));
 	// static translate = translations;
@@ -43,7 +44,7 @@ class DateTime {
 	 *
 	 * @param {string} lang Idioma a establecer
 	 */
-	static setLang(lang) {
+	static defaultLang(lang) {
 		try {
 			DateTime.lang = lang;
 			DateTime.translate = require("./lang/" + lang.split("-", 1));
@@ -60,10 +61,10 @@ class DateTime {
 	 */
 	setLang(lang) {
 		try {
-			DateTime.lang = lang;
-			DateTime.translate = require("./lang/" + lang.split("-", 1));
+			this.localLang = lang;
+			this.translate = require("./lang/" + lang.split("-", 1));
 		} catch (error) {
-			DateTime.lang = "es-ES";
+			this.localLang = "es-ES";
 			console.error(`Idioma ${lang} no soportado`);
 		}
 
@@ -96,9 +97,8 @@ class DateTime {
 	 * @returns
 	 */
 	#translate(key, variables = {}) {
-		const messages = DateTime.translate || {};
+		const messages = this.translate || DateTime.translate || {};
 		let message = messages[key] || key;
-		console.log(DateTime.lang);
 
 		Object.entries(variables).forEach(([placeholder, value]) => {
 			message = message.replace(`${placeholder}`, value);
@@ -201,15 +201,18 @@ class DateTime {
 
 		// let format = this.#date.toLocaleString().split(", ").join(" ").split(".", 1).join();
 
-		let formatter = new Intl.DateTimeFormat(DateTime.lang, {
-			year: "numeric",
-			month: "2-digit",
-			day: "2-digit",
-			hour: "2-digit",
-			minute: "2-digit",
-			second: "2-digit",
-			hour12: hour12, // Cambia a true para formato de 12 horas
-		});
+		let formatter = new Intl.DateTimeFormat(
+			this.localLang ?? DateTime.lang,
+			{
+				year: "numeric",
+				month: "2-digit",
+				day: "2-digit",
+				hour: "2-digit",
+				minute: "2-digit",
+				second: "2-digit",
+				hour12: hour12, // Cambia a true para formato de 12 horas
+			}
+		);
 
 		let str = formatter.format(this.#date).replace(",", "");
 
@@ -224,7 +227,7 @@ class DateTime {
 	 */
 	toString(date) {
 		const d = new Date(date ?? this.#date);
-		return d.toLocaleString(DateTime.lang, {
+		return d.toLocaleString(this.localLang ?? DateTime.lang, {
 			dateStyle: "long",
 			timeStyle: "short",
 		});
@@ -241,21 +244,35 @@ class DateTime {
 			dd: String(this.#date.getDate()).padStart(2, "0"),
 			m: this.#date.getMonth() + 1,
 			mm: String(this.#date.getMonth() + 1).padStart(2, "0"),
+			mmm: this.#translate("m" + this.#date.getMonth()).slice(0, 3),
+			mmmm: this.#translate("m" + this.#date.getMonth()),
 			yyyy: this.#date.getFullYear(),
-			Y: String(this.#date.getFullYear()).slice(-2),
-			H: this.#date.getHours(),
-			HH: String(this.#date.getHours()).padStart(2, "0"),
-			M: this.#date.getMinutes(),
-			MM: String(this.#date.getMinutes()).padStart(2, "0"),
-			S: this.#date.getSeconds(),
-			SS: String(this.#date.getSeconds()).padStart(2, "0"),
+			yy: String(this.#date.getFullYear()).slice(-2),
+			h: this.#date.getHours() % 12 || 12, // Hora en formato 12 horas sin ceros
+			hh: String(this.#date.getHours() % 12 || 12).padStart(2, "0"), // Hora en formato 12 horas con ceros iniciales
+			H: this.#date.getHours(), // Hora en formato 24 horas sin ceros
+			HH: String(this.#date.getHours()).padStart(2, "0"), // Hora en formato 24 horas con ceros iniciales
+			i: this.#date.getMinutes(),
+			ii: String(this.#date.getMinutes()).padStart(2, "0"),
+			s: this.#date.getSeconds(),
+			ss: String(this.#date.getSeconds()).padStart(2, "0"),
+			ddd: this.#translate("d" + this.#date.getDay()).slice(0, 3),
+			dddd: this.#translate("d" + this.#date.getDay()),
+			a: this.#date.getHours() >= 12 ? "PM" : "AM",
+			aa: this.#date.getHours() >= 12 ? "pm" : "am",
 		};
 
-		console.log(options);
-
+		// Detectar y mantener las partes escapadas intactas
 		return format.replace(
-			/d{1,2}|m{1,2}|y{2,4}|H{1,2}|M{1,2}|S{1,2}/g,
-			(match) => options[match]
+			/\\.|d{1,4}|m{1,4}|y{2,4}|h{1,2}|H{1,2}|i{1,2}|s{1,2}|a{1,2}/gi,
+			(match) => {
+				if (match.startsWith("\\")) {
+					// Eliminar el escape y devolver el texto literal
+					return match.slice(1);
+				}
+				// Reemplazar el marcador por su valor correspondiente o devolver el marcador original
+				return options[match] || match;
+			}
 		);
 	}
 }

@@ -266,6 +266,7 @@ class DateTime {
     _classPrivateMethodInitSpec(this, _DateTime_brand);
     _classPrivateFieldInitSpec(this, _date, null);
     _classPrivateFieldInitSpec(this, _format, null);
+    _defineProperty(this, "localLang", null);
     _classPrivateFieldSet(_format, this, _format2);
     if (_dateString && _format2) {
       _classPrivateFieldSet(_date, this, _assertClassBrand(_DateTime_brand, this, _parseDate).call(this, _dateString, _format2));
@@ -284,7 +285,7 @@ class DateTime {
    *
    * @param {string} lang Idioma a establecer
    */
-  static setLang(lang) {
+  static defaultLang(lang) {
     try {
       DateTime.lang = lang;
       DateTime.translate = __webpack_require__("./src/lang sync recursive ^\\.\\/.*$")("./" + lang.split("-", 1));
@@ -301,10 +302,10 @@ class DateTime {
    */
   setLang(lang) {
     try {
-      DateTime.lang = lang;
-      DateTime.translate = __webpack_require__("./src/lang sync recursive ^\\.\\/.*$")("./" + lang.split("-", 1));
+      this.localLang = lang;
+      this.translate = __webpack_require__("./src/lang sync recursive ^\\.\\/.*$")("./" + lang.split("-", 1));
     } catch (error) {
-      DateTime.lang = "es-ES";
+      this.localLang = "es-ES";
       console.error("Idioma ".concat(lang, " no soportado"));
     }
     return this;
@@ -334,6 +335,7 @@ class DateTime {
    * @returns {string} Retorna formato local
    */
   dateFormat() {
+    var _this$localLang;
     let hour12 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
     // Estos son todos los tipos de formatos que ofrece Date
     // let format = this.#date.toString(); // Tue May 12 2020 18:50:21 GMT-0500 (Central Daylight Time)
@@ -348,7 +350,7 @@ class DateTime {
 
     // let format = this.#date.toLocaleString().split(", ").join(" ").split(".", 1).join();
 
-    let formatter = new Intl.DateTimeFormat(DateTime.lang, {
+    let formatter = new Intl.DateTimeFormat((_this$localLang = this.localLang) !== null && _this$localLang !== void 0 ? _this$localLang : DateTime.lang, {
       year: "numeric",
       month: "2-digit",
       day: "2-digit",
@@ -368,8 +370,9 @@ class DateTime {
    * @returns {string} Fecha en formato legible
    */
   toString(date) {
+    var _this$localLang2;
     const d = new Date(date !== null && date !== void 0 ? date : _classPrivateFieldGet(_date, this));
-    return d.toLocaleString(DateTime.lang, {
+    return d.toLocaleString((_this$localLang2 = this.localLang) !== null && _this$localLang2 !== void 0 ? _this$localLang2 : DateTime.lang, {
       dateStyle: "long",
       timeStyle: "short"
     });
@@ -386,25 +389,44 @@ class DateTime {
       dd: String(_classPrivateFieldGet(_date, this).getDate()).padStart(2, "0"),
       m: _classPrivateFieldGet(_date, this).getMonth() + 1,
       mm: String(_classPrivateFieldGet(_date, this).getMonth() + 1).padStart(2, "0"),
+      mmm: _assertClassBrand(_DateTime_brand, this, _translate).call(this, "m" + _classPrivateFieldGet(_date, this).getMonth()).slice(0, 3),
+      mmmm: _assertClassBrand(_DateTime_brand, this, _translate).call(this, "m" + _classPrivateFieldGet(_date, this).getMonth()),
       yyyy: _classPrivateFieldGet(_date, this).getFullYear(),
-      Y: String(_classPrivateFieldGet(_date, this).getFullYear()).slice(-2),
+      yy: String(_classPrivateFieldGet(_date, this).getFullYear()).slice(-2),
+      h: _classPrivateFieldGet(_date, this).getHours() % 12 || 12,
+      // Hora en formato 12 horas sin ceros
+      hh: String(_classPrivateFieldGet(_date, this).getHours() % 12 || 12).padStart(2, "0"),
+      // Hora en formato 12 horas con ceros iniciales
       H: _classPrivateFieldGet(_date, this).getHours(),
+      // Hora en formato 24 horas sin ceros
       HH: String(_classPrivateFieldGet(_date, this).getHours()).padStart(2, "0"),
-      M: _classPrivateFieldGet(_date, this).getMinutes(),
-      MM: String(_classPrivateFieldGet(_date, this).getMinutes()).padStart(2, "0"),
-      S: _classPrivateFieldGet(_date, this).getSeconds(),
-      SS: String(_classPrivateFieldGet(_date, this).getSeconds()).padStart(2, "0")
+      // Hora en formato 24 horas con ceros iniciales
+      i: _classPrivateFieldGet(_date, this).getMinutes(),
+      ii: String(_classPrivateFieldGet(_date, this).getMinutes()).padStart(2, "0"),
+      s: _classPrivateFieldGet(_date, this).getSeconds(),
+      ss: String(_classPrivateFieldGet(_date, this).getSeconds()).padStart(2, "0"),
+      ddd: _assertClassBrand(_DateTime_brand, this, _translate).call(this, "d" + _classPrivateFieldGet(_date, this).getDay()).slice(0, 3),
+      dddd: _assertClassBrand(_DateTime_brand, this, _translate).call(this, "d" + _classPrivateFieldGet(_date, this).getDay()),
+      a: _classPrivateFieldGet(_date, this).getHours() >= 12 ? "PM" : "AM",
+      aa: _classPrivateFieldGet(_date, this).getHours() >= 12 ? "pm" : "am"
     };
-    console.log(options);
-    return format.replace(/d{1,2}|m{1,2}|y{2,4}|H{1,2}|M{1,2}|S{1,2}/g, match => options[match]);
+
+    // Detectar y mantener las partes escapadas intactas
+    return format.replace(/\\.|d{1,4}|m{1,4}|y{2,4}|h{1,2}|H{1,2}|i{1,2}|s{1,2}|a{1,2}/gi, match => {
+      if (match.startsWith("\\")) {
+        // Eliminar el escape y devolver el texto literal
+        return match.slice(1);
+      }
+      // Reemplazar el marcador por su valor correspondiente o devolver el marcador original
+      return options[match] || match;
+    });
   }
 }
 _DateTime = DateTime;
 function _translate(key) {
   let variables = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  const messages = _DateTime.translate || {};
+  const messages = this.translate || _DateTime.translate || {};
   let message = messages[key] || key;
-  console.log(_DateTime.lang);
   Object.entries(variables).forEach(_ref => {
     let [placeholder, value] = _ref;
     message = message.replace("".concat(placeholder), value);
@@ -7369,7 +7391,7 @@ handlePrototype(DOMTokenListPrototype, 'DOMTokenList');
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"The date \\":date\\" does not match the format \\":format\\".","invalid_date":"The date \\":date\\" is not valid."}');
+module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"The date \\":date\\" does not match the format \\":format\\".","invalid_date":"The date \\":date\\" is not valid.","m0":"January","m1":"February","m2":"March","m3":"April","m4":"May","m5":"June","m6":"July","m7":"August","m8":"September","m9":"October","m10":"November","m11":"December","d0":"Sunday","d1":"Monday","d2":"Tuesday","d3":"Wednesday","d4":"Thursday","d5":"Friday","d6":"Saturday"}');
 
 /***/ }),
 
@@ -7380,7 +7402,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"The date \\":date\\
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \\":date\\" no coincide con el formato \\":format\\".","invalid_date":"La fecha \\":date\\" no es válida."}');
+module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \\":date\\" no coincide con el formato \\":format\\".","invalid_date":"La fecha \\":date\\" no es válida.","m0":"Enero","m1":"Febrero","m2":"Marzo","m3":"Abril","m4":"Mayo","m5":"Junio","m6":"Julio","m7":"Agosto","m8":"Septiembre","m9":"Octubre","m10":"Noviembre","m11":"Diciembre","d0":"Domingo","d1":"Lunes","d2":"Martes","d3":"Miércoles","d4":"Jueves","d5":"Viernes","d6":"Sábado"}');
 
 /***/ })
 
@@ -7440,7 +7462,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \\":date\\
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("4e47d85f63b7c6bf2ff9")
+/******/ 		__webpack_require__.h = () => ("28f7e0caae5ec7ecf30a")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
@@ -7853,11 +7875,13 @@ console.log("instancia");
 // console.log(DT1.toString());
 // const DT2 = new DateTime("1989/26/02", "yyyy/dd/mm");
 // console.log(DT2.toString());
+// DateTime.defaultLang("en-ES");
 // const DT3 = new DateTime("02/06/1989", "dd/mm/yyyy");
-// console.log(DT3.toString());
+// console.log(DT3.setLang("en-ES").toString());
 // const DT4 = new DateTime("06/30/1989", "mm/dd/yyyy");
 // console.log(DT4.toString());
 
+console.log("-*-*-*-*-*-*-*-*-*-*-*-*-");
 console.log("función");
 // console.log(datetime());
 // console.log(datetime().now());
@@ -7872,14 +7896,22 @@ console.log("función");
 // console.log(datetime("01/21/2023 16:20", "mm/dd/yyyy hh:ii").toString());
 // console.log(datetime("12/24/2024 20", "mm/dd/yyyy hh").toString(true));
 // console.log(datetime("12/24/2024", "dd/mm/yyyy").toString(true));
-// DateTime.setLang("fs-EN");
+// DateTime.defaultLang("en-EN");
 // DateTime.translate = require("./lang/fr");
-// datetime().setLang("en-ES");
 // datetime().setTranslate(require("./lang/fr"));
 let dt = (0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)("12/24/2024", "mm/dd/yyyy");
 // console.log(dt.format("d-m-yyyy"));
-// console.log(dt.setLang("en-ES").toString());
-console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().format("d-m-Y"));
+console.log(dt.setLang("en-ES").toString());
+// console.log(datetime().format("dddd, dd mmmm yyyy"));
+// console.log(datetime().format("ddd, dd-mmm-yy, h:i:s"));
+// console.log(datetime().format("h:ii:ss"));
+// console.log(datetime().format("d-m-yy"));
+// console.log(datetime().format("yyyy/mm/dd, h:i:s"));
+// console.log(datetime().format("dd/mm/yyyy h:i:s"));
+console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().setLang("en-ES").format("\\To\\d\\a\\y \\i\\s mmmm dd of yyyy \\at HH:ii:ss"));
+console.log("Español");
+console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)().format("\\Hoy e\\s dddd dd \\de mmmm \\del yyyy \\a l\\a\\s h:i:ss a"));
+console.log((0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)("02-06-1989 06:00:00", "dd-mm-yyyy hh:ii:ss").format("dddd dd \\de mmmm \\del yyyy \\a l\\a\\s HH:ii:ss"));
 })();
 
 /******/ })()
