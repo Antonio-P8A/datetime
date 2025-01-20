@@ -233,7 +233,7 @@ var _date = /*#__PURE__*/new WeakMap();
 var _format = /*#__PURE__*/new WeakMap();
 var _DateTime_brand = /*#__PURE__*/new WeakSet();
 /**
- * @version: 1.0.11
+ * @version: 1.0.12
  * @author: Antonio Peña https://www.ajdev.es/
  * @copyright: Copyright (c) 2024 Antonio Peña. Todos los derechos reservados.
  * @license: Licensed under the MIT license.
@@ -278,6 +278,8 @@ class DateTime {
     this.currentDate = this.dateFormat.bind(this);
     this.today = this.dateFormat.bind(this);
     this.now = this.dateFormat.bind(this);
+    this.defaultLang = DateTime.defaultLang.bind(this);
+    this.setTranslate = DateTime.setTranslate.bind(this);
   }
 
   /**
@@ -319,15 +321,6 @@ class DateTime {
   static setTranslate(translate) {
     DateTime.translate = translate;
   }
-
-  /**
-   * Traducciones personalizadas, método para la instancia y función
-   *
-   * @param {string} lang Idioma a establecer
-   */
-  setTranslate(translate) {
-    DateTime.translate = translate;
-  }
   /**
    * Mostrar la fecha como string
    *
@@ -337,19 +330,6 @@ class DateTime {
   dateFormat() {
     var _this$localLang;
     let hour12 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-    // Estos son todos los tipos de formatos que ofrece Date
-    // let format = this.#date.toString(); // Tue May 12 2020 18:50:21 GMT-0500 (Central Daylight Time)
-    // format = this.#date.toDateString(); // Tue May 12 2020
-    // format = this.#date.toTimeString(); // 18:50:21 GMT-0500 (Central Daylight Time)
-    // format = this.#date.toISOString(); // 2020-05-12T23:50:21.817Z - existe diferencia de horas igual que toJSON
-    // format = this.#date.toJSON(); // 2020-05-12T23:50:21.817Z - existe diferencia de horas igual que toISOString
-    // format = this.#date.toUTCString(); // Tue, 12 May 2020 23:50:21 GMT - existe diferencia de horas
-    // format = this.#date.toLocaleString(); // 5/12/2020, 6:50:21 PM
-    // format = this.#date.toLocaleDateString(); // 5/12/2020
-    // format = this.#date.toLocaleTimeString(); // 6:50:21 PM
-
-    // let format = this.#date.toLocaleString().split(", ").join(" ").split(".", 1).join();
-
     let formatter = new Intl.DateTimeFormat((_this$localLang = this.localLang) !== null && _this$localLang !== void 0 ? _this$localLang : DateTime.lang, {
       year: "numeric",
       month: "2-digit",
@@ -359,8 +339,7 @@ class DateTime {
       second: "2-digit",
       hour12: hour12 // Cambia a true para formato de 12 horas
     });
-    let str = formatter.format(_classPrivateFieldGet(_date, this)).replace(",", "");
-    return str;
+    return formatter.format(_classPrivateFieldGet(_date, this)).replace(",", "");
   }
 
   /**
@@ -497,30 +476,6 @@ if ( true && module.exports) {
 window.DateTime = DateTime;
 window.datetime = datetime;
 
-
-// ES Module Export (para import) // no usar para tener compatibilidad con require
-// export default DateTime;
-
-// Exportación Universal (UMD)
-// if (typeof module === "object" && typeof module.exports === "object") {
-// 	// CommonJS (Node.js)
-// 	module.exports = { DateTime, datetime };
-// } else if (typeof define === "function" && define.amd) {
-// 	// AMD (Asynchronous Module Definition)
-// 	define([], function () {
-// 		return DateTime;
-// 	});
-// } else {
-// 	// Variable Global (para navegadores)
-// 	if (typeof window !== "undefined") {
-// 		window.DateTime = DateTime;
-// 		window.datetime = datetime;
-// 	}
-// 	if (typeof self !== "undefined") {
-// 		self.DateTime = DateTime;
-// 		self.datetime = datetime;
-// 	}
-// }
 
 /***/ }),
 
@@ -7464,7 +7419,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \\":date\\
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("a8822f7ec2eb47f8fd7c")
+/******/ 		__webpack_require__.h = () => ("31ca289cb11c98f5e8d5")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
@@ -7879,6 +7834,7 @@ const DT2 = new _src_app_js__WEBPACK_IMPORTED_MODULE_0__.DateTime("1989/26/02", 
 console.log(DT2.format("dd-mm-yyyy HH:ii:ss"));
 // DateTime.defaultLang("en-ES");
 const DT3 = new _src_app_js__WEBPACK_IMPORTED_MODULE_0__.DateTime("02/06/1989", "dd/mm/yyyy");
+// DT3.defaultLang("en-EN");
 console.log(DT3.setLang("en-ES").toString());
 const DT4 = new _src_app_js__WEBPACK_IMPORTED_MODULE_0__.DateTime("06/30/1989", "mm/dd/yyyy");
 console.log(DT4.toString());
@@ -7897,6 +7853,7 @@ console.log("función");
 // console.log(datetime("01/21/2023 16:20", "mm/dd/yyyy hh:ii").toString());
 // console.log(datetime("12/24/2024 20", "mm/dd/yyyy hh").toString(true));
 // console.log(datetime("12/24/2024", "dd/mm/yyyy").toString(true));
+// datetime().defaultLang("en-EN");
 // DateTime.defaultLang("en-EN");
 // DateTime.translate = require("./lang/fr");
 // datetime().setTranslate(require("./lang/fr"));

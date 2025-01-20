@@ -37,6 +37,8 @@ class DateTime {
 		this.currentDate = this.dateFormat.bind(this);
 		this.today = this.dateFormat.bind(this);
 		this.now = this.dateFormat.bind(this);
+		this.defaultLang = DateTime.defaultLang.bind(this);
+		this.setTranslate = DateTime.setTranslate.bind(this);
 	}
 
 	/**
@@ -77,15 +79,6 @@ class DateTime {
 	 * @param {string} lang Idioma a establecer
 	 */
 	static setTranslate(translate) {
-		DateTime.translate = translate;
-	}
-
-	/**
-	 * Traducciones personalizadas, método para la instancia y función
-	 *
-	 * @param {string} lang Idioma a establecer
-	 */
-	setTranslate(translate) {
 		DateTime.translate = translate;
 	}
 
@@ -188,19 +181,6 @@ class DateTime {
 	 * @returns {string} Retorna formato local
 	 */
 	dateFormat(hour12 = false) {
-		// Estos son todos los tipos de formatos que ofrece Date
-		// let format = this.#date.toString(); // Tue May 12 2020 18:50:21 GMT-0500 (Central Daylight Time)
-		// format = this.#date.toDateString(); // Tue May 12 2020
-		// format = this.#date.toTimeString(); // 18:50:21 GMT-0500 (Central Daylight Time)
-		// format = this.#date.toISOString(); // 2020-05-12T23:50:21.817Z - existe diferencia de horas igual que toJSON
-		// format = this.#date.toJSON(); // 2020-05-12T23:50:21.817Z - existe diferencia de horas igual que toISOString
-		// format = this.#date.toUTCString(); // Tue, 12 May 2020 23:50:21 GMT - existe diferencia de horas
-		// format = this.#date.toLocaleString(); // 5/12/2020, 6:50:21 PM
-		// format = this.#date.toLocaleDateString(); // 5/12/2020
-		// format = this.#date.toLocaleTimeString(); // 6:50:21 PM
-
-		// let format = this.#date.toLocaleString().split(", ").join(" ").split(".", 1).join();
-
 		let formatter = new Intl.DateTimeFormat(
 			this.localLang ?? DateTime.lang,
 			{
@@ -214,9 +194,7 @@ class DateTime {
 			}
 		);
 
-		let str = formatter.format(this.#date).replace(",", "");
-
-		return str;
+		return formatter.format(this.#date).replace(",", "");
 	}
 
 	/**
@@ -289,27 +267,3 @@ window.DateTime = DateTime;
 window.datetime = datetime;
 
 export { DateTime, datetime };
-
-// ES Module Export (para import) // no usar para tener compatibilidad con require
-// export default DateTime;
-
-// Exportación Universal (UMD)
-// if (typeof module === "object" && typeof module.exports === "object") {
-// 	// CommonJS (Node.js)
-// 	module.exports = { DateTime, datetime };
-// } else if (typeof define === "function" && define.amd) {
-// 	// AMD (Asynchronous Module Definition)
-// 	define([], function () {
-// 		return DateTime;
-// 	});
-// } else {
-// 	// Variable Global (para navegadores)
-// 	if (typeof window !== "undefined") {
-// 		window.DateTime = DateTime;
-// 		window.datetime = datetime;
-// 	}
-// 	if (typeof self !== "undefined") {
-// 		self.DateTime = DateTime;
-// 		self.datetime = datetime;
-// 	}
-// }
