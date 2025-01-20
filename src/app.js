@@ -60,6 +60,7 @@ class DateTime {
 	 * Establece el idioma de la fecha, método para la instancia y función
 	 *
 	 * @param {string} lang Idioma a establecer
+	 * @returns {DateTime} Retorna la instancia
 	 */
 	setLang(lang) {
 		try {
@@ -76,7 +77,7 @@ class DateTime {
 	/**
 	 * Traducciones personalizadas, static para la instancia
 	 *
-	 * @param {string} lang Idioma a establecer
+	 * @param {string} translate Idioma a establecer
 	 */
 	static setTranslate(translate) {
 		DateTime.translate = translate;
@@ -87,7 +88,7 @@ class DateTime {
 	 *
 	 * @param {string} key Clave del mensaje
 	 * @param {object} variables Objeto con las variables a reemplazar
-	 * @returns
+	 * @returns {string} Mensaje traducido
 	 */
 	#translate(key, variables = {}) {
 		const messages = this.translate || DateTime.translate || {};
@@ -103,6 +104,8 @@ class DateTime {
 	/**
 	 * Método privado para crear una fecha según el formato
 	 *
+	 * @param {string} dateString Fecha en formato ISO
+	 * @param {string} format Formato de fecha
 	 * @returns {Date} Fecha y hora
 	 */
 	#parseDate(dateString, format) {
@@ -214,7 +217,8 @@ class DateTime {
 	/**
 	 * Retorna la fecha en un formato específico
 	 *
-	 * @param {string} format formato de fecha
+	 * @param {string} format Formato de fecha
+	 * @returns {string} Fecha en formato específico
 	 */
 	format(format = this.#format) {
 		const options = {
@@ -253,6 +257,76 @@ class DateTime {
 				return options[match] || match;
 			}
 		);
+	}
+
+	/**
+	 * Modificar la fecha
+	 *
+	 * @param {string} type Tipo de valor a añadir
+	 * @param {number} value Valor absoluto redondeado para sumar
+	 * @returns {DateTime} Retorna la instancia
+	 */
+	#alterateDate(type, value) {
+		value = Math.round(value);
+		const date = this.#date;
+
+		switch (type) {
+			case "years":
+				date.setFullYear(date.getFullYear() + value);
+				break;
+			case "months":
+				date.setMonth(date.getMonth() + value);
+				break;
+			case "days":
+				date.setDate(date.getDate() + value);
+				break;
+			case "hours":
+				date.setHours(date.getHours() + value);
+				break;
+			case "minutes":
+				date.setMinutes(date.getMinutes() + value);
+				break;
+			case "seconds":
+				date.setSeconds(date.getSeconds() + value);
+				break;
+			case "quarters":
+				date.setMonth(date.getMonth() + value * 3);
+				break;
+			case "weeks":
+				date.setDate(date.getDate() + value * 7);
+				break;
+			case "milliseconds":
+				date.setMilliseconds(date.getMilliseconds() + value);
+				break;
+			default:
+				break;
+		}
+
+		return this;
+	}
+
+	/**
+	 * Añadir valores a la fecha
+	 *
+	 * @param {string} type Tipo de valor a añadir
+	 * @param {number} value Valor absoluto redondeado para sumar
+	 * @returns {DateTime} Retorna la instancia
+	 */
+	add(type, value) {
+		value = Math.round(Math.abs(value));
+		return this.#alterateDate(type, value);
+	}
+
+	/**
+	 * Restar valores a la fecha
+	 *
+	 * @param {string} type Tipo de valor a añadir
+	 * @param {number} value Valor absoluto redondeado para sumar
+	 * @returns {DateTime} Retorna la instancia
+	 */
+	subtract(type, value) {
+		value = Math.round(Math.abs(value)) * -1;
+		return this.#alterateDate(type, value);
 	}
 }
 

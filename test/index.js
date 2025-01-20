@@ -4,18 +4,19 @@ console.log("Desarrollo");
 console.log("**********");
 console.log("instancia");
 // DateTime.translate = require("./lang/en");
-const DT = new DateTime();
-console.log(DT.format());
-const DT1 = new DateTime("1989/06/02");
-console.log(DT1.format("dd/mm/yyyy hh:ii:ss aa"));
-const DT2 = new DateTime("1989/26/02", "yyyy/dd/mm");
-console.log(DT2.format("dd-mm-yyyy HH:ii:ss"));
+// const DT = new DateTime();
+// console.log(DT.format());
+// const DT1 = new DateTime("1989/06/02");
+// console.log(DT1.format("dd/mm/yyyy hh:ii:ss aa"));
+// const DT2 = new DateTime("1989/26/02", "yyyy/dd/mm");
+// console.log(DT2.format("dd-mm-yyyy HH:ii:ss"));
 // DateTime.defaultLang("en-ES");
-const DT3 = new DateTime("02/06/1989", "dd/mm/yyyy");
+// const DT3 = new DateTime("02/06/1989", "dd/mm/yyyy");
 // DT3.defaultLang("en-EN");
-console.log(DT3.setLang("en-ES").toString());
+// console.log(DT3.setLang("en-ES").toString());
 const DT4 = new DateTime("06/30/1989", "mm/dd/yyyy");
-console.log(DT4.toString());
+// console.log(DT4.add("years", 1).toString());
+// console.log(DT4.toString());
 
 console.log("-*-*-*-*-*-*-*-*-*-*-*-*-");
 console.log("función");
@@ -36,33 +37,47 @@ console.log("función");
 // DateTime.defaultLang("en-EN");
 // DateTime.translate = require("./lang/fr");
 // datetime().setTranslate(require("./lang/fr"));
-let dt = datetime("12/24/2024", "mm/dd/yyyy");
-// console.log(dt.format("d-m-yyyy"));
-console.log(dt.setLang("en-ES").toString());
-console.log(datetime().format("dddd, dd mmmm yyyy"));
-console.log(datetime().format("ddd, dd-mmm-yy, h:i:s"));
-console.log(datetime().format("h:ii:ss"));
-console.log(datetime().format("hh:ii:ss"));
-console.log(datetime().format("HH:ii:ss"));
-console.log(datetime().format("ddd-mmm-yyyy"));
-console.log(datetime().format("dd-mmmm-yyyy"));
-console.log(datetime().format("dd-mmmm-yyy"));
-console.log(datetime().format("dd/m/yyy"));
-console.log(datetime().format("yyyy/mm/dd, h:i:s"));
-console.log(datetime().format("dd/mm/yyyy h:i:s"));
-console.log(
-	datetime()
-		.setLang("en-ES")
-		.format("\\To\\d\\a\\y \\i\\s mmmm dd of yyyy \\at HH:ii:ss")
-);
-console.log("Español");
-console.log(
-	datetime().format(
-		"\\Hoy e\\s dddd dd \\de mmmm \\del yyyy \\a l\\a\\s h:i:ss a"
-	)
-);
-console.log(
-	datetime("02-06-1989 06:00:00", "dd-mm-yyyy hh:ii:ss").format(
-		"dddd dd \\de mmmm \\del yyyy \\a l\\a\\s HH:ii:ss"
-	)
-);
+let dt = datetime()
+	// .subtract("years", -4)
+	// .subtract("months", 3)
+	// .subtract("days", -4)
+	// .subtract("hours", 1)
+	// .subtract("minutes", 5)
+	// .subtract("seconds", 1)
+	// .subtract("milliseconds", 3000)
+	// .subtract("quarters", 2)
+	.format("dddd dd \\de mmmm \\de yyyy \\a l\\a\\s hh:ii:ss aa => HH:ii:ss");
+console.log(dt);
+// console.log(
+// 	datetime()
+// 		.setLang("en-ES")
+// 		.add("years", 2)
+// 		.format("ddd dd \\de mmmm \\de yyyy")
+// );
+// console.log(datetime().format("dddd, dd mmmm yyyy"));
+// console.log(datetime().format("ddd, dd-mmm-yy, h:i:s"));
+// console.log(datetime().format("h:ii:ss"));
+// console.log(datetime().format("hh:ii:ss"));
+// console.log(datetime().format("HH:ii:ss"));
+// console.log(datetime().format("ddd-mmm-yyyy"));
+// console.log(datetime().format("dd-mmmm-yyyy"));
+// console.log(datetime().format("dd-mmmm-yyy"));
+// console.log(datetime().format("dd/m/yyy"));
+// console.log(datetime().format("yyyy/mm/dd, h:i:s"));
+// console.log(datetime().format("dd/mm/yyyy h:i:s"));
+// console.log(
+// 	datetime()
+// 		.setLang("en-ES")
+// 		.format("\\To\\d\\a\\y \\i\\s mmmm dd of yyyy \\at HH:ii:ss")
+// );
+// console.log("Español");
+// console.log(
+// 	datetime().format(
+// 		"\\Hoy e\\s dddd dd \\de mmmm \\del yyyy \\a l\\a\\s h:i:ss a"
+// 	)
+// );
+// console.log(
+// 	datetime("02-06-1989 06:00:00", "dd-mm-yyyy hh:ii:ss").format(
+// 		"dddd dd \\de mmmm \\del yyyy \\a l\\a\\s HH:ii:ss"
+// 	)
+// );
