@@ -241,9 +241,6 @@ var _DateTime_brand = /*#__PURE__*/new WeakSet();
  * https://opensource.org/licenses/MIT
  */
 
-// const language = navigator.language ?? "es-ES";
-// const translate = require("./lang/" + language.split("-", 1));
-
 class DateTime {
   // static translate = translations;
 
@@ -275,12 +272,6 @@ class DateTime {
     } else {
       _classPrivateFieldSet(_date, this, new Date()); // Fecha actual por defecto
     }
-
-    // if (dateString && format) {
-    // 	this.#date = this.#parseDate(dateString, format);
-    // } else {
-    // 	this.#date = new Date(); // Fecha actual por defecto
-    // }
 
     // Crear alias para repetir métodos
     this.currentDate = this.dateFormat.bind(this);
@@ -333,12 +324,12 @@ class DateTime {
   /**
    * Mostrar la fecha como string
    *
-   * @param {boolean} hour12 True muestra AM/PM, False 24H. Por defecto es 24H
+   * @param {boolean} h12 True muestra AM/PM, False 24H. Por defecto es 24H
    * @returns {string} Retorna formato local
    */
   dateFormat() {
     var _this$localLang;
-    let hour12 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+    let h12 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
     let formatter = new Intl.DateTimeFormat((_this$localLang = this.localLang) !== null && _this$localLang !== void 0 ? _this$localLang : DateTime.lang, {
       year: "numeric",
       month: "2-digit",
@@ -346,7 +337,7 @@ class DateTime {
       hour: "2-digit",
       minute: "2-digit",
       second: "2-digit",
-      hour12: hour12 // Cambia a true para formato de 12 horas
+      hour12: h12 // Cambia a true para formato de 12 horas
     });
     return formatter.format(_classPrivateFieldGet(_date, this)).replace(",", "");
   }
@@ -451,6 +442,94 @@ class DateTime {
   clone() {
     return new DateTime(_classPrivateFieldGet(_date, this), _classPrivateFieldGet(_format, this));
   }
+
+  /**
+   *  Getters
+   * - getYear() Obtener el año
+   * - getName(type) Nombre del mes o día
+   * - getMonth() (1-12) Obtener el mes
+   * - getDay() (1-7) Obtener el día de la semana
+   * - getDayOfWeek() nombre del día
+   * - getMonthOfYear() nombre del mes
+   * - getHours(type = "24h") Obtener las horas en formato 24h o 12h
+   * - getHours12() Obtener las horas en formato 12h
+   * - getHours24() Obtener las horas en formato 24h
+   * - getMinutes() Obtener los minutos
+   * - getSeconds() Obterner los segundos
+   * - getMilliseconds() Obtener los milisegundos
+   * - getTime() Obtener la hora completa
+   * - getDate() Obtener la fecha
+   * - getWeek() Obtener número de la semana
+   * - getQuarter() Obtener número del trimestre
+   * - getDayOfYear() Obtener el número del día del año
+   * - getDayOfMonth() Obtener el número del día del mes
+   * - getDifference(date, type) Obtener la diferencia entre dos fechas
+   * - getStartOf(type) Obtener el inicio de un periodo
+   * - getEndOf(type) Obtener el final de un periodo
+   * - getStartOfYear() Obtener el inicio del año
+   * - getEndOfYear() Obtener el final del año
+   * - getStartOfMonth() Obtener el inicio del mes
+   * - getEndOfMonth() Obtener el final del mes
+   * - getStartOfDay() Obtener el inicio del día
+   * - getEndOfDay() Obtener el final del día
+   * - getStartOfHour() Obtener el inicio de la hora
+   * - getEndOfHour() Obtener el final de la hora
+   * - getStartOfMinute() Obtener el inicio del minuto
+   * - getEndOfMinute() Obtener el final del minuto
+   * - getStartOfSecond() Obtener el inicio del segundo
+   * - getEndOfSecond() Obtener el final del segundo
+   * - getStartOfWeek() Obtener el inicio de la semana
+   * - getEndOfWeek() Obtener el final de la semana
+   * - getStartOfQuarter() Obtener el inicio del trimestre
+   * - getEndOfQuarter() Obtener el final del trimestre
+   */
+
+  /**
+   * Setters
+   * - setYear(year) Establecer el año
+   * - setMonth(month) Establecer el mes
+   * - setDay(day) Establecer el día
+   * - setHours(hrs) Establecer las horas
+   * - setMinutes(min) Establecer los minutos
+   * - setSeconds(s) Establecer los segundos
+   * - setMilliseconds(ms) Establecer los milisegundos
+   * - setTime(time) Establecer la hora completa
+   * - setDate(date) Establecer la fecha
+   * - startOf(type) Establecer el inicio de un periodo
+   * - endOf(type) Establecer el final de un periodo
+   * - startOfYear() Establecer el inicio del año
+   * - endOfYear() Establecer el final del año
+   * - startOfMonth() Establecer el inicio del mes
+   * - endOfMonth() Establecer el final del mes
+   * - startOfDay() Establecer el inicio del día
+   * - endOfDay() Establecer el final del día
+   * - startOfHour() Establecer el inicio de la hora
+   * - endOfHour() Establecer el final de la hora
+   * - startOfMinute() Establecer el inicio del minuto
+   * - endOfMinute() Establecer el final del minuto
+   * - startOfSecond() Establecer el inicio del segundo
+   * - endOfSecond() Establecer el final del segundo
+   * - startOfWeek() Establecer el inicio de la semana
+   * - endOfWeek() Establecer el final de la semana
+   * - startOfQuarter() Establecer el inicio del trimestre
+   * - endOfQuarter() Establecer el final del trimestre
+   */
+
+  /**
+   * Métodos que pueden ser útiles de comparación
+   * - isBefore(date, strict = false) Compara si la fecha es anterior a otra
+   * - isAfter(date, strict = false) Compara si la fecha es posterior a otra
+   * - isSame(date, strict = false) Compara si la fecha es igual a otra
+   * - isLeapYear(year = null) Comprueba si el año es bisiesto
+   * - isWeekend(date = null) Comprueba si es fin de semana
+   * - isToday(date = null) Comprueba si es hoy
+   * - isTomorrow(date = null) Comprueba si es mañana
+   * - isYesterday(date = null) Comprueba si es ayer
+   * - isBetween(firstDate, lastDate, strict = false) Comprueba si está entre dos fechas
+   * - isSameOrBefore(date, strict = false) Compara si es igual o anterior a otra fecha
+   * - isSameOrAfter(date, strict = false) Compara si es igual o posterior a otra fecha
+   * - isDifferent(date, strict = false) Compara si es diferente a otra fecha
+   */
 }
 _DateTime = DateTime;
 function _translate(key) {
@@ -7506,7 +7585,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \\":date\\
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("64ef54229437f684b727")
+/******/ 		__webpack_require__.h = () => ("a56a4d49284881dcf1ee")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
