@@ -19,5 +19,9 @@
     "d3": "Miércoles",
     "d4": "Jueves",
     "d5": "Viernes",
-    "d6": "Sábado"
+    "d6": "Sábado",
+    "PM1": "PM",
+    "pm": "pm",
+    "AM1": "AM",
+    "am": "am"
 }

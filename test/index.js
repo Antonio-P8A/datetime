@@ -14,7 +14,7 @@ console.log("instancia");
 // const DT3 = new DateTime("02/06/1989", "dd/mm/yyyy");
 // DT3.defaultLang("en-EN");
 // console.log(DT3.setLang("en-ES").toString());
-const DT4 = new DateTime("06/30/1989", "mm/dd/yyyy");
+// const DT4 = new DateTime("06/30/1989", "mm/dd/yyyy");
 // console.log(DT4.add("years", 1).toString());
 // console.log(DT4.toString());
 
@@ -37,17 +37,17 @@ console.log("función");
 // DateTime.defaultLang("en-EN");
 // DateTime.translate = require("./lang/fr");
 // datetime().setTranslate(require("./lang/fr"));
-let dt = datetime()
-	// .subtract("years", -4)
-	// .subtract("months", 3)
-	// .subtract("days", -4)
-	// .subtract("hours", 1)
-	// .subtract("minutes", 5)
-	// .subtract("seconds", 1)
-	// .subtract("milliseconds", 3000)
-	// .subtract("quarters", 2)
-	.format("dddd dd \\de mmmm \\de yyyy \\a l\\a\\s hh:ii:ss aa => HH:ii:ss");
-console.log(dt);
+// let dt = datetime()
+// .subtract("years", -4)
+// .subtract("months", 3)
+// .subtract("days", -4)
+// .subtract("hours", 1)
+// .subtract("minutes", 5)
+// .subtract("seconds", 1)
+// .subtract("milliseconds", 3000)
+// .subtract("quarters", 2)
+// .format("dddd dd \\de mmmm \\de yyyy \\a l\\a\\s hh:ii:ss aa => HH:ii:ss");
+// console.log(dt);
 // console.log(
 // 	datetime()
 // 		.setLang("en-ES")
@@ -81,3 +81,20 @@ console.log(dt);
 // 		"dddd dd \\de mmmm \\del yyyy \\a l\\a\\s HH:ii:ss"
 // 	)
 // );
+let dt = datetime();
+console.log("clonar");
+let dt2 = dt.clone();
+dt.add("years", 2);
+console.log(
+	dt.format("dddd dd \\de mmmm \\de yyyy \\a l\\a\\s hh:ii:ss aa => HH:ii:ss")
+);
+dt2.add("years", 1).setLang("en-EN");
+console.log(
+	dt2.format(
+		"dddd dd \\de mmmm \\de yyyy \\a l\\a\\s hh:ii:ss a => HH:ii:ss"
+	)
+);
+let d = new Date();
+console.log(d);
+let dt3 = datetime(d);
+console.log(dt3.toString());

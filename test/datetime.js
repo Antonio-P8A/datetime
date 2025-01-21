@@ -268,11 +268,19 @@ class DateTime {
     _classPrivateFieldInitSpec(this, _format, null);
     _defineProperty(this, "localLang", null);
     _classPrivateFieldSet(_format, this, _format2);
-    if (_dateString && _format2) {
+    if (_dateString instanceof Date) {
+      _classPrivateFieldSet(_date, this, new Date(_dateString)); // Clonar la instancia de Date
+    } else if (typeof _dateString === "string" && _format2) {
       _classPrivateFieldSet(_date, this, _assertClassBrand(_DateTime_brand, this, _parseDate).call(this, _dateString, _format2));
     } else {
       _classPrivateFieldSet(_date, this, new Date()); // Fecha actual por defecto
     }
+
+    // if (dateString && format) {
+    // 	this.#date = this.#parseDate(dateString, format);
+    // } else {
+    // 	this.#date = new Date(); // Fecha actual por defecto
+    // }
 
     // Crear alias para repetir métodos
     this.currentDate = this.dateFormat.bind(this);
@@ -390,8 +398,8 @@ class DateTime {
       ss: String(_classPrivateFieldGet(_date, this).getSeconds()).padStart(2, "0"),
       ddd: _assertClassBrand(_DateTime_brand, this, _translate).call(this, "d" + _classPrivateFieldGet(_date, this).getDay()).slice(0, 3),
       dddd: _assertClassBrand(_DateTime_brand, this, _translate).call(this, "d" + _classPrivateFieldGet(_date, this).getDay()),
-      a: _classPrivateFieldGet(_date, this).getHours() >= 12 ? "PM" : "AM",
-      aa: _classPrivateFieldGet(_date, this).getHours() >= 12 ? "pm" : "am"
+      a: _classPrivateFieldGet(_date, this).getHours() >= 12 ? _assertClassBrand(_DateTime_brand, this, _translate).call(this, "PM1") : _assertClassBrand(_DateTime_brand, this, _translate).call(this, "AM1"),
+      aa: _classPrivateFieldGet(_date, this).getHours() >= 12 ? _assertClassBrand(_DateTime_brand, this, _translate).call(this, "pm") : _assertClassBrand(_DateTime_brand, this, _translate).call(this, "am")
     };
 
     // Detectar y mantener las partes escapadas intactas
@@ -435,6 +443,13 @@ class DateTime {
   subtract(type, value) {
     value = Math.round(Math.abs(value)) * -1;
     return _assertClassBrand(_DateTime_brand, this, _alterateDate).call(this, type, value);
+  }
+
+  /**
+   * Clonar la instancia
+   */
+  clone() {
+    return new DateTime(_classPrivateFieldGet(_date, this), _classPrivateFieldGet(_format, this));
   }
 }
 _DateTime = DateTime;
@@ -7420,7 +7435,7 @@ handlePrototype(DOMTokenListPrototype, 'DOMTokenList');
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"The date \\":date\\" does not match the format \\":format\\".","invalid_date":"The date \\":date\\" is not valid.","m0":"January","m1":"February","m2":"March","m3":"April","m4":"May","m5":"June","m6":"July","m7":"August","m8":"September","m9":"October","m10":"November","m11":"December","d0":"Sunday","d1":"Monday","d2":"Tuesday","d3":"Wednesday","d4":"Thursday","d5":"Friday","d6":"Saturday"}');
+module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"The date \\":date\\" does not match the format \\":format\\".","invalid_date":"The date \\":date\\" is not valid.","m0":"January","m1":"February","m2":"March","m3":"April","m4":"May","m5":"June","m6":"July","m7":"August","m8":"September","m9":"October","m10":"November","m11":"December","d0":"Sunday","d1":"Monday","d2":"Tuesday","d3":"Wednesday","d4":"Thursday","d5":"Friday","d6":"Saturday","PM1":"PM","pm":"pm","AM1":"AM","am":"am"}');
 
 /***/ }),
 
@@ -7431,7 +7446,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"The date \\":date\\
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \\":date\\" no coincide con el formato \\":format\\".","invalid_date":"La fecha \\":date\\" no es válida.","m0":"Enero","m1":"Febrero","m2":"Marzo","m3":"Abril","m4":"Mayo","m5":"Junio","m6":"Julio","m7":"Agosto","m8":"Septiembre","m9":"Octubre","m10":"Noviembre","m11":"Diciembre","d0":"Domingo","d1":"Lunes","d2":"Martes","d3":"Miércoles","d4":"Jueves","d5":"Viernes","d6":"Sábado"}');
+module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \\":date\\" no coincide con el formato \\":format\\".","invalid_date":"La fecha \\":date\\" no es válida.","m0":"Enero","m1":"Febrero","m2":"Marzo","m3":"Abril","m4":"Mayo","m5":"Junio","m6":"Julio","m7":"Agosto","m8":"Septiembre","m9":"Octubre","m10":"Noviembre","m11":"Diciembre","d0":"Domingo","d1":"Lunes","d2":"Martes","d3":"Miércoles","d4":"Jueves","d5":"Viernes","d6":"Sábado","PM1":"PM","pm":"pm","AM1":"AM","am":"am"}');
 
 /***/ })
 
@@ -7491,7 +7506,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \\":date\\
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("c8a0cb62ce3bfc62012e")
+/******/ 		__webpack_require__.h = () => ("64ef54229437f684b727")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
@@ -7908,7 +7923,7 @@ console.log("instancia");
 // const DT3 = new DateTime("02/06/1989", "dd/mm/yyyy");
 // DT3.defaultLang("en-EN");
 // console.log(DT3.setLang("en-ES").toString());
-const DT4 = new _src_app_js__WEBPACK_IMPORTED_MODULE_0__.DateTime("06/30/1989", "mm/dd/yyyy");
+// const DT4 = new DateTime("06/30/1989", "mm/dd/yyyy");
 // console.log(DT4.add("years", 1).toString());
 // console.log(DT4.toString());
 
@@ -7931,7 +7946,7 @@ console.log("función");
 // DateTime.defaultLang("en-EN");
 // DateTime.translate = require("./lang/fr");
 // datetime().setTranslate(require("./lang/fr"));
-let dt = (0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)()
+// let dt = datetime()
 // .subtract("years", -4)
 // .subtract("months", 3)
 // .subtract("days", -4)
@@ -7940,8 +7955,8 @@ let dt = (0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)()
 // .subtract("seconds", 1)
 // .subtract("milliseconds", 3000)
 // .subtract("quarters", 2)
-.format("dddd dd \\de mmmm \\de yyyy \\a l\\a\\s hh:ii:ss aa => HH:ii:ss");
-console.log(dt);
+// .format("dddd dd \\de mmmm \\de yyyy \\a l\\a\\s hh:ii:ss aa => HH:ii:ss");
+// console.log(dt);
 // console.log(
 // 	datetime()
 // 		.setLang("en-ES")
@@ -7975,6 +7990,17 @@ console.log(dt);
 // 		"dddd dd \\de mmmm \\del yyyy \\a l\\a\\s HH:ii:ss"
 // 	)
 // );
+let dt = (0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)();
+console.log("clonar");
+let dt2 = dt.clone();
+dt.add("years", 2);
+console.log(dt.format("dddd dd \\de mmmm \\de yyyy \\a l\\a\\s hh:ii:ss aa => HH:ii:ss"));
+dt2.add("years", 1).setLang("en-EN");
+console.log(dt2.format("dddd dd \\de mmmm \\de yyyy \\a l\\a\\s hh:ii:ss a => HH:ii:ss"));
+let d = new Date();
+console.log(d);
+let dt3 = (0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)(d);
+console.log(dt3.toString());
 })();
 
 /******/ })()

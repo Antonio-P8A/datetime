@@ -27,11 +27,19 @@ class DateTime {
 	constructor(dateString = null, format = "yyyy/mm/dd") {
 		this.#format = format;
 
-		if (dateString && format) {
+		if (dateString instanceof Date) {
+			this.#date = new Date(dateString); // Clonar la instancia de Date
+		} else if (typeof dateString === "string" && format) {
 			this.#date = this.#parseDate(dateString, format);
 		} else {
 			this.#date = new Date(); // Fecha actual por defecto
 		}
+
+		// if (dateString && format) {
+		// 	this.#date = this.#parseDate(dateString, format);
+		// } else {
+		// 	this.#date = new Date(); // Fecha actual por defecto
+		// }
 
 		// Crear alias para repetir métodos
 		this.currentDate = this.dateFormat.bind(this);
@@ -241,8 +249,8 @@ class DateTime {
 			ss: String(this.#date.getSeconds()).padStart(2, "0"),
 			ddd: this.#translate("d" + this.#date.getDay()).slice(0, 3),
 			dddd: this.#translate("d" + this.#date.getDay()),
-			a: this.#date.getHours() >= 12 ? "PM" : "AM",
-			aa: this.#date.getHours() >= 12 ? "pm" : "am",
+			a: this.#date.getHours() >= 12 ? this.#translate("PM1") : this.#translate("AM1"),
+			aa: this.#date.getHours() >= 12 ? this.#translate("pm") : this.#translate("am"),
 		};
 
 		// Detectar y mantener las partes escapadas intactas
@@ -327,6 +335,13 @@ class DateTime {
 	subtract(type, value) {
 		value = Math.round(Math.abs(value)) * -1;
 		return this.#alterateDate(type, value);
+	}
+
+	/**
+	 * Clonar la instancia
+	 */
+	clone() {
+		return new DateTime(this.#date, this.#format);
 	}
 }
 
