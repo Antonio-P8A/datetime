@@ -411,6 +411,21 @@ class DateTime {
 	 * - endOfWeek() Establecer el final de la semana
 	 * - startOfQuarter() Establecer el inicio del trimestre
 	 * - endOfQuarter() Establecer el final del trimestre
+	 * - nextDay() Establecer el siguiente día
+	 * - tomorrow() Establecer el siguiente día
+	 * - yesterday() Establecer el día anterior
+	 * - nextMonth() Establecer el siguiente mes
+	 * - lastMonth() Establecer el mes anterior
+	 * - nextYear() Establecer el siguiente año
+	 * - lastYear() Establecer el año anterior
+	 * - nextWeek() Establecer la siguiente semana
+	 * - lastWeek() Establecer la semana anterior
+	 * - nextHour() Establecer la siguiente hora
+	 * - lastHour() Establecer la hora anterior
+	 * - nextMinute() Establecer el siguiente minuto
+	 * - lastMinute() Establecer el minuto anterior
+	 * - nextSecond() Establecer el siguiente segundo
+	 * - lastSecond() Establecer el segundo anterior
 	 */
 
 	/**
@@ -427,6 +442,17 @@ class DateTime {
 	 * - isSameOrBefore(date, strict = false) Compara si es igual o anterior a otra fecha
 	 * - isSameOrAfter(date, strict = false) Compara si es igual o posterior a otra fecha
 	 * - isDifferent(date, strict = false) Compara si es diferente a otra fecha
+	 * - isThisWeek() Comprueba si es esta semana
+	 * - isNextWeek() Comprueba si es la próxima semana
+	 * - isLastWeek() Comprueba si es la semana pasada
+	 * - isThisMonth() Comprueba si es este mes
+	 * - isNextMonth() Comprueba si es el próximo mes
+	 * - isLastMonth() Comprueba si es el mes pasado
+	 * - isThisYear() Comprueba si es este año
+	 * - isSameYear(date = null) Comprueba si es el mismo año
+	 * - isSameMonth(date = null) Comprueba si es el mismo mes
+	 * - isSameDay(date = null) Comprueba si es el mismo día
+	 * - isSameHour(date = null) Comprueba si es la misma hora
 	 */
 }
 
