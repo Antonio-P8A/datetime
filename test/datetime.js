@@ -188,489 +188,6 @@ ansiHTML.reset()
 
 /***/ }),
 
-/***/ "./src/app.js":
-/*!********************!*\
-  !*** ./src/app.js ***!
-  \********************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   DateTime: () => (/* binding */ DateTime),
-/* harmony export */   datetime: () => (/* binding */ datetime)
-/* harmony export */ });
-/* harmony import */ var core_js_modules_es_error_cause_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.error.cause.js */ "./node_modules/core-js/modules/es.error.cause.js");
-/* harmony import */ var core_js_modules_es_error_cause_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_error_cause_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.regexp.exec.js */ "./node_modules/core-js/modules/es.regexp.exec.js?fc5f");
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.string.replace.js */ "./node_modules/core-js/modules/es.string.replace.js");
-/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_esnext_iterator_constructor_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/esnext.iterator.constructor.js */ "./node_modules/core-js/modules/esnext.iterator.constructor.js");
-/* harmony import */ var core_js_modules_esnext_iterator_constructor_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_esnext_iterator_constructor_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var core_js_modules_esnext_iterator_for_each_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/esnext.iterator.for-each.js */ "./node_modules/core-js/modules/esnext.iterator.for-each.js");
-/* harmony import */ var core_js_modules_esnext_iterator_for_each_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_esnext_iterator_for_each_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/web.dom-collections.iterator.js */ "./node_modules/core-js/modules/web.dom-collections.iterator.js");
-/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_5__);
-/* module decorator */ module = __webpack_require__.hmd(module);
-var _DateTime, _navigator$language;
-
-
-
-
-
-
-function _classPrivateMethodInitSpec(e, a) { _checkPrivateRedeclaration(e, a), a.add(e); }
-function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _classPrivateFieldInitSpec(e, t, a) { _checkPrivateRedeclaration(e, t), t.set(e, a); }
-function _checkPrivateRedeclaration(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
-function _classPrivateFieldGet(s, a) { return s.get(_assertClassBrand(s, a)); }
-function _classPrivateFieldSet(s, a, r) { return s.set(_assertClassBrand(s, a), r), r; }
-function _assertClassBrand(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
-var _date = /*#__PURE__*/new WeakMap();
-var _format = /*#__PURE__*/new WeakMap();
-var _DateTime_brand = /*#__PURE__*/new WeakSet();
-/**
- * @version: 1.0.12
- * @author: Antonio Peña https://www.ajdev.es/
- * @copyright: Copyright (c) 2024 Antonio Peña. Todos los derechos reservados.
- * @license: Licensed under the MIT license.
- * You may obtain a copy of the License at
- * https://opensource.org/licenses/MIT
- */
-
-class DateTime {
-  // static translate = translations;
-
-  /**
-   * Construye la instancia con una fecha a partir de un formato dado
-   *
-   * @param {string} dateString Fecha a crear por defecto crea fecha actual
-   * @param {string} format Formato en que se ingresa la fecha
-   */
-  constructor() {
-    let _dateString = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-    let _format2 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "yyyy/mm/dd";
-    /**
-     * Traduce un mensaje a un idioma específico
-     *
-     * @param {string} key Clave del mensaje
-     * @param {object} variables Objeto con las variables a reemplazar
-     * @returns {string} Mensaje traducido
-     */
-    _classPrivateMethodInitSpec(this, _DateTime_brand);
-    _classPrivateFieldInitSpec(this, _date, null);
-    _classPrivateFieldInitSpec(this, _format, null);
-    _defineProperty(this, "localLang", null);
-    _classPrivateFieldSet(_format, this, _format2);
-    if (_dateString instanceof Date) {
-      _classPrivateFieldSet(_date, this, new Date(_dateString)); // Clonar la instancia de Date
-    } else if (typeof _dateString === "string" && _format2) {
-      _classPrivateFieldSet(_date, this, _assertClassBrand(_DateTime_brand, this, _parseDate).call(this, _dateString, _format2));
-    } else {
-      _classPrivateFieldSet(_date, this, new Date()); // Fecha actual por defecto
-    }
-
-    // Crear alias para repetir métodos
-    this.currentDate = this.dateFormat.bind(this);
-    this.today = this.dateFormat.bind(this);
-    this.now = this.dateFormat.bind(this);
-    this.defaultLang = DateTime.defaultLang.bind(this);
-    this.setTranslate = DateTime.setTranslate.bind(this);
-  }
-
-  /**
-   * Establece el idioma de la fecha, static para la instancia
-   *
-   * @param {string} lang Idioma a establecer
-   */
-  static defaultLang(lang) {
-    try {
-      DateTime.lang = lang;
-      DateTime.translate = __webpack_require__("./src/lang sync recursive ^\\.\\/.*$")("./" + lang.split("-", 1));
-    } catch (error) {
-      DateTime.lang = "es-ES";
-      console.error("Idioma no soportado");
-    }
-  }
-
-  /**
-   * Establece el idioma de la fecha, método para la instancia y función
-   *
-   * @param {string} lang Idioma a establecer
-   * @returns {DateTime} Retorna la instancia
-   */
-  setLang(lang) {
-    try {
-      this.localLang = lang;
-      this.translate = __webpack_require__("./src/lang sync recursive ^\\.\\/.*$")("./" + lang.split("-", 1));
-    } catch (error) {
-      this.localLang = "es-ES";
-      console.error("Idioma ".concat(lang, " no soportado"));
-    }
-    return this;
-  }
-
-  /**
-   * Traducciones personalizadas, static para la instancia
-   *
-   * @param {string} translate Idioma a establecer
-   */
-  static setTranslate(translate) {
-    DateTime.translate = translate;
-  }
-  /**
-   * Mostrar la fecha como string
-   *
-   * @param {boolean} h12 True muestra AM/PM, False 24H. Por defecto es 24H
-   * @returns {string} Retorna formato local
-   */
-  dateFormat() {
-    var _this$localLang;
-    let h12 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-    let formatter = new Intl.DateTimeFormat((_this$localLang = this.localLang) !== null && _this$localLang !== void 0 ? _this$localLang : DateTime.lang, {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: h12 // Cambia a true para formato de 12 horas
-    });
-    return formatter.format(_classPrivateFieldGet(_date, this)).replace(",", "");
-  }
-
-  /**
-   * Convierte una fecha a un formato legible
-   *
-   * @param {string|Date} date Fecha en formato ISO o un objeto Date
-   * @returns {string} Fecha en formato legible
-   */
-  toString(date) {
-    var _this$localLang2;
-    const d = new Date(date !== null && date !== void 0 ? date : _classPrivateFieldGet(_date, this));
-    return d.toLocaleString((_this$localLang2 = this.localLang) !== null && _this$localLang2 !== void 0 ? _this$localLang2 : DateTime.lang, {
-      dateStyle: "long",
-      timeStyle: "short"
-    });
-  }
-
-  /**
-   * Retorna la fecha en un formato específico
-   *
-   * @param {string} format Formato de fecha
-   * @returns {string} Fecha en formato específico
-   */
-  format() {
-    let format = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _classPrivateFieldGet(_format, this);
-    const options = {
-      d: _classPrivateFieldGet(_date, this).getDate(),
-      dd: String(_classPrivateFieldGet(_date, this).getDate()).padStart(2, "0"),
-      m: _classPrivateFieldGet(_date, this).getMonth() + 1,
-      mm: String(_classPrivateFieldGet(_date, this).getMonth() + 1).padStart(2, "0"),
-      mmm: _assertClassBrand(_DateTime_brand, this, _translate).call(this, "m" + _classPrivateFieldGet(_date, this).getMonth()).slice(0, 3),
-      mmmm: _assertClassBrand(_DateTime_brand, this, _translate).call(this, "m" + _classPrivateFieldGet(_date, this).getMonth()),
-      yyy: _classPrivateFieldGet(_date, this).getFullYear(),
-      yyyy: _classPrivateFieldGet(_date, this).getFullYear(),
-      yy: String(_classPrivateFieldGet(_date, this).getFullYear()).slice(-2),
-      h: _classPrivateFieldGet(_date, this).getHours() % 12 || 12,
-      // Hora en formato 12 horas sin ceros
-      hh: String(_classPrivateFieldGet(_date, this).getHours() % 12 || 12).padStart(2, "0"),
-      // Hora en formato 12 horas con ceros iniciales
-      H: _classPrivateFieldGet(_date, this).getHours(),
-      // Hora en formato 24 horas sin ceros
-      HH: String(_classPrivateFieldGet(_date, this).getHours()).padStart(2, "0"),
-      // Hora en formato 24 horas con ceros iniciales
-      i: _classPrivateFieldGet(_date, this).getMinutes(),
-      ii: String(_classPrivateFieldGet(_date, this).getMinutes()).padStart(2, "0"),
-      s: _classPrivateFieldGet(_date, this).getSeconds(),
-      ss: String(_classPrivateFieldGet(_date, this).getSeconds()).padStart(2, "0"),
-      ddd: _assertClassBrand(_DateTime_brand, this, _translate).call(this, "d" + _classPrivateFieldGet(_date, this).getDay()).slice(0, 3),
-      dddd: _assertClassBrand(_DateTime_brand, this, _translate).call(this, "d" + _classPrivateFieldGet(_date, this).getDay()),
-      a: _classPrivateFieldGet(_date, this).getHours() >= 12 ? _assertClassBrand(_DateTime_brand, this, _translate).call(this, "PM1") : _assertClassBrand(_DateTime_brand, this, _translate).call(this, "AM1"),
-      aa: _classPrivateFieldGet(_date, this).getHours() >= 12 ? _assertClassBrand(_DateTime_brand, this, _translate).call(this, "pm") : _assertClassBrand(_DateTime_brand, this, _translate).call(this, "am")
-    };
-
-    // Detectar y mantener las partes escapadas intactas
-    return format.replace(/\\.|d{1,4}|m{1,4}|y{2,4}|h{1,2}|H{1,2}|i{1,2}|s{1,2}|a{1,2}/gi, match => {
-      if (match.startsWith("\\")) {
-        // Eliminar el escape y devolver el texto literal
-        return match.slice(1);
-      }
-      // Reemplazar el marcador por su valor correspondiente o devolver el marcador original
-      return options[match] || match;
-    });
-  }
-
-  /**
-   * Modificar la fecha
-   *
-   * @param {string} type Tipo de valor a añadir
-   * @param {number} value Valor absoluto redondeado para sumar
-   * @returns {DateTime} Retorna la instancia
-   */
-
-  /**
-   * Añadir valores a la fecha
-   *
-   * @param {string} type Tipo de valor a añadir
-   * @param {number} value Valor absoluto redondeado para sumar
-   * @returns {DateTime} Retorna la instancia
-   */
-  add(type, value) {
-    value = Math.round(Math.abs(value));
-    return _assertClassBrand(_DateTime_brand, this, _alterateDate).call(this, type, value);
-  }
-
-  /**
-   * Restar valores a la fecha
-   *
-   * @param {string} type Tipo de valor a añadir
-   * @param {number} value Valor absoluto redondeado para sumar
-   * @returns {DateTime} Retorna la instancia
-   */
-  subtract(type, value) {
-    value = Math.round(Math.abs(value)) * -1;
-    return _assertClassBrand(_DateTime_brand, this, _alterateDate).call(this, type, value);
-  }
-
-  /**
-   * Clonar la instancia
-   */
-  clone() {
-    return new DateTime(_classPrivateFieldGet(_date, this), _classPrivateFieldGet(_format, this));
-  }
-
-  /**
-   *  Getters
-   * - getYear() Obtener el año
-   * - getName(type) Nombre del mes o día
-   * - getMonth() (1-12) Obtener el mes
-   * - getDay() (1-7) Obtener el día de la semana
-   * - getDayOfWeek() nombre del día
-   * - getMonthOfYear() nombre del mes
-   * - getHours(type = "24h") Obtener las horas en formato 24h o 12h
-   * - getHours12() Obtener las horas en formato 12h
-   * - getHours24() Obtener las horas en formato 24h
-   * - getMinutes() Obtener los minutos
-   * - getSeconds() Obterner los segundos
-   * - getMilliseconds() Obtener los milisegundos
-   * - getTime() Obtener la hora completa
-   * - getDate() Obtener la fecha
-   * - getWeek() Obtener número de la semana
-   * - getQuarter() Obtener número del trimestre
-   * - getDayOfYear() Obtener el número del día del año
-   * - getDayOfMonth() Obtener el número del día del mes
-   * - getDifference(date, type) Obtener la diferencia entre dos fechas
-   * - getStartOf(type) Obtener el inicio de un periodo
-   * - getEndOf(type) Obtener el final de un periodo
-   * - getStartOfYear() Obtener el inicio del año
-   * - getEndOfYear() Obtener el final del año
-   * - getStartOfMonth() Obtener el inicio del mes
-   * - getEndOfMonth() Obtener el final del mes
-   * - getStartOfDay() Obtener el inicio del día
-   * - getEndOfDay() Obtener el final del día
-   * - getStartOfHour() Obtener el inicio de la hora
-   * - getEndOfHour() Obtener el final de la hora
-   * - getStartOfMinute() Obtener el inicio del minuto
-   * - getEndOfMinute() Obtener el final del minuto
-   * - getStartOfSecond() Obtener el inicio del segundo
-   * - getEndOfSecond() Obtener el final del segundo
-   * - getStartOfWeek() Obtener el inicio de la semana
-   * - getEndOfWeek() Obtener el final de la semana
-   * - getStartOfQuarter() Obtener el inicio del trimestre
-   * - getEndOfQuarter() Obtener el final del trimestre
-   */
-
-  /**
-   * Setters
-   * - setYear(year) Establecer el año
-   * - setMonth(month) Establecer el mes
-   * - setDay(day) Establecer el día
-   * - setHours(hrs) Establecer las horas
-   * - setMinutes(min) Establecer los minutos
-   * - setSeconds(s) Establecer los segundos
-   * - setMilliseconds(ms) Establecer los milisegundos
-   * - setTime(time) Establecer la hora completa
-   * - setDate(date) Establecer la fecha
-   * - startOf(type) Establecer el inicio de un periodo
-   * - endOf(type) Establecer el final de un periodo
-   * - startOfYear() Establecer el inicio del año
-   * - endOfYear() Establecer el final del año
-   * - startOfMonth() Establecer el inicio del mes
-   * - endOfMonth() Establecer el final del mes
-   * - startOfDay() Establecer el inicio del día
-   * - endOfDay() Establecer el final del día
-   * - startOfHour() Establecer el inicio de la hora
-   * - endOfHour() Establecer el final de la hora
-   * - startOfMinute() Establecer el inicio del minuto
-   * - endOfMinute() Establecer el final del minuto
-   * - startOfSecond() Establecer el inicio del segundo
-   * - endOfSecond() Establecer el final del segundo
-   * - startOfWeek() Establecer el inicio de la semana
-   * - endOfWeek() Establecer el final de la semana
-   * - startOfQuarter() Establecer el inicio del trimestre
-   * - endOfQuarter() Establecer el final del trimestre
-   * - nextDay() Establecer el siguiente día
-   * - tomorrow() Establecer el siguiente día
-   * - yesterday() Establecer el día anterior
-   * - nextMonth() Establecer el siguiente mes
-   * - lastMonth() Establecer el mes anterior
-   * - nextYear() Establecer el siguiente año
-   * - lastYear() Establecer el año anterior
-   * - nextWeek() Establecer la siguiente semana
-   * - lastWeek() Establecer la semana anterior
-   * - nextHour() Establecer la siguiente hora
-   * - lastHour() Establecer la hora anterior
-   * - nextMinute() Establecer el siguiente minuto
-   * - lastMinute() Establecer el minuto anterior
-   * - nextSecond() Establecer el siguiente segundo
-   * - lastSecond() Establecer el segundo anterior
-   */
-
-  /**
-   * Métodos que pueden ser útiles de comparación
-   * - isBefore(date, strict = false) Compara si la fecha es anterior a otra
-   * - isAfter(date, strict = false) Compara si la fecha es posterior a otra
-   * - isSame(date, strict = false) Compara si la fecha es igual a otra
-   * - isLeapYear(year = null) Comprueba si el año es bisiesto
-   * - isWeekend(date = null) Comprueba si es fin de semana
-   * - isToday(date = null) Comprueba si es hoy
-   * - isTomorrow(date = null) Comprueba si es mañana
-   * - isYesterday(date = null) Comprueba si es ayer
-   * - isBetween(firstDate, lastDate, strict = false) Comprueba si está entre dos fechas
-   * - isSameOrBefore(date, strict = false) Compara si es igual o anterior a otra fecha
-   * - isSameOrAfter(date, strict = false) Compara si es igual o posterior a otra fecha
-   * - isDifferent(date, strict = false) Compara si es diferente a otra fecha
-   * - isThisWeek() Comprueba si es esta semana
-   * - isNextWeek() Comprueba si es la próxima semana
-   * - isLastWeek() Comprueba si es la semana pasada
-   * - isThisMonth() Comprueba si es este mes
-   * - isNextMonth() Comprueba si es el próximo mes
-   * - isLastMonth() Comprueba si es el mes pasado
-   * - isThisYear() Comprueba si es este año
-   * - isSameYear(date = null) Comprueba si es el mismo año
-   * - isSameMonth(date = null) Comprueba si es el mismo mes
-   * - isSameDay(date = null) Comprueba si es el mismo día
-   * - isSameHour(date = null) Comprueba si es la misma hora
-   */
-}
-_DateTime = DateTime;
-function _translate(key) {
-  let variables = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  const messages = this.translate || _DateTime.translate || {};
-  let message = messages[key] || key;
-  Object.entries(variables).forEach(_ref => {
-    let [placeholder, value] = _ref;
-    message = message.replace("".concat(placeholder), value);
-  });
-  return message;
-}
-/**
- * Método privado para crear una fecha según el formato
- *
- * @param {string} dateString Fecha en formato ISO
- * @param {string} format Formato de fecha
- * @returns {Date} Fecha y hora
- */
-function _parseDate(dateString, format) {
-  const formatParts = format.split(/[^a-zA-Z]/); // Separar componentes del formato
-  const dateParts = dateString.split(/[^0-9]/); // Separar componentes de la fecha
-
-  // Validar que el número de partes coincida
-  if (formatParts.length !== dateParts.length) {
-    throw new Error(_assertClassBrand(_DateTime_brand, this, _translate).call(this, "invalid_format", {
-      ":date": dateString,
-      ":format": format
-    }));
-  }
-
-  // Mapa para asociar componentes del formato a índices específicos
-  const dateMap = {};
-  formatParts.forEach((part, index) => {
-    const value = parseInt(dateParts[index], 10);
-    if (isNaN(value)) {
-      // Es muy difícil que entre aquí la forma de split con expresiones regulares sirve como primer filtro
-      throw new Error(_assertClassBrand(_DateTime_brand, this, _translate).call(this, "invalid_date", {
-        ":date": dateString
-      }));
-    }
-    dateMap[part] = value;
-  });
-
-  // Extraer componentes individuales según el formato
-  const now = new Date();
-  const year = dateMap["yyyy"] || now.getFullYear();
-  const month = (dateMap["mm"] || 1) - 1; // Mes es 0-indexado
-  const day = dateMap["dd"] || 1;
-  const hour = dateMap["hh"] !== undefined ? dateMap["hh"] : now.getHours(); // Hora actual si no se especifica
-  const minute = dateMap["ii"] !== undefined ? dateMap["ii"] : now.getMinutes(); // Minuto actual si no se especifica
-  const second = dateMap["ss"] !== undefined ? dateMap["ss"] : now.getSeconds(); // Segundo actual si no se especifica
-
-  // Validación adicional: Fecha válida
-  const constructedDate = new Date(year, month, day, hour, minute, second);
-  if (constructedDate.getFullYear() !== year || constructedDate.getMonth() !== month || constructedDate.getDate() !== day) {
-    throw new Error(_assertClassBrand(_DateTime_brand, this, _translate).call(this, "invalid_date", {
-      ":date": dateString
-    }));
-  }
-  return constructedDate;
-}
-function _alterateDate(type, value) {
-  value = Math.round(value);
-  const date = _classPrivateFieldGet(_date, this);
-  switch (type) {
-    case "years":
-      date.setFullYear(date.getFullYear() + value);
-      break;
-    case "months":
-      date.setMonth(date.getMonth() + value);
-      break;
-    case "days":
-      date.setDate(date.getDate() + value);
-      break;
-    case "hours":
-      date.setHours(date.getHours() + value);
-      break;
-    case "minutes":
-      date.setMinutes(date.getMinutes() + value);
-      break;
-    case "seconds":
-      date.setSeconds(date.getSeconds() + value);
-      break;
-    case "quarters":
-      date.setMonth(date.getMonth() + value * 3);
-      break;
-    case "weeks":
-      date.setDate(date.getDate() + value * 7);
-      break;
-    case "milliseconds":
-      date.setMilliseconds(date.getMilliseconds() + value);
-      break;
-    default:
-      break;
-  }
-  return this;
-}
-_defineProperty(DateTime, "lang", (_navigator$language = navigator.language) !== null && _navigator$language !== void 0 ? _navigator$language : "es-ES");
-_defineProperty(DateTime, "translate", __webpack_require__("./src/lang sync recursive ^\\.\\/.*$")("./" + _DateTime.lang.split("-", 1)));
-const datetime = (dateString, format) => new DateTime(dateString, format);
-
-// Exportar para CommonJS (require)
-if ( true && module.exports) {
-  module.exports = {
-    DateTime,
-    datetime
-  };
-}
-window.DateTime = DateTime;
-window.datetime = datetime;
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/internals/a-callable.js":
 /*!******************************************************!*\
   !*** ./node_modules/core-js/internals/a-callable.js ***!
@@ -688,78 +205,6 @@ var $TypeError = TypeError;
 module.exports = function (argument) {
   if (isCallable(argument)) return argument;
   throw new $TypeError(tryToString(argument) + ' is not a function');
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/internals/a-possible-prototype.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/core-js/internals/a-possible-prototype.js ***!
-  \****************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var isPossiblePrototype = __webpack_require__(/*! ../internals/is-possible-prototype */ "./node_modules/core-js/internals/is-possible-prototype.js");
-
-var $String = String;
-var $TypeError = TypeError;
-
-module.exports = function (argument) {
-  if (isPossiblePrototype(argument)) return argument;
-  throw new $TypeError("Can't set " + $String(argument) + ' as a prototype');
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/internals/add-to-unscopables.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/core-js/internals/add-to-unscopables.js ***!
-  \**************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
-var create = __webpack_require__(/*! ../internals/object-create */ "./node_modules/core-js/internals/object-create.js");
-var defineProperty = (__webpack_require__(/*! ../internals/object-define-property */ "./node_modules/core-js/internals/object-define-property.js").f);
-
-var UNSCOPABLES = wellKnownSymbol('unscopables');
-var ArrayPrototype = Array.prototype;
-
-// Array.prototype[@@unscopables]
-// https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
-if (ArrayPrototype[UNSCOPABLES] === undefined) {
-  defineProperty(ArrayPrototype, UNSCOPABLES, {
-    configurable: true,
-    value: create(null)
-  });
-}
-
-// add a key to Array.prototype[@@unscopables]
-module.exports = function (key) {
-  ArrayPrototype[UNSCOPABLES][key] = true;
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/internals/advance-string-index.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/core-js/internals/advance-string-index.js ***!
-  \****************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var charAt = (__webpack_require__(/*! ../internals/string-multibyte */ "./node_modules/core-js/internals/string-multibyte.js").charAt);
-
-// `AdvanceStringIndex` abstract operation
-// https://tc39.es/ecma262/#sec-advancestringindex
-module.exports = function (S, index, unicode) {
-  return index + (unicode ? charAt(S, index).length : 1);
 };
 
 
@@ -961,23 +406,6 @@ module.exports = !fails(function () {
 
 /***/ }),
 
-/***/ "./node_modules/core-js/internals/create-iter-result-object.js":
-/*!*********************************************************************!*\
-  !*** ./node_modules/core-js/internals/create-iter-result-object.js ***!
-  \*********************************************************************/
-/***/ ((module) => {
-
-"use strict";
-
-// `CreateIterResultObject` abstract operation
-// https://tc39.es/ecma262/#sec-createiterresultobject
-module.exports = function (value, done) {
-  return { value: value, done: done };
-};
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/internals/create-non-enumerable-property.js":
 /*!**************************************************************************!*\
   !*** ./node_modules/core-js/internals/create-non-enumerable-property.js ***!
@@ -1164,72 +592,6 @@ module.exports = function (it) {
 
 /***/ }),
 
-/***/ "./node_modules/core-js/internals/dom-iterables.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/core-js/internals/dom-iterables.js ***!
-  \*********************************************************/
-/***/ ((module) => {
-
-"use strict";
-
-// iterable DOM collections
-// flag - `iterable` interface - 'entries', 'keys', 'values', 'forEach' methods
-module.exports = {
-  CSSRuleList: 0,
-  CSSStyleDeclaration: 0,
-  CSSValueList: 0,
-  ClientRectList: 0,
-  DOMRectList: 0,
-  DOMStringList: 0,
-  DOMTokenList: 1,
-  DataTransferItemList: 0,
-  FileList: 0,
-  HTMLAllCollection: 0,
-  HTMLCollection: 0,
-  HTMLFormElement: 0,
-  HTMLSelectElement: 0,
-  MediaList: 0,
-  MimeTypeArray: 0,
-  NamedNodeMap: 0,
-  NodeList: 1,
-  PaintRequestList: 0,
-  Plugin: 0,
-  PluginArray: 0,
-  SVGLengthList: 0,
-  SVGNumberList: 0,
-  SVGPathSegList: 0,
-  SVGPointList: 0,
-  SVGStringList: 0,
-  SVGTransformList: 0,
-  SourceBufferList: 0,
-  StyleSheetList: 0,
-  TextTrackCueList: 0,
-  TextTrackList: 0,
-  TouchList: 0
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/internals/dom-token-list-prototype.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/core-js/internals/dom-token-list-prototype.js ***!
-  \********************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-// in old WebKit versions, `element.classList` is not an instance of global `DOMTokenList`
-var documentCreateElement = __webpack_require__(/*! ../internals/document-create-element */ "./node_modules/core-js/internals/document-create-element.js");
-
-var classList = documentCreateElement('span').classList;
-var DOMTokenListPrototype = classList && classList.constructor && classList.constructor.prototype;
-
-module.exports = DOMTokenListPrototype === Object.prototype ? undefined : DOMTokenListPrototype;
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/internals/enum-bug-keys.js":
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/internals/enum-bug-keys.js ***!
@@ -1305,80 +667,6 @@ if (!version && userAgent) {
 }
 
 module.exports = version;
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/internals/error-stack-clear.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/core-js/internals/error-stack-clear.js ***!
-  \*************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "./node_modules/core-js/internals/function-uncurry-this.js");
-
-var $Error = Error;
-var replace = uncurryThis(''.replace);
-
-var TEST = (function (arg) { return String(new $Error(arg).stack); })('zxcasd');
-// eslint-disable-next-line redos/no-vulnerable, sonarjs/slow-regex -- safe
-var V8_OR_CHAKRA_STACK_ENTRY = /\n\s*at [^:]*:[^\n]*/;
-var IS_V8_OR_CHAKRA_STACK = V8_OR_CHAKRA_STACK_ENTRY.test(TEST);
-
-module.exports = function (stack, dropEntries) {
-  if (IS_V8_OR_CHAKRA_STACK && typeof stack == 'string' && !$Error.prepareStackTrace) {
-    while (dropEntries--) stack = replace(stack, V8_OR_CHAKRA_STACK_ENTRY, '');
-  } return stack;
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/internals/error-stack-install.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/core-js/internals/error-stack-install.js ***!
-  \***************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var createNonEnumerableProperty = __webpack_require__(/*! ../internals/create-non-enumerable-property */ "./node_modules/core-js/internals/create-non-enumerable-property.js");
-var clearErrorStack = __webpack_require__(/*! ../internals/error-stack-clear */ "./node_modules/core-js/internals/error-stack-clear.js");
-var ERROR_STACK_INSTALLABLE = __webpack_require__(/*! ../internals/error-stack-installable */ "./node_modules/core-js/internals/error-stack-installable.js");
-
-// non-standard V8
-var captureStackTrace = Error.captureStackTrace;
-
-module.exports = function (error, C, stack, dropEntries) {
-  if (ERROR_STACK_INSTALLABLE) {
-    if (captureStackTrace) captureStackTrace(error, C);
-    else createNonEnumerableProperty(error, 'stack', clearErrorStack(stack, dropEntries));
-  }
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/internals/error-stack-installable.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/core-js/internals/error-stack-installable.js ***!
-  \*******************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
-var createPropertyDescriptor = __webpack_require__(/*! ../internals/create-property-descriptor */ "./node_modules/core-js/internals/create-property-descriptor.js");
-
-module.exports = !fails(function () {
-  var error = new Error('a');
-  if (!('stack' in error)) return true;
-  // eslint-disable-next-line es/no-object-defineproperty -- safe
-  Object.defineProperty(error, 'stack', createPropertyDescriptor(1, 7));
-  return error.stack !== 7;
-});
 
 
 /***/ }),
@@ -1464,115 +752,6 @@ module.exports = function (exec) {
     return true;
   }
 };
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/internals/fix-regexp-well-known-symbol-logic.js":
-/*!******************************************************************************!*\
-  !*** ./node_modules/core-js/internals/fix-regexp-well-known-symbol-logic.js ***!
-  \******************************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-// TODO: Remove from `core-js@4` since it's moved to entry points
-__webpack_require__(/*! ../modules/es.regexp.exec */ "./node_modules/core-js/modules/es.regexp.exec.js?ac1f");
-var call = __webpack_require__(/*! ../internals/function-call */ "./node_modules/core-js/internals/function-call.js");
-var defineBuiltIn = __webpack_require__(/*! ../internals/define-built-in */ "./node_modules/core-js/internals/define-built-in.js");
-var regexpExec = __webpack_require__(/*! ../internals/regexp-exec */ "./node_modules/core-js/internals/regexp-exec.js");
-var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
-var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
-var createNonEnumerableProperty = __webpack_require__(/*! ../internals/create-non-enumerable-property */ "./node_modules/core-js/internals/create-non-enumerable-property.js");
-
-var SPECIES = wellKnownSymbol('species');
-var RegExpPrototype = RegExp.prototype;
-
-module.exports = function (KEY, exec, FORCED, SHAM) {
-  var SYMBOL = wellKnownSymbol(KEY);
-
-  var DELEGATES_TO_SYMBOL = !fails(function () {
-    // String methods call symbol-named RegExp methods
-    var O = {};
-    O[SYMBOL] = function () { return 7; };
-    return ''[KEY](O) !== 7;
-  });
-
-  var DELEGATES_TO_EXEC = DELEGATES_TO_SYMBOL && !fails(function () {
-    // Symbol-named RegExp methods call .exec
-    var execCalled = false;
-    var re = /a/;
-
-    if (KEY === 'split') {
-      // We can't use real regex here since it causes deoptimization
-      // and serious performance degradation in V8
-      // https://github.com/zloirock/core-js/issues/306
-      re = {};
-      // RegExp[@@split] doesn't call the regex's exec method, but first creates
-      // a new one. We need to return the patched regex when creating the new one.
-      re.constructor = {};
-      re.constructor[SPECIES] = function () { return re; };
-      re.flags = '';
-      re[SYMBOL] = /./[SYMBOL];
-    }
-
-    re.exec = function () {
-      execCalled = true;
-      return null;
-    };
-
-    re[SYMBOL]('');
-    return !execCalled;
-  });
-
-  if (
-    !DELEGATES_TO_SYMBOL ||
-    !DELEGATES_TO_EXEC ||
-    FORCED
-  ) {
-    var nativeRegExpMethod = /./[SYMBOL];
-    var methods = exec(SYMBOL, ''[KEY], function (nativeMethod, regexp, str, arg2, forceStringMethod) {
-      var $exec = regexp.exec;
-      if ($exec === regexpExec || $exec === RegExpPrototype.exec) {
-        if (DELEGATES_TO_SYMBOL && !forceStringMethod) {
-          // The native String method already delegates to @@method (this
-          // polyfilled function), leasing to infinite recursion.
-          // We avoid it by directly calling the native @@method method.
-          return { done: true, value: call(nativeRegExpMethod, regexp, str, arg2) };
-        }
-        return { done: true, value: call(nativeMethod, str, regexp, arg2) };
-      }
-      return { done: false };
-    });
-
-    defineBuiltIn(String.prototype, KEY, methods[0]);
-    defineBuiltIn(RegExpPrototype, SYMBOL, methods[1]);
-  }
-
-  if (SHAM) createNonEnumerableProperty(RegExpPrototype[SYMBOL], 'sham', true);
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/internals/function-apply.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/core-js/internals/function-apply.js ***!
-  \**********************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var NATIVE_BIND = __webpack_require__(/*! ../internals/function-bind-native */ "./node_modules/core-js/internals/function-bind-native.js");
-
-var FunctionPrototype = Function.prototype;
-var apply = FunctionPrototype.apply;
-var call = FunctionPrototype.call;
-
-// eslint-disable-next-line es/no-function-prototype-bind, es/no-reflect -- safe
-module.exports = typeof Reflect == 'object' && Reflect.apply || (NATIVE_BIND ? call.bind(apply) : function () {
-  return call.apply(apply, arguments);
-});
 
 
 /***/ }),
@@ -1665,27 +844,6 @@ module.exports = {
   EXISTS: EXISTS,
   PROPER: PROPER,
   CONFIGURABLE: CONFIGURABLE
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/internals/function-uncurry-this-accessor.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/core-js/internals/function-uncurry-this-accessor.js ***!
-  \**************************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "./node_modules/core-js/internals/function-uncurry-this.js");
-var aCallable = __webpack_require__(/*! ../internals/a-callable */ "./node_modules/core-js/internals/a-callable.js");
-
-module.exports = function (object, key, method) {
-  try {
-    // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
-    return uncurryThis(aCallable(Object.getOwnPropertyDescriptor(object, key)[method]));
-  } catch (error) { /* empty */ }
 };
 
 
@@ -1850,63 +1008,6 @@ module.exports = function (V, P) {
 
 /***/ }),
 
-/***/ "./node_modules/core-js/internals/get-substitution.js":
-/*!************************************************************!*\
-  !*** ./node_modules/core-js/internals/get-substitution.js ***!
-  \************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "./node_modules/core-js/internals/function-uncurry-this.js");
-var toObject = __webpack_require__(/*! ../internals/to-object */ "./node_modules/core-js/internals/to-object.js");
-
-var floor = Math.floor;
-var charAt = uncurryThis(''.charAt);
-var replace = uncurryThis(''.replace);
-var stringSlice = uncurryThis(''.slice);
-// eslint-disable-next-line redos/no-vulnerable -- safe
-var SUBSTITUTION_SYMBOLS = /\$([$&'`]|\d{1,2}|<[^>]*>)/g;
-var SUBSTITUTION_SYMBOLS_NO_NAMED = /\$([$&'`]|\d{1,2})/g;
-
-// `GetSubstitution` abstract operation
-// https://tc39.es/ecma262/#sec-getsubstitution
-module.exports = function (matched, str, position, captures, namedCaptures, replacement) {
-  var tailPos = position + matched.length;
-  var m = captures.length;
-  var symbols = SUBSTITUTION_SYMBOLS_NO_NAMED;
-  if (namedCaptures !== undefined) {
-    namedCaptures = toObject(namedCaptures);
-    symbols = SUBSTITUTION_SYMBOLS;
-  }
-  return replace(replacement, symbols, function (match, ch) {
-    var capture;
-    switch (charAt(ch, 0)) {
-      case '$': return '$';
-      case '&': return matched;
-      case '`': return stringSlice(str, 0, position);
-      case "'": return stringSlice(str, tailPos);
-      case '<':
-        capture = namedCaptures[stringSlice(ch, 1, -1)];
-        break;
-      default: // \d\d?
-        var n = +ch;
-        if (n === 0) return match;
-        if (n > m) {
-          var f = floor(n / 10);
-          if (f === 0) return match;
-          if (f <= m) return captures[f - 1] === undefined ? charAt(ch, 1) : captures[f - 1] + charAt(ch, 1);
-          return match;
-        }
-        capture = captures[n - 1];
-    }
-    return capture === undefined ? '' : capture;
-  });
-};
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/internals/global-this.js":
 /*!*******************************************************!*\
   !*** ./node_modules/core-js/internals/global-this.js ***!
@@ -2035,36 +1136,6 @@ module.exports = fails(function () {
 
 /***/ }),
 
-/***/ "./node_modules/core-js/internals/inherit-if-required.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/core-js/internals/inherit-if-required.js ***!
-  \***************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var isCallable = __webpack_require__(/*! ../internals/is-callable */ "./node_modules/core-js/internals/is-callable.js");
-var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js/internals/is-object.js");
-var setPrototypeOf = __webpack_require__(/*! ../internals/object-set-prototype-of */ "./node_modules/core-js/internals/object-set-prototype-of.js");
-
-// makes subclassing work correct for wrapped built-ins
-module.exports = function ($this, dummy, Wrapper) {
-  var NewTarget, NewTargetPrototype;
-  if (
-    // it can work only with native `setPrototypeOf`
-    setPrototypeOf &&
-    // we haven't completely correct pre-ES6 way for getting `new.target`, so use this
-    isCallable(NewTarget = dummy.constructor) &&
-    NewTarget !== Wrapper &&
-    isObject(NewTargetPrototype = NewTarget.prototype) &&
-    NewTargetPrototype !== Wrapper.prototype
-  ) setPrototypeOf($this, NewTargetPrototype);
-  return $this;
-};
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/internals/inspect-source.js":
 /*!**********************************************************!*\
   !*** ./node_modules/core-js/internals/inspect-source.js ***!
@@ -2087,28 +1158,6 @@ if (!isCallable(store.inspectSource)) {
 }
 
 module.exports = store.inspectSource;
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/internals/install-error-cause.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/core-js/internals/install-error-cause.js ***!
-  \***************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js/internals/is-object.js");
-var createNonEnumerableProperty = __webpack_require__(/*! ../internals/create-non-enumerable-property */ "./node_modules/core-js/internals/create-non-enumerable-property.js");
-
-// `InstallErrorCause` abstract operation
-// https://tc39.es/proposal-error-cause/#sec-errorobjects-install-error-cause
-module.exports = function (O, options) {
-  if (isObject(options) && 'cause' in options) {
-    createNonEnumerableProperty(O, 'cause', options.cause);
-  }
-};
 
 
 /***/ }),
@@ -2308,23 +1357,6 @@ module.exports = function (it) {
 
 /***/ }),
 
-/***/ "./node_modules/core-js/internals/is-possible-prototype.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/core-js/internals/is-possible-prototype.js ***!
-  \*****************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js/internals/is-object.js");
-
-module.exports = function (argument) {
-  return isObject(argument) || argument === null;
-};
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/internals/is-pure.js":
 /*!***************************************************!*\
   !*** ./node_modules/core-js/internals/is-pure.js ***!
@@ -2473,146 +1505,6 @@ module.exports = function (iterator, kind, value) {
   if (innerError) throw innerResult;
   anObject(innerResult);
   return value;
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/internals/iterator-create-constructor.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/core-js/internals/iterator-create-constructor.js ***!
-  \***********************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var IteratorPrototype = (__webpack_require__(/*! ../internals/iterators-core */ "./node_modules/core-js/internals/iterators-core.js").IteratorPrototype);
-var create = __webpack_require__(/*! ../internals/object-create */ "./node_modules/core-js/internals/object-create.js");
-var createPropertyDescriptor = __webpack_require__(/*! ../internals/create-property-descriptor */ "./node_modules/core-js/internals/create-property-descriptor.js");
-var setToStringTag = __webpack_require__(/*! ../internals/set-to-string-tag */ "./node_modules/core-js/internals/set-to-string-tag.js");
-var Iterators = __webpack_require__(/*! ../internals/iterators */ "./node_modules/core-js/internals/iterators.js");
-
-var returnThis = function () { return this; };
-
-module.exports = function (IteratorConstructor, NAME, next, ENUMERABLE_NEXT) {
-  var TO_STRING_TAG = NAME + ' Iterator';
-  IteratorConstructor.prototype = create(IteratorPrototype, { next: createPropertyDescriptor(+!ENUMERABLE_NEXT, next) });
-  setToStringTag(IteratorConstructor, TO_STRING_TAG, false, true);
-  Iterators[TO_STRING_TAG] = returnThis;
-  return IteratorConstructor;
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/internals/iterator-define.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/core-js/internals/iterator-define.js ***!
-  \***********************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
-var call = __webpack_require__(/*! ../internals/function-call */ "./node_modules/core-js/internals/function-call.js");
-var IS_PURE = __webpack_require__(/*! ../internals/is-pure */ "./node_modules/core-js/internals/is-pure.js");
-var FunctionName = __webpack_require__(/*! ../internals/function-name */ "./node_modules/core-js/internals/function-name.js");
-var isCallable = __webpack_require__(/*! ../internals/is-callable */ "./node_modules/core-js/internals/is-callable.js");
-var createIteratorConstructor = __webpack_require__(/*! ../internals/iterator-create-constructor */ "./node_modules/core-js/internals/iterator-create-constructor.js");
-var getPrototypeOf = __webpack_require__(/*! ../internals/object-get-prototype-of */ "./node_modules/core-js/internals/object-get-prototype-of.js");
-var setPrototypeOf = __webpack_require__(/*! ../internals/object-set-prototype-of */ "./node_modules/core-js/internals/object-set-prototype-of.js");
-var setToStringTag = __webpack_require__(/*! ../internals/set-to-string-tag */ "./node_modules/core-js/internals/set-to-string-tag.js");
-var createNonEnumerableProperty = __webpack_require__(/*! ../internals/create-non-enumerable-property */ "./node_modules/core-js/internals/create-non-enumerable-property.js");
-var defineBuiltIn = __webpack_require__(/*! ../internals/define-built-in */ "./node_modules/core-js/internals/define-built-in.js");
-var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
-var Iterators = __webpack_require__(/*! ../internals/iterators */ "./node_modules/core-js/internals/iterators.js");
-var IteratorsCore = __webpack_require__(/*! ../internals/iterators-core */ "./node_modules/core-js/internals/iterators-core.js");
-
-var PROPER_FUNCTION_NAME = FunctionName.PROPER;
-var CONFIGURABLE_FUNCTION_NAME = FunctionName.CONFIGURABLE;
-var IteratorPrototype = IteratorsCore.IteratorPrototype;
-var BUGGY_SAFARI_ITERATORS = IteratorsCore.BUGGY_SAFARI_ITERATORS;
-var ITERATOR = wellKnownSymbol('iterator');
-var KEYS = 'keys';
-var VALUES = 'values';
-var ENTRIES = 'entries';
-
-var returnThis = function () { return this; };
-
-module.exports = function (Iterable, NAME, IteratorConstructor, next, DEFAULT, IS_SET, FORCED) {
-  createIteratorConstructor(IteratorConstructor, NAME, next);
-
-  var getIterationMethod = function (KIND) {
-    if (KIND === DEFAULT && defaultIterator) return defaultIterator;
-    if (!BUGGY_SAFARI_ITERATORS && KIND && KIND in IterablePrototype) return IterablePrototype[KIND];
-
-    switch (KIND) {
-      case KEYS: return function keys() { return new IteratorConstructor(this, KIND); };
-      case VALUES: return function values() { return new IteratorConstructor(this, KIND); };
-      case ENTRIES: return function entries() { return new IteratorConstructor(this, KIND); };
-    }
-
-    return function () { return new IteratorConstructor(this); };
-  };
-
-  var TO_STRING_TAG = NAME + ' Iterator';
-  var INCORRECT_VALUES_NAME = false;
-  var IterablePrototype = Iterable.prototype;
-  var nativeIterator = IterablePrototype[ITERATOR]
-    || IterablePrototype['@@iterator']
-    || DEFAULT && IterablePrototype[DEFAULT];
-  var defaultIterator = !BUGGY_SAFARI_ITERATORS && nativeIterator || getIterationMethod(DEFAULT);
-  var anyNativeIterator = NAME === 'Array' ? IterablePrototype.entries || nativeIterator : nativeIterator;
-  var CurrentIteratorPrototype, methods, KEY;
-
-  // fix native
-  if (anyNativeIterator) {
-    CurrentIteratorPrototype = getPrototypeOf(anyNativeIterator.call(new Iterable()));
-    if (CurrentIteratorPrototype !== Object.prototype && CurrentIteratorPrototype.next) {
-      if (!IS_PURE && getPrototypeOf(CurrentIteratorPrototype) !== IteratorPrototype) {
-        if (setPrototypeOf) {
-          setPrototypeOf(CurrentIteratorPrototype, IteratorPrototype);
-        } else if (!isCallable(CurrentIteratorPrototype[ITERATOR])) {
-          defineBuiltIn(CurrentIteratorPrototype, ITERATOR, returnThis);
-        }
-      }
-      // Set @@toStringTag to native iterators
-      setToStringTag(CurrentIteratorPrototype, TO_STRING_TAG, true, true);
-      if (IS_PURE) Iterators[TO_STRING_TAG] = returnThis;
-    }
-  }
-
-  // fix Array.prototype.{ values, @@iterator }.name in V8 / FF
-  if (PROPER_FUNCTION_NAME && DEFAULT === VALUES && nativeIterator && nativeIterator.name !== VALUES) {
-    if (!IS_PURE && CONFIGURABLE_FUNCTION_NAME) {
-      createNonEnumerableProperty(IterablePrototype, 'name', VALUES);
-    } else {
-      INCORRECT_VALUES_NAME = true;
-      defaultIterator = function values() { return call(nativeIterator, this); };
-    }
-  }
-
-  // export additional methods
-  if (DEFAULT) {
-    methods = {
-      values: getIterationMethod(VALUES),
-      keys: IS_SET ? defaultIterator : getIterationMethod(KEYS),
-      entries: getIterationMethod(ENTRIES)
-    };
-    if (FORCED) for (KEY in methods) {
-      if (BUGGY_SAFARI_ITERATORS || INCORRECT_VALUES_NAME || !(KEY in IterablePrototype)) {
-        defineBuiltIn(IterablePrototype, KEY, methods[KEY]);
-      }
-    } else $({ target: NAME, proto: true, forced: BUGGY_SAFARI_ITERATORS || INCORRECT_VALUES_NAME }, methods);
-  }
-
-  // define iterator
-  if ((!IS_PURE || FORCED) && IterablePrototype[ITERATOR] !== defaultIterator) {
-    defineBuiltIn(IterablePrototype, ITERATOR, defaultIterator, { name: DEFAULT });
-  }
-  Iterators[NAME] = defaultIterator;
-
-  return methods;
 };
 
 
@@ -2793,23 +1685,6 @@ var floor = Math.floor;
 module.exports = Math.trunc || function trunc(x) {
   var n = +x;
   return (n > 0 ? floor : ceil)(n);
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/internals/normalize-string-argument.js":
-/*!*********************************************************************!*\
-  !*** ./node_modules/core-js/internals/normalize-string-argument.js ***!
-  \*********************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var toString = __webpack_require__(/*! ../internals/to-string */ "./node_modules/core-js/internals/to-string.js");
-
-module.exports = function (argument, $default) {
-  return argument === undefined ? arguments.length < 2 ? '' : $default : toString(argument);
 };
 
 
@@ -3195,46 +2070,6 @@ exports.f = NASHORN_BUG ? function propertyIsEnumerable(V) {
 
 /***/ }),
 
-/***/ "./node_modules/core-js/internals/object-set-prototype-of.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/core-js/internals/object-set-prototype-of.js ***!
-  \*******************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-/* eslint-disable no-proto -- safe */
-var uncurryThisAccessor = __webpack_require__(/*! ../internals/function-uncurry-this-accessor */ "./node_modules/core-js/internals/function-uncurry-this-accessor.js");
-var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js/internals/is-object.js");
-var requireObjectCoercible = __webpack_require__(/*! ../internals/require-object-coercible */ "./node_modules/core-js/internals/require-object-coercible.js");
-var aPossiblePrototype = __webpack_require__(/*! ../internals/a-possible-prototype */ "./node_modules/core-js/internals/a-possible-prototype.js");
-
-// `Object.setPrototypeOf` method
-// https://tc39.es/ecma262/#sec-object.setprototypeof
-// Works with __proto__ only. Old v8 can't work with null proto objects.
-// eslint-disable-next-line es/no-object-setprototypeof -- safe
-module.exports = Object.setPrototypeOf || ('__proto__' in {} ? function () {
-  var CORRECT_SETTER = false;
-  var test = {};
-  var setter;
-  try {
-    setter = uncurryThisAccessor(Object.prototype, '__proto__', 'set');
-    setter(test, []);
-    CORRECT_SETTER = test instanceof Array;
-  } catch (error) { /* empty */ }
-  return function setPrototypeOf(O, proto) {
-    requireObjectCoercible(O);
-    aPossiblePrototype(proto);
-    if (!isObject(O)) return O;
-    if (CORRECT_SETTER) setter(O, proto);
-    else O.__proto__ = proto;
-    return O;
-  };
-}() : undefined);
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/internals/ordinary-to-primitive.js":
 /*!*****************************************************************!*\
   !*** ./node_modules/core-js/internals/ordinary-to-primitive.js ***!
@@ -3288,303 +2123,6 @@ module.exports = getBuiltIn('Reflect', 'ownKeys') || function ownKeys(it) {
 
 /***/ }),
 
-/***/ "./node_modules/core-js/internals/proxy-accessor.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/core-js/internals/proxy-accessor.js ***!
-  \**********************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var defineProperty = (__webpack_require__(/*! ../internals/object-define-property */ "./node_modules/core-js/internals/object-define-property.js").f);
-
-module.exports = function (Target, Source, key) {
-  key in Target || defineProperty(Target, key, {
-    configurable: true,
-    get: function () { return Source[key]; },
-    set: function (it) { Source[key] = it; }
-  });
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/internals/regexp-exec-abstract.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/core-js/internals/regexp-exec-abstract.js ***!
-  \****************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var call = __webpack_require__(/*! ../internals/function-call */ "./node_modules/core-js/internals/function-call.js");
-var anObject = __webpack_require__(/*! ../internals/an-object */ "./node_modules/core-js/internals/an-object.js");
-var isCallable = __webpack_require__(/*! ../internals/is-callable */ "./node_modules/core-js/internals/is-callable.js");
-var classof = __webpack_require__(/*! ../internals/classof-raw */ "./node_modules/core-js/internals/classof-raw.js");
-var regexpExec = __webpack_require__(/*! ../internals/regexp-exec */ "./node_modules/core-js/internals/regexp-exec.js");
-
-var $TypeError = TypeError;
-
-// `RegExpExec` abstract operation
-// https://tc39.es/ecma262/#sec-regexpexec
-module.exports = function (R, S) {
-  var exec = R.exec;
-  if (isCallable(exec)) {
-    var result = call(exec, R, S);
-    if (result !== null) anObject(result);
-    return result;
-  }
-  if (classof(R) === 'RegExp') return call(regexpExec, R, S);
-  throw new $TypeError('RegExp#exec called on incompatible receiver');
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/internals/regexp-exec.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/core-js/internals/regexp-exec.js ***!
-  \*******************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-/* eslint-disable regexp/no-empty-capturing-group, regexp/no-empty-group, regexp/no-lazy-ends -- testing */
-/* eslint-disable regexp/no-useless-quantifier -- testing */
-var call = __webpack_require__(/*! ../internals/function-call */ "./node_modules/core-js/internals/function-call.js");
-var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "./node_modules/core-js/internals/function-uncurry-this.js");
-var toString = __webpack_require__(/*! ../internals/to-string */ "./node_modules/core-js/internals/to-string.js");
-var regexpFlags = __webpack_require__(/*! ../internals/regexp-flags */ "./node_modules/core-js/internals/regexp-flags.js");
-var stickyHelpers = __webpack_require__(/*! ../internals/regexp-sticky-helpers */ "./node_modules/core-js/internals/regexp-sticky-helpers.js");
-var shared = __webpack_require__(/*! ../internals/shared */ "./node_modules/core-js/internals/shared.js");
-var create = __webpack_require__(/*! ../internals/object-create */ "./node_modules/core-js/internals/object-create.js");
-var getInternalState = (__webpack_require__(/*! ../internals/internal-state */ "./node_modules/core-js/internals/internal-state.js").get);
-var UNSUPPORTED_DOT_ALL = __webpack_require__(/*! ../internals/regexp-unsupported-dot-all */ "./node_modules/core-js/internals/regexp-unsupported-dot-all.js");
-var UNSUPPORTED_NCG = __webpack_require__(/*! ../internals/regexp-unsupported-ncg */ "./node_modules/core-js/internals/regexp-unsupported-ncg.js");
-
-var nativeReplace = shared('native-string-replace', String.prototype.replace);
-var nativeExec = RegExp.prototype.exec;
-var patchedExec = nativeExec;
-var charAt = uncurryThis(''.charAt);
-var indexOf = uncurryThis(''.indexOf);
-var replace = uncurryThis(''.replace);
-var stringSlice = uncurryThis(''.slice);
-
-var UPDATES_LAST_INDEX_WRONG = (function () {
-  var re1 = /a/;
-  var re2 = /b*/g;
-  call(nativeExec, re1, 'a');
-  call(nativeExec, re2, 'a');
-  return re1.lastIndex !== 0 || re2.lastIndex !== 0;
-})();
-
-var UNSUPPORTED_Y = stickyHelpers.BROKEN_CARET;
-
-// nonparticipating capturing group, copied from es5-shim's String#split patch.
-var NPCG_INCLUDED = /()??/.exec('')[1] !== undefined;
-
-var PATCH = UPDATES_LAST_INDEX_WRONG || NPCG_INCLUDED || UNSUPPORTED_Y || UNSUPPORTED_DOT_ALL || UNSUPPORTED_NCG;
-
-if (PATCH) {
-  patchedExec = function exec(string) {
-    var re = this;
-    var state = getInternalState(re);
-    var str = toString(string);
-    var raw = state.raw;
-    var result, reCopy, lastIndex, match, i, object, group;
-
-    if (raw) {
-      raw.lastIndex = re.lastIndex;
-      result = call(patchedExec, raw, str);
-      re.lastIndex = raw.lastIndex;
-      return result;
-    }
-
-    var groups = state.groups;
-    var sticky = UNSUPPORTED_Y && re.sticky;
-    var flags = call(regexpFlags, re);
-    var source = re.source;
-    var charsAdded = 0;
-    var strCopy = str;
-
-    if (sticky) {
-      flags = replace(flags, 'y', '');
-      if (indexOf(flags, 'g') === -1) {
-        flags += 'g';
-      }
-
-      strCopy = stringSlice(str, re.lastIndex);
-      // Support anchored sticky behavior.
-      if (re.lastIndex > 0 && (!re.multiline || re.multiline && charAt(str, re.lastIndex - 1) !== '\n')) {
-        source = '(?: ' + source + ')';
-        strCopy = ' ' + strCopy;
-        charsAdded++;
-      }
-      // ^(? + rx + ) is needed, in combination with some str slicing, to
-      // simulate the 'y' flag.
-      reCopy = new RegExp('^(?:' + source + ')', flags);
-    }
-
-    if (NPCG_INCLUDED) {
-      reCopy = new RegExp('^' + source + '$(?!\\s)', flags);
-    }
-    if (UPDATES_LAST_INDEX_WRONG) lastIndex = re.lastIndex;
-
-    match = call(nativeExec, sticky ? reCopy : re, strCopy);
-
-    if (sticky) {
-      if (match) {
-        match.input = stringSlice(match.input, charsAdded);
-        match[0] = stringSlice(match[0], charsAdded);
-        match.index = re.lastIndex;
-        re.lastIndex += match[0].length;
-      } else re.lastIndex = 0;
-    } else if (UPDATES_LAST_INDEX_WRONG && match) {
-      re.lastIndex = re.global ? match.index + match[0].length : lastIndex;
-    }
-    if (NPCG_INCLUDED && match && match.length > 1) {
-      // Fix browsers whose `exec` methods don't consistently return `undefined`
-      // for NPCG, like IE8. NOTE: This doesn't work for /(.?)?/
-      call(nativeReplace, match[0], reCopy, function () {
-        for (i = 1; i < arguments.length - 2; i++) {
-          if (arguments[i] === undefined) match[i] = undefined;
-        }
-      });
-    }
-
-    if (match && groups) {
-      match.groups = object = create(null);
-      for (i = 0; i < groups.length; i++) {
-        group = groups[i];
-        object[group[0]] = match[group[1]];
-      }
-    }
-
-    return match;
-  };
-}
-
-module.exports = patchedExec;
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/internals/regexp-flags.js":
-/*!********************************************************!*\
-  !*** ./node_modules/core-js/internals/regexp-flags.js ***!
-  \********************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var anObject = __webpack_require__(/*! ../internals/an-object */ "./node_modules/core-js/internals/an-object.js");
-
-// `RegExp.prototype.flags` getter implementation
-// https://tc39.es/ecma262/#sec-get-regexp.prototype.flags
-module.exports = function () {
-  var that = anObject(this);
-  var result = '';
-  if (that.hasIndices) result += 'd';
-  if (that.global) result += 'g';
-  if (that.ignoreCase) result += 'i';
-  if (that.multiline) result += 'm';
-  if (that.dotAll) result += 's';
-  if (that.unicode) result += 'u';
-  if (that.unicodeSets) result += 'v';
-  if (that.sticky) result += 'y';
-  return result;
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/internals/regexp-sticky-helpers.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/core-js/internals/regexp-sticky-helpers.js ***!
-  \*****************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
-var globalThis = __webpack_require__(/*! ../internals/global-this */ "./node_modules/core-js/internals/global-this.js");
-
-// babel-minify and Closure Compiler transpiles RegExp('a', 'y') -> /a/y and it causes SyntaxError
-var $RegExp = globalThis.RegExp;
-
-var UNSUPPORTED_Y = fails(function () {
-  var re = $RegExp('a', 'y');
-  re.lastIndex = 2;
-  return re.exec('abcd') !== null;
-});
-
-// UC Browser bug
-// https://github.com/zloirock/core-js/issues/1008
-var MISSED_STICKY = UNSUPPORTED_Y || fails(function () {
-  return !$RegExp('a', 'y').sticky;
-});
-
-var BROKEN_CARET = UNSUPPORTED_Y || fails(function () {
-  // https://bugzilla.mozilla.org/show_bug.cgi?id=773687
-  var re = $RegExp('^r', 'gy');
-  re.lastIndex = 2;
-  return re.exec('str') !== null;
-});
-
-module.exports = {
-  BROKEN_CARET: BROKEN_CARET,
-  MISSED_STICKY: MISSED_STICKY,
-  UNSUPPORTED_Y: UNSUPPORTED_Y
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/internals/regexp-unsupported-dot-all.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/core-js/internals/regexp-unsupported-dot-all.js ***!
-  \**********************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
-var globalThis = __webpack_require__(/*! ../internals/global-this */ "./node_modules/core-js/internals/global-this.js");
-
-// babel-minify and Closure Compiler transpiles RegExp('.', 's') -> /./s and it causes SyntaxError
-var $RegExp = globalThis.RegExp;
-
-module.exports = fails(function () {
-  var re = $RegExp('.', 's');
-  return !(re.dotAll && re.test('\n') && re.flags === 's');
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/internals/regexp-unsupported-ncg.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/core-js/internals/regexp-unsupported-ncg.js ***!
-  \******************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
-var globalThis = __webpack_require__(/*! ../internals/global-this */ "./node_modules/core-js/internals/global-this.js");
-
-// babel-minify and Closure Compiler transpiles RegExp('(?<a>b)', 'g') -> /(?<a>b)/g and it causes SyntaxError
-var $RegExp = globalThis.RegExp;
-
-module.exports = fails(function () {
-  var re = $RegExp('(?<a>b)', 'g');
-  return re.exec('b').groups.a !== 'b' ||
-    'b'.replace(re, '$<a>c') !== 'bc';
-});
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/internals/require-object-coercible.js":
 /*!********************************************************************!*\
   !*** ./node_modules/core-js/internals/require-object-coercible.js ***!
@@ -3602,30 +2140,6 @@ var $TypeError = TypeError;
 module.exports = function (it) {
   if (isNullOrUndefined(it)) throw new $TypeError("Can't call method on " + it);
   return it;
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/internals/set-to-string-tag.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/core-js/internals/set-to-string-tag.js ***!
-  \*************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var defineProperty = (__webpack_require__(/*! ../internals/object-define-property */ "./node_modules/core-js/internals/object-define-property.js").f);
-var hasOwn = __webpack_require__(/*! ../internals/has-own-property */ "./node_modules/core-js/internals/has-own-property.js");
-var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
-
-var TO_STRING_TAG = wellKnownSymbol('toStringTag');
-
-module.exports = function (target, TAG, STATIC) {
-  if (target && !STATIC) target = target.prototype;
-  if (target && !hasOwn(target, TO_STRING_TAG)) {
-    defineProperty(target, TO_STRING_TAG, { configurable: true, value: TAG });
-  }
 };
 
 
@@ -3689,54 +2203,6 @@ var store = __webpack_require__(/*! ../internals/shared-store */ "./node_modules
 
 module.exports = function (key, value) {
   return store[key] || (store[key] = value || {});
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/internals/string-multibyte.js":
-/*!************************************************************!*\
-  !*** ./node_modules/core-js/internals/string-multibyte.js ***!
-  \************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "./node_modules/core-js/internals/function-uncurry-this.js");
-var toIntegerOrInfinity = __webpack_require__(/*! ../internals/to-integer-or-infinity */ "./node_modules/core-js/internals/to-integer-or-infinity.js");
-var toString = __webpack_require__(/*! ../internals/to-string */ "./node_modules/core-js/internals/to-string.js");
-var requireObjectCoercible = __webpack_require__(/*! ../internals/require-object-coercible */ "./node_modules/core-js/internals/require-object-coercible.js");
-
-var charAt = uncurryThis(''.charAt);
-var charCodeAt = uncurryThis(''.charCodeAt);
-var stringSlice = uncurryThis(''.slice);
-
-var createMethod = function (CONVERT_TO_STRING) {
-  return function ($this, pos) {
-    var S = toString(requireObjectCoercible($this));
-    var position = toIntegerOrInfinity(pos);
-    var size = S.length;
-    var first, second;
-    if (position < 0 || position >= size) return CONVERT_TO_STRING ? '' : undefined;
-    first = charCodeAt(S, position);
-    return first < 0xD800 || first > 0xDBFF || position + 1 === size
-      || (second = charCodeAt(S, position + 1)) < 0xDC00 || second > 0xDFFF
-        ? CONVERT_TO_STRING
-          ? charAt(S, position)
-          : first
-        : CONVERT_TO_STRING
-          ? stringSlice(S, position, position + 2)
-          : (first - 0xD800 << 10) + (second - 0xDC00) + 0x10000;
-  };
-};
-
-module.exports = {
-  // `String.prototype.codePointAt` method
-  // https://tc39.es/ecma262/#sec-string.prototype.codepointat
-  codeAt: createMethod(false),
-  // `String.prototype.at` method
-  // https://github.com/mathiasbynens/String.prototype.at
-  charAt: createMethod(true)
 };
 
 
@@ -3957,26 +2423,6 @@ module.exports = String(test) === '[object z]';
 
 /***/ }),
 
-/***/ "./node_modules/core-js/internals/to-string.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/core-js/internals/to-string.js ***!
-  \*****************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var classof = __webpack_require__(/*! ../internals/classof */ "./node_modules/core-js/internals/classof.js");
-
-var $String = String;
-
-module.exports = function (argument) {
-  if (classof(argument) === 'Symbol') throw new TypeError('Cannot convert a Symbol value to a string');
-  return $String(argument);
-};
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/internals/try-to-string.js":
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/internals/try-to-string.js ***!
@@ -4109,155 +2555,6 @@ module.exports = function (name) {
 
 /***/ }),
 
-/***/ "./node_modules/core-js/internals/wrap-error-constructor-with-cause.js":
-/*!*****************************************************************************!*\
-  !*** ./node_modules/core-js/internals/wrap-error-constructor-with-cause.js ***!
-  \*****************************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var getBuiltIn = __webpack_require__(/*! ../internals/get-built-in */ "./node_modules/core-js/internals/get-built-in.js");
-var hasOwn = __webpack_require__(/*! ../internals/has-own-property */ "./node_modules/core-js/internals/has-own-property.js");
-var createNonEnumerableProperty = __webpack_require__(/*! ../internals/create-non-enumerable-property */ "./node_modules/core-js/internals/create-non-enumerable-property.js");
-var isPrototypeOf = __webpack_require__(/*! ../internals/object-is-prototype-of */ "./node_modules/core-js/internals/object-is-prototype-of.js");
-var setPrototypeOf = __webpack_require__(/*! ../internals/object-set-prototype-of */ "./node_modules/core-js/internals/object-set-prototype-of.js");
-var copyConstructorProperties = __webpack_require__(/*! ../internals/copy-constructor-properties */ "./node_modules/core-js/internals/copy-constructor-properties.js");
-var proxyAccessor = __webpack_require__(/*! ../internals/proxy-accessor */ "./node_modules/core-js/internals/proxy-accessor.js");
-var inheritIfRequired = __webpack_require__(/*! ../internals/inherit-if-required */ "./node_modules/core-js/internals/inherit-if-required.js");
-var normalizeStringArgument = __webpack_require__(/*! ../internals/normalize-string-argument */ "./node_modules/core-js/internals/normalize-string-argument.js");
-var installErrorCause = __webpack_require__(/*! ../internals/install-error-cause */ "./node_modules/core-js/internals/install-error-cause.js");
-var installErrorStack = __webpack_require__(/*! ../internals/error-stack-install */ "./node_modules/core-js/internals/error-stack-install.js");
-var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "./node_modules/core-js/internals/descriptors.js");
-var IS_PURE = __webpack_require__(/*! ../internals/is-pure */ "./node_modules/core-js/internals/is-pure.js");
-
-module.exports = function (FULL_NAME, wrapper, FORCED, IS_AGGREGATE_ERROR) {
-  var STACK_TRACE_LIMIT = 'stackTraceLimit';
-  var OPTIONS_POSITION = IS_AGGREGATE_ERROR ? 2 : 1;
-  var path = FULL_NAME.split('.');
-  var ERROR_NAME = path[path.length - 1];
-  var OriginalError = getBuiltIn.apply(null, path);
-
-  if (!OriginalError) return;
-
-  var OriginalErrorPrototype = OriginalError.prototype;
-
-  // V8 9.3- bug https://bugs.chromium.org/p/v8/issues/detail?id=12006
-  if (!IS_PURE && hasOwn(OriginalErrorPrototype, 'cause')) delete OriginalErrorPrototype.cause;
-
-  if (!FORCED) return OriginalError;
-
-  var BaseError = getBuiltIn('Error');
-
-  var WrappedError = wrapper(function (a, b) {
-    var message = normalizeStringArgument(IS_AGGREGATE_ERROR ? b : a, undefined);
-    var result = IS_AGGREGATE_ERROR ? new OriginalError(a) : new OriginalError();
-    if (message !== undefined) createNonEnumerableProperty(result, 'message', message);
-    installErrorStack(result, WrappedError, result.stack, 2);
-    if (this && isPrototypeOf(OriginalErrorPrototype, this)) inheritIfRequired(result, this, WrappedError);
-    if (arguments.length > OPTIONS_POSITION) installErrorCause(result, arguments[OPTIONS_POSITION]);
-    return result;
-  });
-
-  WrappedError.prototype = OriginalErrorPrototype;
-
-  if (ERROR_NAME !== 'Error') {
-    if (setPrototypeOf) setPrototypeOf(WrappedError, BaseError);
-    else copyConstructorProperties(WrappedError, BaseError, { name: true });
-  } else if (DESCRIPTORS && STACK_TRACE_LIMIT in OriginalError) {
-    proxyAccessor(WrappedError, OriginalError, STACK_TRACE_LIMIT);
-    proxyAccessor(WrappedError, OriginalError, 'prepareStackTrace');
-  }
-
-  copyConstructorProperties(WrappedError, OriginalError);
-
-  if (!IS_PURE) try {
-    // Safari 13- bug: WebAssembly errors does not have a proper `.name`
-    if (OriginalErrorPrototype.name !== ERROR_NAME) {
-      createNonEnumerableProperty(OriginalErrorPrototype, 'name', ERROR_NAME);
-    }
-    OriginalErrorPrototype.constructor = WrappedError;
-  } catch (error) { /* empty */ }
-
-  return WrappedError;
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/modules/es.array.iterator.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/core-js/modules/es.array.iterator.js ***!
-  \***********************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var toIndexedObject = __webpack_require__(/*! ../internals/to-indexed-object */ "./node_modules/core-js/internals/to-indexed-object.js");
-var addToUnscopables = __webpack_require__(/*! ../internals/add-to-unscopables */ "./node_modules/core-js/internals/add-to-unscopables.js");
-var Iterators = __webpack_require__(/*! ../internals/iterators */ "./node_modules/core-js/internals/iterators.js");
-var InternalStateModule = __webpack_require__(/*! ../internals/internal-state */ "./node_modules/core-js/internals/internal-state.js");
-var defineProperty = (__webpack_require__(/*! ../internals/object-define-property */ "./node_modules/core-js/internals/object-define-property.js").f);
-var defineIterator = __webpack_require__(/*! ../internals/iterator-define */ "./node_modules/core-js/internals/iterator-define.js");
-var createIterResultObject = __webpack_require__(/*! ../internals/create-iter-result-object */ "./node_modules/core-js/internals/create-iter-result-object.js");
-var IS_PURE = __webpack_require__(/*! ../internals/is-pure */ "./node_modules/core-js/internals/is-pure.js");
-var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "./node_modules/core-js/internals/descriptors.js");
-
-var ARRAY_ITERATOR = 'Array Iterator';
-var setInternalState = InternalStateModule.set;
-var getInternalState = InternalStateModule.getterFor(ARRAY_ITERATOR);
-
-// `Array.prototype.entries` method
-// https://tc39.es/ecma262/#sec-array.prototype.entries
-// `Array.prototype.keys` method
-// https://tc39.es/ecma262/#sec-array.prototype.keys
-// `Array.prototype.values` method
-// https://tc39.es/ecma262/#sec-array.prototype.values
-// `Array.prototype[@@iterator]` method
-// https://tc39.es/ecma262/#sec-array.prototype-@@iterator
-// `CreateArrayIterator` internal method
-// https://tc39.es/ecma262/#sec-createarrayiterator
-module.exports = defineIterator(Array, 'Array', function (iterated, kind) {
-  setInternalState(this, {
-    type: ARRAY_ITERATOR,
-    target: toIndexedObject(iterated), // target
-    index: 0,                          // next index
-    kind: kind                         // kind
-  });
-// `%ArrayIteratorPrototype%.next` method
-// https://tc39.es/ecma262/#sec-%arrayiteratorprototype%.next
-}, function () {
-  var state = getInternalState(this);
-  var target = state.target;
-  var index = state.index++;
-  if (!target || index >= target.length) {
-    state.target = null;
-    return createIterResultObject(undefined, true);
-  }
-  switch (state.kind) {
-    case 'keys': return createIterResultObject(index, false);
-    case 'values': return createIterResultObject(target[index], false);
-  } return createIterResultObject([index, target[index]], false);
-}, 'values');
-
-// argumentsList[@@iterator] is %ArrayProto_values%
-// https://tc39.es/ecma262/#sec-createunmappedargumentsobject
-// https://tc39.es/ecma262/#sec-createmappedargumentsobject
-var values = Iterators.Arguments = Iterators.Array;
-
-// https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
-addToUnscopables('keys');
-addToUnscopables('values');
-addToUnscopables('entries');
-
-// V8 ~ Chrome 45- bug
-if (!IS_PURE && DESCRIPTORS && values.name !== 'values') try {
-  defineProperty(values, 'name', { value: 'values' });
-} catch (error) { /* empty */ }
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/modules/es.iterator.constructor.js":
 /*!*****************************************************************!*\
   !*** ./node_modules/core-js/modules/es.iterator.constructor.js ***!
@@ -4365,22 +2662,30 @@ $({ target: 'Iterator', proto: true, real: true }, {
 
 /***/ }),
 
-/***/ "./node_modules/core-js/modules/es.regexp.exec.js?ac1f":
-/*!********************************************************!*\
-  !*** ./node_modules/core-js/modules/es.regexp.exec.js ***!
-  \********************************************************/
+/***/ "./node_modules/core-js/modules/esnext.iterator.constructor.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/core-js/modules/esnext.iterator.constructor.js ***!
+  \*********************************************************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
-var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
-var exec = __webpack_require__(/*! ../internals/regexp-exec */ "./node_modules/core-js/internals/regexp-exec.js");
+// TODO: Remove from `core-js@4`
+__webpack_require__(/*! ../modules/es.iterator.constructor */ "./node_modules/core-js/modules/es.iterator.constructor.js");
 
-// `RegExp.prototype.exec` method
-// https://tc39.es/ecma262/#sec-regexp.prototype.exec
-$({ target: 'RegExp', proto: true, forced: /./.exec !== exec }, {
-  exec: exec
-});
+
+/***/ }),
+
+/***/ "./node_modules/core-js/modules/esnext.iterator.for-each.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/core-js/modules/esnext.iterator.for-each.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+// TODO: Remove from `core-js@4`
+__webpack_require__(/*! ../modules/es.iterator.for-each */ "./node_modules/core-js/modules/es.iterator.for-each.js");
 
 
 /***/ }),
@@ -6789,6 +5094,463 @@ module.exports.formatError = function (err) {
 
 /***/ }),
 
+/***/ "./src/app.js":
+/*!********************!*\
+  !*** ./src/app.js ***!
+  \********************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   DateTime: () => (/* binding */ DateTime),
+/* harmony export */   datetime: () => (/* binding */ datetime)
+/* harmony export */ });
+/* harmony import */ var core_js_modules_esnext_iterator_constructor_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/esnext.iterator.constructor.js */ "./node_modules/core-js/modules/esnext.iterator.constructor.js");
+/* harmony import */ var core_js_modules_esnext_iterator_constructor_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_esnext_iterator_constructor_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_esnext_iterator_for_each_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/esnext.iterator.for-each.js */ "./node_modules/core-js/modules/esnext.iterator.for-each.js");
+/* harmony import */ var core_js_modules_esnext_iterator_for_each_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_esnext_iterator_for_each_js__WEBPACK_IMPORTED_MODULE_1__);
+/* module decorator */ module = __webpack_require__.hmd(module);
+
+
+/**
+ * @version: 1.0.12
+ * @author: Antonio Peña https://www.ajdev.es/
+ * @copyright: Copyright (c) 2024 Antonio Peña. Todos los derechos reservados.
+ * @license: Licensed under the MIT license.
+ * You may obtain a copy of the License at
+ * https://opensource.org/licenses/MIT
+ */
+
+class DateTime {
+  #date = null;
+  #format = null;
+  localLang = null;
+  static lang = (() => navigator.language ?? "es-ES")();
+  static translate = (() => __webpack_require__("./src/lang sync recursive ^\\.\\/.*$")("./" + DateTime.lang.split("-", 1)))();
+  // static translate = translations;
+
+  /**
+   * Construye la instancia con una fecha a partir de un formato dado
+   *
+   * @param {string} dateString Fecha a crear por defecto crea fecha actual
+   * @param {string} format Formato en que se ingresa la fecha
+   */
+  constructor() {
+    let dateString = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+    let format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "yyyy/mm/dd";
+    this.#format = format;
+    if (dateString instanceof Date) {
+      this.#date = new Date(dateString); // Clonar la instancia de Date
+    } else if (typeof dateString === "string" && format) {
+      this.#date = this.#parseDate(dateString, format);
+    } else {
+      this.#date = new Date(); // Fecha actual por defecto
+    }
+
+    // Crear alias para repetir métodos
+    this.currentDate = this.dateFormat.bind(this);
+    this.today = this.dateFormat.bind(this);
+    this.now = this.dateFormat.bind(this);
+    this.defaultLang = DateTime.defaultLang.bind(this);
+    this.setTranslate = DateTime.setTranslate.bind(this);
+  }
+
+  /**
+   * Establece el idioma de la fecha, static para la instancia
+   *
+   * @param {string} lang Idioma a establecer
+   */
+  static defaultLang(lang) {
+    try {
+      DateTime.lang = lang;
+      DateTime.translate = __webpack_require__("./src/lang sync recursive ^\\.\\/.*$")("./" + lang.split("-", 1));
+    } catch (error) {
+      DateTime.lang = "es-ES";
+      console.error("Idioma no soportado");
+    }
+  }
+
+  /**
+   * Establece el idioma de la fecha, método para la instancia y función
+   *
+   * @param {string} lang Idioma a establecer
+   * @returns {DateTime} Retorna la instancia
+   */
+  setLang(lang) {
+    try {
+      this.localLang = lang;
+      this.translate = __webpack_require__("./src/lang sync recursive ^\\.\\/.*$")("./" + lang.split("-", 1));
+    } catch (error) {
+      this.localLang = "es-ES";
+      console.error(`Idioma ${lang} no soportado`);
+    }
+    return this;
+  }
+
+  /**
+   * Traducciones personalizadas, static para la instancia
+   *
+   * @param {string} translate Idioma a establecer
+   */
+  static setTranslate(translate) {
+    DateTime.translate = translate;
+  }
+
+  /**
+   * Traduce un mensaje a un idioma específico
+   *
+   * @param {string} key Clave del mensaje
+   * @param {object} variables Objeto con las variables a reemplazar
+   * @returns {string} Mensaje traducido
+   */
+  #translate(key) {
+    let variables = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    const messages = this.translate || DateTime.translate || {};
+    let message = messages[key] || key;
+    Object.entries(variables).forEach(_ref => {
+      let [placeholder, value] = _ref;
+      message = message.replace(`${placeholder}`, value);
+    });
+    return message;
+  }
+
+  /**
+   * Método privado para crear una fecha según el formato
+   *
+   * @param {string} dateString Fecha en formato ISO
+   * @param {string} format Formato de fecha
+   * @returns {Date} Fecha y hora
+   */
+  #parseDate(dateString, format) {
+    const formatParts = format.split(/[^a-zA-Z]/); // Separar componentes del formato
+    const dateParts = dateString.split(/[^0-9]/); // Separar componentes de la fecha
+
+    // Validar que el número de partes coincida
+    if (formatParts.length !== dateParts.length) {
+      throw new Error(this.#translate("invalid_format", {
+        ":date": dateString,
+        ":format": format
+      }));
+    }
+
+    // Mapa para asociar componentes del formato a índices específicos
+    const dateMap = {};
+    formatParts.forEach((part, index) => {
+      const value = parseInt(dateParts[index], 10);
+      if (isNaN(value)) {
+        // Es muy difícil que entre aquí la forma de split con expresiones regulares sirve como primer filtro
+        throw new Error(this.#translate("invalid_date", {
+          ":date": dateString
+        }));
+      }
+      dateMap[part] = value;
+    });
+
+    // Extraer componentes individuales según el formato
+    const now = new Date();
+    const year = dateMap["yyyy"] || now.getFullYear();
+    const month = (dateMap["mm"] || 1) - 1; // Mes es 0-indexado
+    const day = dateMap["dd"] || 1;
+    const hour = dateMap["hh"] !== undefined ? dateMap["hh"] : now.getHours(); // Hora actual si no se especifica
+    const minute = dateMap["ii"] !== undefined ? dateMap["ii"] : now.getMinutes(); // Minuto actual si no se especifica
+    const second = dateMap["ss"] !== undefined ? dateMap["ss"] : now.getSeconds(); // Segundo actual si no se especifica
+
+    // Validación adicional: Fecha válida
+    const constructedDate = new Date(year, month, day, hour, minute, second);
+    if (constructedDate.getFullYear() !== year || constructedDate.getMonth() !== month || constructedDate.getDate() !== day) {
+      throw new Error(this.#translate("invalid_date", {
+        ":date": dateString
+      }));
+    }
+    return constructedDate;
+  }
+
+  /**
+   * Mostrar la fecha como string
+   *
+   * @param {boolean} h12 True muestra AM/PM, False 24H. Por defecto es 24H
+   * @returns {string} Retorna formato local
+   */
+  dateFormat() {
+    let h12 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+    let formatter = new Intl.DateTimeFormat(this.localLang ?? DateTime.lang, {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: h12 // Cambia a true para formato de 12 horas
+    });
+    return formatter.format(this.#date).replace(",", "");
+  }
+
+  /**
+   * Convierte una fecha a un formato legible
+   *
+   * @param {string|Date} date Fecha en formato ISO o un objeto Date
+   * @returns {string} Fecha en formato legible
+   */
+  toString(date) {
+    const d = new Date(date ?? this.#date);
+    return d.toLocaleString(this.localLang ?? DateTime.lang, {
+      dateStyle: "long",
+      timeStyle: "short"
+    });
+  }
+
+  /**
+   * Retorna la fecha en un formato específico
+   *
+   * @param {string} format Formato de fecha
+   * @returns {string} Fecha en formato específico
+   */
+  format() {
+    let format = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.#format;
+    const options = {
+      d: this.#date.getDate(),
+      dd: String(this.#date.getDate()).padStart(2, "0"),
+      m: this.#date.getMonth() + 1,
+      mm: String(this.#date.getMonth() + 1).padStart(2, "0"),
+      mmm: this.#translate("m" + this.#date.getMonth()).slice(0, 3),
+      mmmm: this.#translate("m" + this.#date.getMonth()),
+      yyy: this.#date.getFullYear(),
+      yyyy: this.#date.getFullYear(),
+      yy: String(this.#date.getFullYear()).slice(-2),
+      h: this.#date.getHours() % 12 || 12,
+      // Hora en formato 12 horas sin ceros
+      hh: String(this.#date.getHours() % 12 || 12).padStart(2, "0"),
+      // Hora en formato 12 horas con ceros iniciales
+      H: this.#date.getHours(),
+      // Hora en formato 24 horas sin ceros
+      HH: String(this.#date.getHours()).padStart(2, "0"),
+      // Hora en formato 24 horas con ceros iniciales
+      i: this.#date.getMinutes(),
+      ii: String(this.#date.getMinutes()).padStart(2, "0"),
+      s: this.#date.getSeconds(),
+      ss: String(this.#date.getSeconds()).padStart(2, "0"),
+      ddd: this.#translate("d" + this.#date.getDay()).slice(0, 3),
+      dddd: this.#translate("d" + this.#date.getDay()),
+      a: this.#date.getHours() >= 12 ? this.#translate("PM1") : this.#translate("AM1"),
+      aa: this.#date.getHours() >= 12 ? this.#translate("pm") : this.#translate("am")
+    };
+
+    // Detectar y mantener las partes escapadas intactas
+    return format.replace(/\\.|d{1,4}|m{1,4}|y{2,4}|h{1,2}|H{1,2}|i{1,2}|s{1,2}|a{1,2}/gi, match => {
+      if (match.startsWith("\\")) {
+        // Eliminar el escape y devolver el texto literal
+        return match.slice(1);
+      }
+      // Reemplazar el marcador por su valor correspondiente o devolver el marcador original
+      return options[match] || match;
+    });
+  }
+
+  /**
+   * Modificar la fecha
+   *
+   * @param {string} type Tipo de valor a añadir
+   * @param {number} value Valor absoluto redondeado para sumar
+   * @returns {DateTime} Retorna la instancia
+   */
+  #alterateDate(type, value) {
+    value = Math.round(value);
+    const date = this.#date;
+    switch (type) {
+      case "years":
+        date.setFullYear(date.getFullYear() + value);
+        break;
+      case "months":
+        date.setMonth(date.getMonth() + value);
+        break;
+      case "days":
+        date.setDate(date.getDate() + value);
+        break;
+      case "hours":
+        date.setHours(date.getHours() + value);
+        break;
+      case "minutes":
+        date.setMinutes(date.getMinutes() + value);
+        break;
+      case "seconds":
+        date.setSeconds(date.getSeconds() + value);
+        break;
+      case "quarters":
+        date.setMonth(date.getMonth() + value * 3);
+        break;
+      case "weeks":
+        date.setDate(date.getDate() + value * 7);
+        break;
+      case "milliseconds":
+        date.setMilliseconds(date.getMilliseconds() + value);
+        break;
+      default:
+        break;
+    }
+    return this;
+  }
+
+  /**
+   * Añadir valores a la fecha
+   *
+   * @param {string} type Tipo de valor a añadir
+   * @param {number} value Valor absoluto redondeado para sumar
+   * @returns {DateTime} Retorna la instancia
+   */
+  add(type, value) {
+    value = Math.round(Math.abs(value));
+    return this.#alterateDate(type, value);
+  }
+
+  /**
+   * Restar valores a la fecha
+   *
+   * @param {string} type Tipo de valor a añadir
+   * @param {number} value Valor absoluto redondeado para sumar
+   * @returns {DateTime} Retorna la instancia
+   */
+  subtract(type, value) {
+    value = Math.round(Math.abs(value)) * -1;
+    return this.#alterateDate(type, value);
+  }
+
+  /**
+   * Clonar la instancia
+   */
+  clone() {
+    return new DateTime(this.#date, this.#format);
+  }
+
+  /**
+   *  Getters
+   * - getYear() Obtener el año
+   * - getName(type) Nombre del mes o día
+   * - getMonth() (1-12) Obtener el mes
+   * - getDay() (1-7) Obtener el día de la semana
+   * - getDayOfWeek() nombre del día
+   * - getMonthOfYear() nombre del mes
+   * - getHours(type = "24h") Obtener las horas en formato 24h o 12h
+   * - getHours12() Obtener las horas en formato 12h
+   * - getHours24() Obtener las horas en formato 24h
+   * - getMinutes() Obtener los minutos
+   * - getSeconds() Obterner los segundos
+   * - getMilliseconds() Obtener los milisegundos
+   * - getTime() Obtener la hora completa
+   * - getDate() Obtener la fecha
+   * - getWeek() Obtener número de la semana
+   * - getQuarter() Obtener número del trimestre
+   * - getDayOfYear() Obtener el número del día del año
+   * - getDayOfMonth() Obtener el número del día del mes
+   * - getDifference(date, type) Obtener la diferencia entre dos fechas
+   * - getStartOf(type) Obtener el inicio de un periodo
+   * - getEndOf(type) Obtener el final de un periodo
+   * - getStartOfYear() Obtener el inicio del año
+   * - getEndOfYear() Obtener el final del año
+   * - getStartOfMonth() Obtener el inicio del mes
+   * - getEndOfMonth() Obtener el final del mes
+   * - getStartOfDay() Obtener el inicio del día
+   * - getEndOfDay() Obtener el final del día
+   * - getStartOfHour() Obtener el inicio de la hora
+   * - getEndOfHour() Obtener el final de la hora
+   * - getStartOfMinute() Obtener el inicio del minuto
+   * - getEndOfMinute() Obtener el final del minuto
+   * - getStartOfSecond() Obtener el inicio del segundo
+   * - getEndOfSecond() Obtener el final del segundo
+   * - getStartOfWeek() Obtener el inicio de la semana
+   * - getEndOfWeek() Obtener el final de la semana
+   * - getStartOfQuarter() Obtener el inicio del trimestre
+   * - getEndOfQuarter() Obtener el final del trimestre
+   */
+
+  /**
+   * Setters
+   * - setYear(year) Establecer el año
+   * - setMonth(month) Establecer el mes
+   * - setDay(day) Establecer el día
+   * - setHours(hrs) Establecer las horas
+   * - setMinutes(min) Establecer los minutos
+   * - setSeconds(s) Establecer los segundos
+   * - setMilliseconds(ms) Establecer los milisegundos
+   * - setTime(time) Establecer la hora completa
+   * - setDate(date) Establecer la fecha
+   * - startOf(type) Establecer el inicio de un periodo
+   * - endOf(type) Establecer el final de un periodo
+   * - startOfYear() Establecer el inicio del año
+   * - endOfYear() Establecer el final del año
+   * - startOfMonth() Establecer el inicio del mes
+   * - endOfMonth() Establecer el final del mes
+   * - startOfDay() Establecer el inicio del día
+   * - endOfDay() Establecer el final del día
+   * - startOfHour() Establecer el inicio de la hora
+   * - endOfHour() Establecer el final de la hora
+   * - startOfMinute() Establecer el inicio del minuto
+   * - endOfMinute() Establecer el final del minuto
+   * - startOfSecond() Establecer el inicio del segundo
+   * - endOfSecond() Establecer el final del segundo
+   * - startOfWeek() Establecer el inicio de la semana
+   * - endOfWeek() Establecer el final de la semana
+   * - startOfQuarter() Establecer el inicio del trimestre
+   * - endOfQuarter() Establecer el final del trimestre
+   * - nextDay() Establecer el siguiente día
+   * - tomorrow() Establecer el siguiente día
+   * - yesterday() Establecer el día anterior
+   * - nextMonth() Establecer el siguiente mes
+   * - lastMonth() Establecer el mes anterior
+   * - nextYear() Establecer el siguiente año
+   * - lastYear() Establecer el año anterior
+   * - nextWeek() Establecer la siguiente semana
+   * - lastWeek() Establecer la semana anterior
+   * - nextHour() Establecer la siguiente hora
+   * - lastHour() Establecer la hora anterior
+   * - nextMinute() Establecer el siguiente minuto
+   * - lastMinute() Establecer el minuto anterior
+   * - nextSecond() Establecer el siguiente segundo
+   * - lastSecond() Establecer el segundo anterior
+   */
+
+  /**
+   * Métodos que pueden ser útiles de comparación
+   * - isBefore(date, strict = false) Compara si la fecha es anterior a otra
+   * - isAfter(date, strict = false) Compara si la fecha es posterior a otra
+   * - isSame(date, strict = false) Compara si la fecha es igual a otra
+   * - isLeapYear(year = null) Comprueba si el año es bisiesto
+   * - isWeekend(date = null) Comprueba si es fin de semana
+   * - isToday(date = null) Comprueba si es hoy
+   * - isTomorrow(date = null) Comprueba si es mañana
+   * - isYesterday(date = null) Comprueba si es ayer
+   * - isBetween(firstDate, lastDate, strict = false) Comprueba si está entre dos fechas
+   * - isSameOrBefore(date, strict = false) Compara si es igual o anterior a otra fecha
+   * - isSameOrAfter(date, strict = false) Compara si es igual o posterior a otra fecha
+   * - isDifferent(date, strict = false) Compara si es diferente a otra fecha
+   * - isThisWeek() Comprueba si es esta semana
+   * - isNextWeek() Comprueba si es la próxima semana
+   * - isLastWeek() Comprueba si es la semana pasada
+   * - isThisMonth() Comprueba si es este mes
+   * - isNextMonth() Comprueba si es el próximo mes
+   * - isLastMonth() Comprueba si es el mes pasado
+   * - isThisYear() Comprueba si es este año
+   * - isSameYear(date = null) Comprueba si es el mismo año
+   * - isSameMonth(date = null) Comprueba si es el mismo mes
+   * - isSameDay(date = null) Comprueba si es el mismo día
+   * - isSameHour(date = null) Comprueba si es la misma hora
+   */
+}
+const datetime = (dateString, format) => new DateTime(dateString, format);
+
+// Exportar para CommonJS (require)
+if ( true && module.exports) {
+  module.exports = {
+    DateTime,
+    datetime
+  };
+}
+window.DateTime = DateTime;
+window.datetime = datetime;
+
+
+/***/ }),
+
 /***/ "./src/lang sync recursive ^\\.\\/.*$":
 /*!*********************************!*\
   !*** ./src/lang/ sync ^\.\/.*$ ***!
@@ -6821,324 +5583,6 @@ webpackContext.keys = function webpackContextKeys() {
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
 webpackContext.id = "./src/lang sync recursive ^\\.\\/.*$";
-
-/***/ }),
-
-/***/ "./node_modules/core-js/modules/es.error.cause.js":
-/*!********************************************************!*\
-  !*** ./node_modules/core-js/modules/es.error.cause.js ***!
-  \********************************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-/* eslint-disable no-unused-vars -- required for functions `.length` */
-var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
-var globalThis = __webpack_require__(/*! ../internals/global-this */ "./node_modules/core-js/internals/global-this.js");
-var apply = __webpack_require__(/*! ../internals/function-apply */ "./node_modules/core-js/internals/function-apply.js");
-var wrapErrorConstructorWithCause = __webpack_require__(/*! ../internals/wrap-error-constructor-with-cause */ "./node_modules/core-js/internals/wrap-error-constructor-with-cause.js");
-
-var WEB_ASSEMBLY = 'WebAssembly';
-var WebAssembly = globalThis[WEB_ASSEMBLY];
-
-// eslint-disable-next-line es/no-error-cause -- feature detection
-var FORCED = new Error('e', { cause: 7 }).cause !== 7;
-
-var exportGlobalErrorCauseWrapper = function (ERROR_NAME, wrapper) {
-  var O = {};
-  O[ERROR_NAME] = wrapErrorConstructorWithCause(ERROR_NAME, wrapper, FORCED);
-  $({ global: true, constructor: true, arity: 1, forced: FORCED }, O);
-};
-
-var exportWebAssemblyErrorCauseWrapper = function (ERROR_NAME, wrapper) {
-  if (WebAssembly && WebAssembly[ERROR_NAME]) {
-    var O = {};
-    O[ERROR_NAME] = wrapErrorConstructorWithCause(WEB_ASSEMBLY + '.' + ERROR_NAME, wrapper, FORCED);
-    $({ target: WEB_ASSEMBLY, stat: true, constructor: true, arity: 1, forced: FORCED }, O);
-  }
-};
-
-// https://tc39.es/ecma262/#sec-nativeerror
-exportGlobalErrorCauseWrapper('Error', function (init) {
-  return function Error(message) { return apply(init, this, arguments); };
-});
-exportGlobalErrorCauseWrapper('EvalError', function (init) {
-  return function EvalError(message) { return apply(init, this, arguments); };
-});
-exportGlobalErrorCauseWrapper('RangeError', function (init) {
-  return function RangeError(message) { return apply(init, this, arguments); };
-});
-exportGlobalErrorCauseWrapper('ReferenceError', function (init) {
-  return function ReferenceError(message) { return apply(init, this, arguments); };
-});
-exportGlobalErrorCauseWrapper('SyntaxError', function (init) {
-  return function SyntaxError(message) { return apply(init, this, arguments); };
-});
-exportGlobalErrorCauseWrapper('TypeError', function (init) {
-  return function TypeError(message) { return apply(init, this, arguments); };
-});
-exportGlobalErrorCauseWrapper('URIError', function (init) {
-  return function URIError(message) { return apply(init, this, arguments); };
-});
-exportWebAssemblyErrorCauseWrapper('CompileError', function (init) {
-  return function CompileError(message) { return apply(init, this, arguments); };
-});
-exportWebAssemblyErrorCauseWrapper('LinkError', function (init) {
-  return function LinkError(message) { return apply(init, this, arguments); };
-});
-exportWebAssemblyErrorCauseWrapper('RuntimeError', function (init) {
-  return function RuntimeError(message) { return apply(init, this, arguments); };
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/modules/es.regexp.exec.js?fc5f":
-/*!********************************************************!*\
-  !*** ./node_modules/core-js/modules/es.regexp.exec.js ***!
-  \********************************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
-var exec = __webpack_require__(/*! ../internals/regexp-exec */ "./node_modules/core-js/internals/regexp-exec.js");
-
-// `RegExp.prototype.exec` method
-// https://tc39.es/ecma262/#sec-regexp.prototype.exec
-$({ target: 'RegExp', proto: true, forced: /./.exec !== exec }, {
-  exec: exec
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/modules/es.string.replace.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/core-js/modules/es.string.replace.js ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var apply = __webpack_require__(/*! ../internals/function-apply */ "./node_modules/core-js/internals/function-apply.js");
-var call = __webpack_require__(/*! ../internals/function-call */ "./node_modules/core-js/internals/function-call.js");
-var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "./node_modules/core-js/internals/function-uncurry-this.js");
-var fixRegExpWellKnownSymbolLogic = __webpack_require__(/*! ../internals/fix-regexp-well-known-symbol-logic */ "./node_modules/core-js/internals/fix-regexp-well-known-symbol-logic.js");
-var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
-var anObject = __webpack_require__(/*! ../internals/an-object */ "./node_modules/core-js/internals/an-object.js");
-var isCallable = __webpack_require__(/*! ../internals/is-callable */ "./node_modules/core-js/internals/is-callable.js");
-var isNullOrUndefined = __webpack_require__(/*! ../internals/is-null-or-undefined */ "./node_modules/core-js/internals/is-null-or-undefined.js");
-var toIntegerOrInfinity = __webpack_require__(/*! ../internals/to-integer-or-infinity */ "./node_modules/core-js/internals/to-integer-or-infinity.js");
-var toLength = __webpack_require__(/*! ../internals/to-length */ "./node_modules/core-js/internals/to-length.js");
-var toString = __webpack_require__(/*! ../internals/to-string */ "./node_modules/core-js/internals/to-string.js");
-var requireObjectCoercible = __webpack_require__(/*! ../internals/require-object-coercible */ "./node_modules/core-js/internals/require-object-coercible.js");
-var advanceStringIndex = __webpack_require__(/*! ../internals/advance-string-index */ "./node_modules/core-js/internals/advance-string-index.js");
-var getMethod = __webpack_require__(/*! ../internals/get-method */ "./node_modules/core-js/internals/get-method.js");
-var getSubstitution = __webpack_require__(/*! ../internals/get-substitution */ "./node_modules/core-js/internals/get-substitution.js");
-var regExpExec = __webpack_require__(/*! ../internals/regexp-exec-abstract */ "./node_modules/core-js/internals/regexp-exec-abstract.js");
-var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
-
-var REPLACE = wellKnownSymbol('replace');
-var max = Math.max;
-var min = Math.min;
-var concat = uncurryThis([].concat);
-var push = uncurryThis([].push);
-var stringIndexOf = uncurryThis(''.indexOf);
-var stringSlice = uncurryThis(''.slice);
-
-var maybeToString = function (it) {
-  return it === undefined ? it : String(it);
-};
-
-// IE <= 11 replaces $0 with the whole match, as if it was $&
-// https://stackoverflow.com/questions/6024666/getting-ie-to-replace-a-regex-with-the-literal-string-0
-var REPLACE_KEEPS_$0 = (function () {
-  // eslint-disable-next-line regexp/prefer-escape-replacement-dollar-char -- required for testing
-  return 'a'.replace(/./, '$0') === '$0';
-})();
-
-// Safari <= 13.0.3(?) substitutes nth capture where n>m with an empty string
-var REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE = (function () {
-  if (/./[REPLACE]) {
-    return /./[REPLACE]('a', '$0') === '';
-  }
-  return false;
-})();
-
-var REPLACE_SUPPORTS_NAMED_GROUPS = !fails(function () {
-  var re = /./;
-  re.exec = function () {
-    var result = [];
-    result.groups = { a: '7' };
-    return result;
-  };
-  // eslint-disable-next-line regexp/no-useless-dollar-replacements -- false positive
-  return ''.replace(re, '$<a>') !== '7';
-});
-
-// @@replace logic
-fixRegExpWellKnownSymbolLogic('replace', function (_, nativeReplace, maybeCallNative) {
-  var UNSAFE_SUBSTITUTE = REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE ? '$' : '$0';
-
-  return [
-    // `String.prototype.replace` method
-    // https://tc39.es/ecma262/#sec-string.prototype.replace
-    function replace(searchValue, replaceValue) {
-      var O = requireObjectCoercible(this);
-      var replacer = isNullOrUndefined(searchValue) ? undefined : getMethod(searchValue, REPLACE);
-      return replacer
-        ? call(replacer, searchValue, O, replaceValue)
-        : call(nativeReplace, toString(O), searchValue, replaceValue);
-    },
-    // `RegExp.prototype[@@replace]` method
-    // https://tc39.es/ecma262/#sec-regexp.prototype-@@replace
-    function (string, replaceValue) {
-      var rx = anObject(this);
-      var S = toString(string);
-
-      if (
-        typeof replaceValue == 'string' &&
-        stringIndexOf(replaceValue, UNSAFE_SUBSTITUTE) === -1 &&
-        stringIndexOf(replaceValue, '$<') === -1
-      ) {
-        var res = maybeCallNative(nativeReplace, rx, S, replaceValue);
-        if (res.done) return res.value;
-      }
-
-      var functionalReplace = isCallable(replaceValue);
-      if (!functionalReplace) replaceValue = toString(replaceValue);
-
-      var global = rx.global;
-      var fullUnicode;
-      if (global) {
-        fullUnicode = rx.unicode;
-        rx.lastIndex = 0;
-      }
-
-      var results = [];
-      var result;
-      while (true) {
-        result = regExpExec(rx, S);
-        if (result === null) break;
-
-        push(results, result);
-        if (!global) break;
-
-        var matchStr = toString(result[0]);
-        if (matchStr === '') rx.lastIndex = advanceStringIndex(S, toLength(rx.lastIndex), fullUnicode);
-      }
-
-      var accumulatedResult = '';
-      var nextSourcePosition = 0;
-      for (var i = 0; i < results.length; i++) {
-        result = results[i];
-
-        var matched = toString(result[0]);
-        var position = max(min(toIntegerOrInfinity(result.index), S.length), 0);
-        var captures = [];
-        var replacement;
-        // NOTE: This is equivalent to
-        //   captures = result.slice(1).map(maybeToString)
-        // but for some reason `nativeSlice.call(result, 1, result.length)` (called in
-        // the slice polyfill when slicing native arrays) "doesn't work" in safari 9 and
-        // causes a crash (https://pastebin.com/N21QzeQA) when trying to debug it.
-        for (var j = 1; j < result.length; j++) push(captures, maybeToString(result[j]));
-        var namedCaptures = result.groups;
-        if (functionalReplace) {
-          var replacerArgs = concat([matched], captures, position, S);
-          if (namedCaptures !== undefined) push(replacerArgs, namedCaptures);
-          replacement = toString(apply(replaceValue, undefined, replacerArgs));
-        } else {
-          replacement = getSubstitution(matched, S, position, captures, namedCaptures, replaceValue);
-        }
-        if (position >= nextSourcePosition) {
-          accumulatedResult += stringSlice(S, nextSourcePosition, position) + replacement;
-          nextSourcePosition = position + matched.length;
-        }
-      }
-
-      return accumulatedResult + stringSlice(S, nextSourcePosition);
-    }
-  ];
-}, !REPLACE_SUPPORTS_NAMED_GROUPS || !REPLACE_KEEPS_$0 || REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE);
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/modules/esnext.iterator.constructor.js":
-/*!*********************************************************************!*\
-  !*** ./node_modules/core-js/modules/esnext.iterator.constructor.js ***!
-  \*********************************************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-// TODO: Remove from `core-js@4`
-__webpack_require__(/*! ../modules/es.iterator.constructor */ "./node_modules/core-js/modules/es.iterator.constructor.js");
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/modules/esnext.iterator.for-each.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/core-js/modules/esnext.iterator.for-each.js ***!
-  \******************************************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-// TODO: Remove from `core-js@4`
-__webpack_require__(/*! ../modules/es.iterator.for-each */ "./node_modules/core-js/modules/es.iterator.for-each.js");
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/modules/web.dom-collections.iterator.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/core-js/modules/web.dom-collections.iterator.js ***!
-  \**********************************************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var globalThis = __webpack_require__(/*! ../internals/global-this */ "./node_modules/core-js/internals/global-this.js");
-var DOMIterables = __webpack_require__(/*! ../internals/dom-iterables */ "./node_modules/core-js/internals/dom-iterables.js");
-var DOMTokenListPrototype = __webpack_require__(/*! ../internals/dom-token-list-prototype */ "./node_modules/core-js/internals/dom-token-list-prototype.js");
-var ArrayIteratorMethods = __webpack_require__(/*! ../modules/es.array.iterator */ "./node_modules/core-js/modules/es.array.iterator.js");
-var createNonEnumerableProperty = __webpack_require__(/*! ../internals/create-non-enumerable-property */ "./node_modules/core-js/internals/create-non-enumerable-property.js");
-var setToStringTag = __webpack_require__(/*! ../internals/set-to-string-tag */ "./node_modules/core-js/internals/set-to-string-tag.js");
-var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
-
-var ITERATOR = wellKnownSymbol('iterator');
-var ArrayValues = ArrayIteratorMethods.values;
-
-var handlePrototype = function (CollectionPrototype, COLLECTION_NAME) {
-  if (CollectionPrototype) {
-    // some Chrome versions have non-configurable methods on DOMTokenList
-    if (CollectionPrototype[ITERATOR] !== ArrayValues) try {
-      createNonEnumerableProperty(CollectionPrototype, ITERATOR, ArrayValues);
-    } catch (error) {
-      CollectionPrototype[ITERATOR] = ArrayValues;
-    }
-    setToStringTag(CollectionPrototype, COLLECTION_NAME, true);
-    if (DOMIterables[COLLECTION_NAME]) for (var METHOD_NAME in ArrayIteratorMethods) {
-      // some Chrome versions have non-configurable methods on DOMTokenList
-      if (CollectionPrototype[METHOD_NAME] !== ArrayIteratorMethods[METHOD_NAME]) try {
-        createNonEnumerableProperty(CollectionPrototype, METHOD_NAME, ArrayIteratorMethods[METHOD_NAME]);
-      } catch (error) {
-        CollectionPrototype[METHOD_NAME] = ArrayIteratorMethods[METHOD_NAME];
-      }
-    }
-  }
-};
-
-for (var COLLECTION_NAME in DOMIterables) {
-  handlePrototype(globalThis[COLLECTION_NAME] && globalThis[COLLECTION_NAME].prototype, COLLECTION_NAME);
-}
-
-handlePrototype(DOMTokenListPrototype, 'DOMTokenList');
-
 
 /***/ }),
 
@@ -7220,7 +5664,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \\":date\\
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("68fbe98b76df6d0c2f06")
+/******/ 		__webpack_require__.h = () => ("acc39ac44a73eb8114de")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
