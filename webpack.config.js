@@ -40,11 +40,11 @@ module.exports = (env, argv) => {
 				},
 			],
 		},
-		plugins: [
-			new CopyWebpackPlugin({
-				patterns: [{ from: "src/lang", to: "lang" }],
-			}),
-		],
+		// plugins: [
+		// 	new CopyWebpackPlugin({
+		// 		patterns: [{ from: "src/lang", to: "lang" }],
+		// 	}),
+		// ],
 		devServer: {
 			allowedHosts: "all",
 			client: {

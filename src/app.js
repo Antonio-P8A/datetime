@@ -12,7 +12,7 @@ class DateTime {
 	#format = null;
 	localLang = null;
 	static lang = navigator.language ?? "es-ES";
-	static translate = require("./lang/" + DateTime.lang.split("-", 1));
+	static translate = require("./lang/" + DateTime.lang.split("-", 1)); // obtener solo "es"
 	// static translate = translations;
 
 	/**
@@ -41,7 +41,8 @@ class DateTime {
 	}
 
 	/**
-	 * Establece el idioma de la fecha, static para la instancia
+	 * Establece el idioma de la fecha, static para la clase
+	 * respetando el método setLang que actúa sobre la instancia
 	 *
 	 * @param {string} lang Idioma a establecer
 	 */
@@ -51,7 +52,7 @@ class DateTime {
 			DateTime.translate = require("./lang/" + lang.split("-", 1));
 		} catch (error) {
 			DateTime.lang = "es-ES";
-			console.error("Idioma no soportado");
+			console.error(`Idioma ${lang} no soportado`);
 		}
 	}
 
@@ -74,7 +75,7 @@ class DateTime {
 	}
 
 	/**
-	 * Traducciones personalizadas, static para la instancia
+	 * Traducciones personalizadas, static para la clase
 	 *
 	 * @param {string} translate Idioma a establecer
 	 */
@@ -271,37 +272,40 @@ class DateTime {
 	 * @param {number} value Valor absoluto redondeado para sumar
 	 * @returns {DateTime} Retorna la instancia
 	 */
-	#alterateDate(type, value) {
+	#alterateDate(type, value, set = null) {
 		value = Math.round(value);
 		const date = this.#date;
 
 		switch (type) {
 			case "years":
-				date.setFullYear(date.getFullYear() + value);
+				console.log(set ? 0 : date.getFullYear());
+				date.setFullYear((set ? 0 : date.getFullYear()) + value);
 				break;
 			case "months":
-				date.setMonth(date.getMonth() + value);
+				date.setMonth((set ? 0 : date.getMonth()) + value);
 				break;
 			case "days":
-				date.setDate(date.getDate() + value);
+				date.setDate((set ? 0 : date.getDate()) + value);
 				break;
 			case "hours":
-				date.setHours(date.getHours() + value);
+				date.setHours((set ? 0 : date.getHours()) + value);
 				break;
 			case "minutes":
-				date.setMinutes(date.getMinutes() + value);
+				date.setMinutes((set ? 0 : date.getMinutes()) + value);
 				break;
 			case "seconds":
-				date.setSeconds(date.getSeconds() + value);
+				date.setSeconds((set ? 0 : date.getSeconds()) + value);
 				break;
 			case "quarters":
-				date.setMonth(date.getMonth() + value * 3);
+				date.setMonth((set ? 0 : date.getMonth()) + value * 3);
 				break;
 			case "weeks":
-				date.setDate(date.getDate() + value * 7);
+				date.setDate((set ? 0 : date.getDate()) + value * 7);
 				break;
 			case "milliseconds":
-				date.setMilliseconds(date.getMilliseconds() + value);
+				date.setMilliseconds(
+					(set ? 0 : date.getMilliseconds()) + value
+				);
 				break;
 			default:
 				break;
@@ -382,10 +386,20 @@ class DateTime {
 	 * - getEndOfQuarter() Obtener el final del trimestre
 	 */
 
+	/********************************************
+	 *                 Setters                  *
+	 ********************************************/
+
 	/**
-	 * Setters
-	 * - setYear(year) Establecer el año
-	 * - setMonth(month) Establecer el mes
+	 * Cambiar el año de la fecha
+	 *
+	 * @param {number} value el año a establecer
+	 */
+	setYear(value) {
+		value = Math.round(Math.abs(value));
+		return this.#alterateDate("years", value, true);
+	}
+	/* - setMonth(month) Establecer el mes
 	 * - setDay(day) Establecer el día
 	 * - setHours(hrs) Establecer las horas
 	 * - setMinutes(min) Establecer los minutos

@@ -1,16 +1,20 @@
 import { DateTime, datetime } from "../src/app.js";
 
-console.log("Desarrollo");
-console.log("**********");
+// console.log("Desarrollo");
+// console.log("**********");
 console.log("instancia");
 // DateTime.translate = require("./lang/en");
-// const DT = new DateTime();
-// console.log(DT.format());
+// DateTime.defaultLang("en-ES");
+const DT = new DateTime();
+DT.setYear(2024);
+console.log(DT.clone().setYear("2026z").toString());
+console.log(DT.toString());
 // const DT1 = new DateTime("1989/06/02");
-// console.log(DT1.format("dd/mm/yyyy hh:ii:ss aa"));
+// DT1.defaultLang("en")
+// console.log(DT1.setLang("es").format("dddd mmmm dd/mm/yyyy hh:ii:ss aa"));
 // const DT2 = new DateTime("1989/26/02", "yyyy/dd/mm");
 // console.log(DT2.format("dd-mm-yyyy HH:ii:ss"));
-// DateTime.defaultLang("en-ES");
+// console.log("cambio de idioma")
 // const DT3 = new DateTime("02/06/1989", "dd/mm/yyyy");
 // DT3.defaultLang("en-EN");
 // console.log(DT3.setLang("en-ES").toString());
@@ -18,8 +22,9 @@ console.log("instancia");
 // console.log(DT4.add("years", 1).toString());
 // console.log(DT4.toString());
 
-console.log("-*-*-*-*-*-*-*-*-*-*-*-*-");
-console.log("función");
+// console.log("-*-*-*-*-*-*-*-*-*-*-*-*-");
+// console.log("-*-*-*-*-*-*-*-*-*-*-*-*-");
+// console.log("función");
 // console.log(datetime());
 // console.log(datetime().now());
 // console.log(datetime().today());
@@ -33,8 +38,8 @@ console.log("función");
 // console.log(datetime("01/21/2023 16:20", "mm/dd/yyyy hh:ii").toString());
 // console.log(datetime("12/24/2024 20", "mm/dd/yyyy hh").toString(true));
 // console.log(datetime("12/24/2024", "dd/mm/yyyy").toString(true));
-// datetime().defaultLang("en-EN");
-// DateTime.defaultLang("en-EN");
+// datetime().defaultLang("es-EN");
+// DateTime.defaultLang("es-EN");
 // DateTime.translate = require("./lang/fr");
 // datetime().setTranslate(require("./lang/fr"));
 // let dt = datetime()
@@ -81,20 +86,20 @@ console.log("función");
 // 		"dddd dd \\de mmmm \\del yyyy \\a l\\a\\s HH:ii:ss"
 // 	)
 // );
-let dt = datetime();
-console.log("clonar");
-let dt2 = dt.clone();
-dt.add("years", 2);
-console.log(
-	dt.format("dddd dd \\de mmmm \\de yyyy \\a l\\a\\s hh:ii:ss aa => HH:ii:ss")
-);
-dt2.add("years", 1).setLang("en-EN");
-console.log(
-	dt2.format(
-		"dddd dd \\de mmmm \\de yyyy \\a l\\a\\s hh:ii:ss a => HH:ii:ss"
-	)
-);
-let d = new Date();
-console.log(d);
-let dt3 = datetime(d);
-console.log(dt3.toString());
+// let dt = datetime();
+// console.log("clonar");
+// let dt2 = dt.clone();
+// dt.add("years", 2);
+// console.log(
+// 	dt.format("dddd dd \\de mmmm \\de yyyy \\a l\\a\\s hh:ii:ss aa => HH:ii:ss")
+// );
+// dt2.add("years", 1).setLang("en-EN");
+// console.log(
+// 	dt2.format(
+// 		"dddd dd \\de mmmm \\de yyyy \\a l\\a\\s hh:ii:ss a => HH:ii:ss"
+// 	)
+// );
+// let d = new Date();
+// console.log(d);
+// let dt3 = datetime(d);
+// console.log(dt3.toString());

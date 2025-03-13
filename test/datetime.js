@@ -5127,7 +5127,7 @@ class DateTime {
   #format = null;
   localLang = null;
   static lang = (() => navigator.language ?? "es-ES")();
-  static translate = (() => __webpack_require__("./src/lang sync recursive ^\\.\\/.*$")("./" + DateTime.lang.split("-", 1)))();
+  static translate = (() => __webpack_require__("./src/lang sync recursive ^\\.\\/.*$")("./" + DateTime.lang.split("-", 1)))(); // obtener solo "es"
   // static translate = translations;
 
   /**
@@ -5157,7 +5157,8 @@ class DateTime {
   }
 
   /**
-   * Establece el idioma de la fecha, static para la instancia
+   * Establece el idioma de la fecha, static para la clase
+   * respetando el método setLang que actúa sobre la instancia
    *
    * @param {string} lang Idioma a establecer
    */
@@ -5167,7 +5168,7 @@ class DateTime {
       DateTime.translate = __webpack_require__("./src/lang sync recursive ^\\.\\/.*$")("./" + lang.split("-", 1));
     } catch (error) {
       DateTime.lang = "es-ES";
-      console.error("Idioma no soportado");
+      console.error(`Idioma ${lang} no soportado`);
     }
   }
 
@@ -5189,7 +5190,7 @@ class DateTime {
   }
 
   /**
-   * Traducciones personalizadas, static para la instancia
+   * Traducciones personalizadas, static para la clase
    *
    * @param {string} translate Idioma a establecer
    */
@@ -5355,35 +5356,37 @@ class DateTime {
    * @returns {DateTime} Retorna la instancia
    */
   #alterateDate(type, value) {
+    let set = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
     value = Math.round(value);
     const date = this.#date;
     switch (type) {
       case "years":
-        date.setFullYear(date.getFullYear() + value);
+        console.log(set ? 0 : date.getFullYear());
+        date.setFullYear((set ? 0 : date.getFullYear()) + value);
         break;
       case "months":
-        date.setMonth(date.getMonth() + value);
+        date.setMonth((set ? 0 : date.getMonth()) + value);
         break;
       case "days":
-        date.setDate(date.getDate() + value);
+        date.setDate((set ? 0 : date.getDate()) + value);
         break;
       case "hours":
-        date.setHours(date.getHours() + value);
+        date.setHours((set ? 0 : date.getHours()) + value);
         break;
       case "minutes":
-        date.setMinutes(date.getMinutes() + value);
+        date.setMinutes((set ? 0 : date.getMinutes()) + value);
         break;
       case "seconds":
-        date.setSeconds(date.getSeconds() + value);
+        date.setSeconds((set ? 0 : date.getSeconds()) + value);
         break;
       case "quarters":
-        date.setMonth(date.getMonth() + value * 3);
+        date.setMonth((set ? 0 : date.getMonth()) + value * 3);
         break;
       case "weeks":
-        date.setDate(date.getDate() + value * 7);
+        date.setDate((set ? 0 : date.getDate()) + value * 7);
         break;
       case "milliseconds":
-        date.setMilliseconds(date.getMilliseconds() + value);
+        date.setMilliseconds((set ? 0 : date.getMilliseconds()) + value);
         break;
       default:
         break;
@@ -5463,10 +5466,20 @@ class DateTime {
    * - getEndOfQuarter() Obtener el final del trimestre
    */
 
+  /********************************************
+   *                 Setters                  *
+   ********************************************/
+
   /**
-   * Setters
-   * - setYear(year) Establecer el año
-   * - setMonth(month) Establecer el mes
+   * Cambiar el año de la fecha
+   *
+   * @param {number} value el año a establecer
+   */
+  setYear(value) {
+    value = Math.round(Math.abs(value));
+    return this.#alterateDate("years", value, true);
+  }
+  /* - setMonth(month) Establecer el mes
    * - setDay(day) Establecer el día
    * - setHours(hrs) Establecer las horas
    * - setMinutes(min) Establecer los minutos
@@ -5664,7 +5677,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \\":date\\
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("acc39ac44a73eb8114de")
+/******/ 		__webpack_require__.h = () => ("a31b6c0227f89ae87cd1")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
@@ -6336,17 +6349,22 @@ var socketURL = createSocketURL(parsedResourceQuery);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _src_app_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../src/app.js */ "./src/app.js");
 
-console.log("Desarrollo");
-console.log("**********");
+
+// console.log("Desarrollo");
+// console.log("**********");
 console.log("instancia");
 // DateTime.translate = require("./lang/en");
-// const DT = new DateTime();
-// console.log(DT.format());
+// DateTime.defaultLang("en-ES");
+const DT = new _src_app_js__WEBPACK_IMPORTED_MODULE_0__.DateTime();
+DT.setYear(2024);
+console.log(DT.clone().setYear("2026z").toString());
+console.log(DT.toString());
 // const DT1 = new DateTime("1989/06/02");
-// console.log(DT1.format("dd/mm/yyyy hh:ii:ss aa"));
+// DT1.defaultLang("en")
+// console.log(DT1.setLang("es").format("dddd mmmm dd/mm/yyyy hh:ii:ss aa"));
 // const DT2 = new DateTime("1989/26/02", "yyyy/dd/mm");
 // console.log(DT2.format("dd-mm-yyyy HH:ii:ss"));
-// DateTime.defaultLang("en-ES");
+// console.log("cambio de idioma")
 // const DT3 = new DateTime("02/06/1989", "dd/mm/yyyy");
 // DT3.defaultLang("en-EN");
 // console.log(DT3.setLang("en-ES").toString());
@@ -6354,8 +6372,9 @@ console.log("instancia");
 // console.log(DT4.add("years", 1).toString());
 // console.log(DT4.toString());
 
-console.log("-*-*-*-*-*-*-*-*-*-*-*-*-");
-console.log("función");
+// console.log("-*-*-*-*-*-*-*-*-*-*-*-*-");
+// console.log("-*-*-*-*-*-*-*-*-*-*-*-*-");
+// console.log("función");
 // console.log(datetime());
 // console.log(datetime().now());
 // console.log(datetime().today());
@@ -6369,8 +6388,8 @@ console.log("función");
 // console.log(datetime("01/21/2023 16:20", "mm/dd/yyyy hh:ii").toString());
 // console.log(datetime("12/24/2024 20", "mm/dd/yyyy hh").toString(true));
 // console.log(datetime("12/24/2024", "dd/mm/yyyy").toString(true));
-// datetime().defaultLang("en-EN");
-// DateTime.defaultLang("en-EN");
+// datetime().defaultLang("es-EN");
+// DateTime.defaultLang("es-EN");
 // DateTime.translate = require("./lang/fr");
 // datetime().setTranslate(require("./lang/fr"));
 // let dt = datetime()
@@ -6417,17 +6436,23 @@ console.log("función");
 // 		"dddd dd \\de mmmm \\del yyyy \\a l\\a\\s HH:ii:ss"
 // 	)
 // );
-let dt = (0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)();
-console.log("clonar");
-let dt2 = dt.clone();
-dt.add("years", 2);
-console.log(dt.format("dddd dd \\de mmmm \\de yyyy \\a l\\a\\s hh:ii:ss aa => HH:ii:ss"));
-dt2.add("years", 1).setLang("en-EN");
-console.log(dt2.format("dddd dd \\de mmmm \\de yyyy \\a l\\a\\s hh:ii:ss a => HH:ii:ss"));
-let d = new Date();
-console.log(d);
-let dt3 = (0,_src_app_js__WEBPACK_IMPORTED_MODULE_0__.datetime)(d);
-console.log(dt3.toString());
+// let dt = datetime();
+// console.log("clonar");
+// let dt2 = dt.clone();
+// dt.add("years", 2);
+// console.log(
+// 	dt.format("dddd dd \\de mmmm \\de yyyy \\a l\\a\\s hh:ii:ss aa => HH:ii:ss")
+// );
+// dt2.add("years", 1).setLang("en-EN");
+// console.log(
+// 	dt2.format(
+// 		"dddd dd \\de mmmm \\de yyyy \\a l\\a\\s hh:ii:ss a => HH:ii:ss"
+// 	)
+// );
+// let d = new Date();
+// console.log(d);
+// let dt3 = datetime(d);
+// console.log(dt3.toString());
 })();
 
 /******/ })()
