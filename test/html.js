@@ -28,7 +28,7 @@ console.log("función");
 // console.log(datetime("01/21/2023 16:20", "mm/dd/yyyy hh:ii").toString());
 // console.log(datetime("12/24/2024 20", "mm/dd/yyyy hh").toString(true));
 
-datetime().setLang("fr-ES");
-let dt = datetime("12/24/2024", "dd/mm/yyyy");
+datetime().setLang("es-ES");
+let dt = datetime("12/24/2024", "mm/dd/yyyy");
 console.log(dt.dateFormat());
 console.log(dt.toString());
