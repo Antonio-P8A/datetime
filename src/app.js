@@ -269,16 +269,20 @@ class DateTime {
 	 * Modificar la fecha
 	 *
 	 * @param {string} type Tipo de valor a añadir
-	 * @param {number} value Valor absoluto redondeado para sumar
+	 * @param {number} value Valor redondeado para sumar o restar
+	 * @param {boolean} set Por defecto es null, si es true solo setea el valor
 	 * @returns {DateTime} Retorna la instancia
 	 */
 	#alterateDate(type, value, set = null) {
-		value = Math.round(value);
 		const date = this.#date;
 
+		if (isNaN(value)) {
+			throw new Error(this.#translate("is_nan"));
+		}
+
+		// Validar el tipo y setear el valor si set es true se suma 0 al valor de lo contrario se obtiene el valor de la instancia y se le suma o resta el valor dato
 		switch (type) {
 			case "years":
-				console.log(set ? 0 : date.getFullYear());
 				date.setFullYear((set ? 0 : date.getFullYear()) + value);
 				break;
 			case "months":
@@ -391,15 +395,63 @@ class DateTime {
 	 ********************************************/
 
 	/**
-	 * Cambiar el año de la fecha
+	 * Establecer el año de la fecha
 	 *
 	 * @param {number} value el año a establecer
+	 * @return {DateTime} Retorna la instancia
 	 */
 	setYear(value) {
-		value = Math.round(Math.abs(value));
+		// El parseInt es para evitar que se pase un string y evitar NaN
+		value = Math.round(Math.abs(parseInt(value)));
+
 		return this.#alterateDate("years", value, true);
 	}
-	/* - setMonth(month) Establecer el mes
+
+	/**
+	 * Establecer el mes de la fecha dentro del rango 1-12,
+	 * Si los días superan el mes se ajusta automáticamente al siguiente mes con la diferencia de días
+	 *
+	 * @param {number} value el mes a establecer
+	 * @return {DateTime} Retorna la instancia
+	 */
+	setMonth(value) {
+		// El parseInt es para evitar que se pase un string y evitar NaN
+		value = parseInt(value);
+
+		// Limitar y setear al rango de 1-12
+		if (value < 1) {
+			value = 1;
+		} else if (value > 12) {
+			value = 12;
+		}
+
+		value = Math.round(Math.abs(value) - 1);
+
+		return this.#alterateDate("months", value, true);
+	}
+
+	/**
+	 * Establecer el día de la fecha dentro del rango 1-31,
+	 * Si los días superan el mes se ajusta automáticamente al mes correspondiente con la diferencia de días
+	 *
+	 * @param {number} value el día a establecer
+	 * @return {DateTime} Retorna la instancia
+	 */
+	setDay(value) {
+		// Limitar y setear al rango de 1-31
+		if (value < 1) {
+			value = 1;
+		} else if (value > 31) {
+			value = 31;
+		}
+
+		// El parseInt es para evitar que se pase un string y evitar NaN
+		value = Math.round(Math.abs(parseInt(value)));
+
+		return this.#alterateDate("days", value, true);
+	}
+
+	/*
 	 * - setDay(day) Establecer el día
 	 * - setHours(hrs) Establecer las horas
 	 * - setMinutes(min) Establecer los minutos

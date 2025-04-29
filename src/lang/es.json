@@ -1,6 +1,7 @@
 {
     "invalid_format": "La fecha \":date\" no coincide con el formato \":format\".",
     "invalid_date": "La fecha \":date\" no es válida.",
+    "is_nan": "El valor no es un número.",
     "m0": "Enero",
     "m1": "Febrero",
     "m2": "Marzo",

@@ -5352,16 +5352,20 @@ class DateTime {
    * Modificar la fecha
    *
    * @param {string} type Tipo de valor a añadir
-   * @param {number} value Valor absoluto redondeado para sumar
+   * @param {number} value Valor redondeado para sumar o restar
+   * @param {boolean} set Por defecto es null, si es true solo setea el valor
    * @returns {DateTime} Retorna la instancia
    */
   #alterateDate(type, value) {
     let set = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-    value = Math.round(value);
     const date = this.#date;
+    if (isNaN(value)) {
+      throw new Error(this.#translate("is_nan"));
+    }
+
+    // Validar el tipo y setear el valor si set es true se suma 0 al valor de lo contrario se obtiene el valor de la instancia y se le suma o resta el valor dato
     switch (type) {
       case "years":
-        console.log(set ? 0 : date.getFullYear());
         date.setFullYear((set ? 0 : date.getFullYear()) + value);
         break;
       case "months":
@@ -5471,15 +5475,59 @@ class DateTime {
    ********************************************/
 
   /**
-   * Cambiar el año de la fecha
+   * Establecer el año de la fecha
    *
    * @param {number} value el año a establecer
+   * @return {DateTime} Retorna la instancia
    */
   setYear(value) {
-    value = Math.round(Math.abs(value));
+    // El parseInt es para evitar que se pase un string y evitar NaN
+    value = Math.round(Math.abs(parseInt(value)));
     return this.#alterateDate("years", value, true);
   }
-  /* - setMonth(month) Establecer el mes
+
+  /**
+   * Establecer el mes de la fecha dentro del rango 1-12,
+   * Si los días superan el mes se ajusta automáticamente al siguiente mes con la diferencia de días
+   *
+   * @param {number} value el mes a establecer
+   * @return {DateTime} Retorna la instancia
+   */
+  setMonth(value) {
+    // El parseInt es para evitar que se pase un string y evitar NaN
+    value = parseInt(value);
+
+    // Limitar y setear al rango de 1-12
+    if (value < 1) {
+      value = 1;
+    } else if (value > 12) {
+      value = 12;
+    }
+    value = Math.round(Math.abs(value) - 1);
+    return this.#alterateDate("months", value, true);
+  }
+
+  /**
+   * Establecer el día de la fecha dentro del rango 1-31,
+   * Si los días superan el mes se ajusta automáticamente al mes correspondiente con la diferencia de días
+   *
+   * @param {number} value el día a establecer
+   * @return {DateTime} Retorna la instancia
+   */
+  setDay(value) {
+    // Limitar y setear al rango de 1-31
+    if (value < 1) {
+      value = 1;
+    } else if (value > 31) {
+      value = 31;
+    }
+
+    // El parseInt es para evitar que se pase un string y evitar NaN
+    value = Math.round(Math.abs(parseInt(value)));
+    return this.#alterateDate("days", value, true);
+  }
+
+  /*
    * - setDay(day) Establecer el día
    * - setHours(hrs) Establecer las horas
    * - setMinutes(min) Establecer los minutos
@@ -5606,7 +5654,7 @@ webpackContext.id = "./src/lang sync recursive ^\\.\\/.*$";
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"The date \\":date\\" does not match the format \\":format\\".","invalid_date":"The date \\":date\\" is not valid.","m0":"January","m1":"February","m2":"March","m3":"April","m4":"May","m5":"June","m6":"July","m7":"August","m8":"September","m9":"October","m10":"November","m11":"December","d0":"Sunday","d1":"Monday","d2":"Tuesday","d3":"Wednesday","d4":"Thursday","d5":"Friday","d6":"Saturday","PM1":"PM","pm":"pm","AM1":"AM","am":"am"}');
+module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"The date \\":date\\" does not match the format \\":format\\".","invalid_date":"The date \\":date\\" is not valid.","is_nan":"The value is not a number.","m0":"January","m1":"February","m2":"March","m3":"April","m4":"May","m5":"June","m6":"July","m7":"August","m8":"September","m9":"October","m10":"November","m11":"December","d0":"Sunday","d1":"Monday","d2":"Tuesday","d3":"Wednesday","d4":"Thursday","d5":"Friday","d6":"Saturday","PM1":"PM","pm":"pm","AM1":"AM","am":"am"}');
 
 /***/ }),
 
@@ -5617,7 +5665,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"The date \\":date\\
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \\":date\\" no coincide con el formato \\":format\\".","invalid_date":"La fecha \\":date\\" no es válida.","m0":"Enero","m1":"Febrero","m2":"Marzo","m3":"Abril","m4":"Mayo","m5":"Junio","m6":"Julio","m7":"Agosto","m8":"Septiembre","m9":"Octubre","m10":"Noviembre","m11":"Diciembre","d0":"Domingo","d1":"Lunes","d2":"Martes","d3":"Miércoles","d4":"Jueves","d5":"Viernes","d6":"Sábado","PM1":"PM","pm":"pm","AM1":"AM","am":"am"}');
+module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \\":date\\" no coincide con el formato \\":format\\".","invalid_date":"La fecha \\":date\\" no es válida.","is_nan":"El valor no es un número.","m0":"Enero","m1":"Febrero","m2":"Marzo","m3":"Abril","m4":"Mayo","m5":"Junio","m6":"Julio","m7":"Agosto","m8":"Septiembre","m9":"Octubre","m10":"Noviembre","m11":"Diciembre","d0":"Domingo","d1":"Lunes","d2":"Martes","d3":"Miércoles","d4":"Jueves","d5":"Viernes","d6":"Sábado","PM1":"PM","pm":"pm","AM1":"AM","am":"am"}');
 
 /***/ })
 
@@ -5677,7 +5725,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \\":date\\
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("a31b6c0227f89ae87cd1")
+/******/ 		__webpack_require__.h = () => ("987b224842bf5e502058")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
@@ -6357,8 +6405,7 @@ console.log("instancia");
 // DateTime.defaultLang("en-ES");
 const DT = new _src_app_js__WEBPACK_IMPORTED_MODULE_0__.DateTime();
 DT.setYear(2024);
-console.log(DT.clone().setYear("2026z").toString());
-console.log(DT.toString());
+console.log(DT.clone().setYear("2024").setMonth(2).setDay(30).toString());
 // const DT1 = new DateTime("1989/06/02");
 // DT1.defaultLang("en")
 // console.log(DT1.setLang("es").format("dddd mmmm dd/mm/yyyy hh:ii:ss aa"));
@@ -6386,22 +6433,22 @@ console.log(DT.toString());
 // console.log(datetime("03/18/2018", "mm/dd/yyyy").toString());
 // console.log(datetime("07/2024/24 15:10:05", "mm/yyyy/dd hh:ii:ss").toString());
 // console.log(datetime("01/21/2023 16:20", "mm/dd/yyyy hh:ii").toString());
-// console.log(datetime("12/24/2024 20", "mm/dd/yyyy hh").toString(true));
-// console.log(datetime("12/24/2024", "dd/mm/yyyy").toString(true));
-// datetime().defaultLang("es-EN");
-// DateTime.defaultLang("es-EN");
-// DateTime.translate = require("./lang/fr");
-// datetime().setTranslate(require("./lang/fr"));
+// console.log(datetime("12/24/2024 20", "mm/dd/yyyy hh").toString());
+// console.log(datetime("12/24/2024", "dd/mm/yyyy").toString()); // Debe lanzar un error fatal por fecha invalida
+// datetime().defaultLang("en-EN");
+// DateTime.defaultLang("es-ES");
+// // DateTime.translate = require("./lang/fr");
+// // datetime().setTranslate(require("./lang/fr"));
 // let dt = datetime()
-// .subtract("years", -4)
-// .subtract("months", 3)
-// .subtract("days", -4)
-// .subtract("hours", 1)
-// .subtract("minutes", 5)
-// .subtract("seconds", 1)
-// .subtract("milliseconds", 3000)
-// .subtract("quarters", 2)
-// .format("dddd dd \\de mmmm \\de yyyy \\a l\\a\\s hh:ii:ss aa => HH:ii:ss");
+// 	.subtract("years", "-4")
+// 	.subtract("months", 3.4)
+// 	.subtract("days", -4)
+// 	.subtract("hours", 1)
+// 	.subtract("minutes", 5)
+// 	.subtract("seconds", 1)
+// 	.subtract("milliseconds", 3000)
+// 	.subtract("quarters", 2)
+// 	.format("dddd dd \\de mmmm \\de yyyy \\a l\\a\\s hh:ii:ss aa => HH:ii:ss");
 // console.log(dt);
 // console.log(
 // 	datetime()
@@ -6414,9 +6461,9 @@ console.log(DT.toString());
 // console.log(datetime().format("h:ii:ss"));
 // console.log(datetime().format("hh:ii:ss"));
 // console.log(datetime().format("HH:ii:ss"));
-// console.log(datetime().format("ddd-mmm-yyyy"));
-// console.log(datetime().format("dd-mmmm-yyyy"));
+// console.log(datetime().format("dd-mmm-yyyy"));
 // console.log(datetime().format("dd-mmmm-yyy"));
+// console.log(datetime().format("dd-mmmm-yy"));
 // console.log(datetime().format("dd/m/yyy"));
 // console.log(datetime().format("yyyy/mm/dd, h:i:s"));
 // console.log(datetime().format("dd/mm/yyyy h:i:s"));
@@ -6436,7 +6483,7 @@ console.log(DT.toString());
 // 		"dddd dd \\de mmmm \\del yyyy \\a l\\a\\s HH:ii:ss"
 // 	)
 // );
-// let dt = datetime();
+// dt = datetime();
 // console.log("clonar");
 // let dt2 = dt.clone();
 // dt.add("years", 2);
@@ -6445,12 +6492,9 @@ console.log(DT.toString());
 // );
 // dt2.add("years", 1).setLang("en-EN");
 // console.log(
-// 	dt2.format(
-// 		"dddd dd \\de mmmm \\de yyyy \\a l\\a\\s hh:ii:ss a => HH:ii:ss"
-// 	)
+// 	dt2.format("dddd dd \\de mmmm \\de yyyy \\a l\\a\\s hh:ii:ss a => HH:ii:ss")
 // );
 // let d = new Date();
-// console.log(d);
 // let dt3 = datetime(d);
 // console.log(dt3.toString());
 })();
