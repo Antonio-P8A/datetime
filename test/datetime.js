@@ -5528,7 +5528,6 @@ class DateTime {
   }
 
   /*
-   * - setDay(day) Establecer el día
    * - setHours(hrs) Establecer las horas
    * - setMinutes(min) Establecer los minutos
    * - setSeconds(s) Establecer los segundos
@@ -5725,7 +5724,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"invalid_format":"La fecha \\":date\\
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("987b224842bf5e502058")
+/******/ 		__webpack_require__.h = () => ("0e4c2aa6af85ce8e1e93")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */

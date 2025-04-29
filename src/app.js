@@ -452,7 +452,6 @@ class DateTime {
 	}
 
 	/*
-	 * - setDay(day) Establecer el día
 	 * - setHours(hrs) Establecer las horas
 	 * - setMinutes(min) Establecer los minutos
 	 * - setSeconds(s) Establecer los segundos
